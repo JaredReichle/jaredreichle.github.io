@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jared Reichle - Portfolio</title>
+    <meta name="description" content="Jared Reichle's Portfolio">
+    <title>Jared Reichle</title>
+    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -44,11 +46,11 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Hi, I'm <span class="highlight">Jared Reichle</span></h1>
-                <p class="hero-subtitle">Software Developer & Problem Solver</p>
+                <h1 class="hero-title">Hi, I'm Jared Reichle</h1>
+                <p class="hero-subtitle">Software Engineer & Astronomy Enthusiast</p>
                 <p class="hero-description">
-                    I create innovative solutions and build amazing digital experiences. 
-                    Passionate about clean code, user experience, and continuous learning.
+                    Backend builder, data wrangler, automation fan. I craft tested, dependable
+                    systems that quietly power big results. And yeah... I like telescopes.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -57,7 +59,7 @@
             </div>
             <div class="hero-image">
                 <div class="profile-placeholder">
-                    <i class="fas fa-user"></i>
+                    <img src="images/profile.jpg" alt="Jared Reichle" class="profile-image">
                 </div>
             </div>
         </div>
@@ -75,41 +77,104 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a passionate software developer with a love for creating elegant solutions to complex problems. 
-                        With a strong foundation in modern web technologies and a keen eye for detail, I strive to build 
-                        applications that not only function flawlessly but also provide exceptional user experiences.
+                        I’m a software engineer who enjoys rolling up my sleeves and tackling backend challenges. I love trying to
+                        make systems faster, more reliable, and easier to maintain. I like writing clean code and building features
+                        that actually provide business value and don't just look pretty. I’m always curious about how things work
+                        under the hood and love figuring out smart solutions to complex problems.
                     </p>
                     <p>
-                        When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
-                        or sharing knowledge with the developer community. I believe in continuous learning and staying 
-                        up-to-date with the latest industry trends and best practices.
+                        When I’m not coding, you’ll usually find me stargazing and exploring the night sky through my telescope,
+                        spending quality time with my family, or getting my hands dirty working on cars. These hobbies keep me
+                        grounded and constantly learning in different ways.
                     </p>
                     <div class="skills">
                         <h3>Skills & Technologies</h3>
                         <div class="skill-tags">
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">HTML/CSS</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Docker</span>
+                            <div class="skill-bubble" data-skill="JavaScript">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-tooltip">
+                                    <h4>Python</h4>
+                                    <p>Primary language. Use daily for building data pipelines, backend systems, automations and robust integration tests.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="React">
+                                <span class="skill-name">SQL</span>
+                                <div class="skill-tooltip">
+                                    <h4>SQL (PostgreSQL, SQLite)</h4>
+                                    <p>Design and optimize schemas, write complex queries, and handle data transformations in production environments; daily tool for data-driven applications.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="Node.js">
+                                <span class="skill-name">C++</span>
+                                <div class="skill-tooltip">
+                                    <h4>C++</h4>
+                                    <p>Past production experience on mission-critical systems; although not used recently, still able to ramp quickly due to strong fundamentals.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="Python">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-tooltip">
+                                    <h4>JavaScript (HTML/CSS/JS)</h4>
+                                    <p>Developed and maintained web-facing features. Comfortable working in full web stacks when needed.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="HTML/CSS">
+                                <span class="skill-name">API Development</span>
+                                <div class="skill-tooltip">
+                                    <h4>API Development</h4>
+                                    <p>Built and consumed REST APIs extensively, handling everything from endpoint design to data contracts and client integrations.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="Git">
+                                <span class="skill-name">Async/Threads</span>
+                                <div class="skill-tooltip">
+                                    <h4>Asynchronous & Threading Applications</h4>
+                                    <p>Developed concurrent systems to handle heavy data workflows and integrations, improving throughput and reliability.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="AWS">
+                                <span class="skill-name">Automations</span>
+                                <div class="skill-tooltip">
+                                    <h4>Pipelines & Automations</h4>
+                                    <p>Bread and butter work. Building high-impact automations that move and transform data between systems, often integrating with real hardware.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="Docker">
+                                <span class="skill-name">Docker</span>
+                                <div class="skill-tooltip">
+                                    <h4>Docker & Podman</h4>
+                                    <p>Set up and maintained containerized environments across divisions, enabling consistent development and deployment workflows on even constrained networks.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="Docker">
+                                <span class="skill-name">CI/CD</span>
+                                <div class="skill-tooltip">
+                                    <h4>Pipelines & Testing</h4>
+                                    <p>Architected pipelines from scratch, including test automation, builds and deployments. Wrote and maintained thorough tests for multi-system and hardware-in-the-loop scenarios.</p>
+                                </div>
+                            </div>
+                            <div class="skill-bubble" data-skill="Docker">
+                                <span class="skill-name">React</span>
+                                <div class="skill-tooltip">
+                                    <h4>Frontend Development</h4>
+                                    <p>Collaborated on features in React applications, and independently built UI elements in vanilla JS, HTML and CSS when needed.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
-                        <h3>3+</h3>
+                        <h3>5+</h3>
                         <p>Years Experience</p>
                     </div>
                     <div class="stat-item">
-                        <h3>20+</h3>
-                        <p>Projects Completed</p>
+                        <h3>30+</h3>
+                        <p>Workflows Automated / Integrations Delivered</p>
                     </div>
                     <div class="stat-item">
-                        <h3>5+</h3>
-                        <p>Technologies Mastered</p>
+                        <h3>16+</h3>
+                        <p>Messier Objects Observed</p>
                     </div>
                 </div>
             </div>
@@ -127,26 +192,40 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content">
-                                <h4>Senior Software Developer</h4>
-                                <p class="company">Tech Company Inc.</p>
+                                <h4>Software Engineer</h4>
+                                <p class="company">Northrop Grumman</p>
                                 <p class="period">2022 - Present</p>
                                 <ul>
-                                    <li>Led development of scalable web applications using React and Node.js</li>
-                                    <li>Mentored junior developers and conducted code reviews</li>
-                                    <li>Implemented CI/CD pipelines and improved deployment processes</li>
+                                    <li>Built test tools and automation frameworks from scratch, accelerating system test cycles</li>
+                                    <li>Created API clients and device drivers that integrated web tools with lab hardware</li>
+                                    <li>Developed a React app for interactive lab visualization, improving team situational awareness</li>
+                                    <li>Established DevOps infra with CI/CD pipelines, enhancing software delivery speed and reliability</li>
+                                    <li>Mentored new engineers, reducing onboarding time and improving team velocity by refining documentation and workflows</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content">
-                                <h4>Full Stack Developer</h4>
-                                <p class="company">StartupXYZ</p>
+                                <h4>Electronics Engineer</h4>
+                                <p class="company">United States Air Force</p>
                                 <p class="period">2020 - 2022</p>
                                 <ul>
-                                    <li>Built and maintained multiple client-facing applications</li>
-                                    <li>Collaborated with design and product teams</li>
-                                    <li>Optimized application performance and user experience</li>
+                                    <li>Managed customer-driven software changes, resolving bugs and adding features to F-16 subsystems that improved mission-readiness</li>
+                                    <li>Integrated cross-team feature updates into flight simulators, accelerating validation and reducing test cycles</li>
+                                    <li>Identified, documented and hotfixed simulator issues, decreasing field defects and improving system reliability</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Customer Systems Engineering Intern</h4>
+                                <p class="company">Micron Technology</p>
+                                <p class="period">2018</p>
+                                <ul>
+                                    <li>Debugged memory product failures on proprietary customer systems, increasing first-call resolution rates</li>
+                                    <li>Produced technical reports and directly interfaced with customers to drive faster problem closure and improved product trust</li>
                                 </ul>
                             </div>
                         </div>
@@ -155,28 +234,32 @@
                 <div class="resume-section">
                     <h3>Education</h3>
                     <div class="education-item">
-                        <h4>Bachelor of Science in Computer Science</h4>
-                        <p class="institution">University of Technology</p>
+                        <h4>Master of Science in Computer Science</h4>
+                        <p class="institution">Georgia Institute of Technology</p>
+                        <p class="period">2025 - Expected 2027</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Bachelor of Science in Electrical Engineering</h4>
+                        <p class="institution">University of Idaho</p>
                         <p class="period">2016 - 2020</p>
-                        <p>Graduated with honors. Focused on software engineering and web development.</p>
                     </div>
                 </div>
                 <div class="resume-section">
-                    <h3>Certifications</h3>
+                    <h3>Certifications and Statuses</h3>
                     <div class="certifications">
                         <div class="cert-item">
-                            <i class="fab fa-aws"></i>
-                            <span>AWS Certified Developer</span>
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Active Top Secret Clearance</span>
                         </div>
                         <div class="cert-item">
-                            <i class="fab fa-google"></i>
-                            <span>Google Cloud Professional</span>
+                            <i class="fas fa-certificate"></i>
+                            <span>CompTIA Security+</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="resume-actions">
-                <a href="#" class="btn btn-primary">Download PDF</a>
+                <a href="assets/2025_resume.pdf" class="btn btn-primary" download="Jared_Reichle_Resume.pdf">Download PDF</a>
             </div>
         </div>
     </section>
@@ -185,96 +268,79 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects & Work</h2>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Apps</button>
-                <button class="filter-btn" data-filter="mobile">Mobile</button>
-                <button class="filter-btn" data-filter="other">Other</button>
-            </div>
             <div class="projects-grid">
-                <div class="project-card" data-category="web">
+                <div class="project-card" data-project="homelab">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
+                        <img src="images/homelab-proxmox.png" alt="Home Lab Proxmox Cluster" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3>E-Commerce Platform</h3>
-                        <p>A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>
-                        </div>
+                        <h3>Home Lab Servers & Proxmox Cluster</h3>
+                        <p>Built a home lab on surplus hardware with a Proxmox cluster to experiment with virtualization, networking, and different operating systems</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="mobile">
+                <div class="project-card" data-project="taskapp">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
+                        <img src="images/laser_interferometer.jpg" alt="Laser Interferometer System" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>A cross-platform mobile application for task management with real-time synchronization, offline support, and team collaboration features.</p>
-                        <div class="project-tech">
-                            <span>React Native</span>
-                            <span>Firebase</span>
-                            <span>Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>
-                        </div>
+                        <h3>FPGA Data Acquisition & Control System for Laser Interferometry</h3>
+                        <p>Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser interferometer, simulating and verifying the architecture on a Zynq 7010 SoC.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="web">
+                <div class="project-card" data-project="analytics">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
+                        <img src="images/circuits.jpg" alt="Circuit Analysis" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3>Analytics Dashboard</h3>
-                        <p>A comprehensive analytics dashboard with real-time data visualization, customizable reports, and interactive charts for business intelligence.</p>
-                        <div class="project-tech">
-                            <span>Vue.js</span>
-                            <span>D3.js</span>
-                            <span>Python</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>
-                        </div>
+                        <h3>Circuit Synthesis from Frequency Response Data</h3>
+                        <p>Built a Python tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="other">
+                <div class="project-card" data-project="telescope">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-robot"></i>
-                        </div>
+                        <img src="images/orion.jpg" alt="Orion Nebula" class="project-img">
+                        <div class="progress-badge">In Progress</div>
                     </div>
                     <div class="project-content">
-                        <h3>AI Chatbot</h3>
-                        <p>An intelligent chatbot powered by machine learning that provides customer support and answers frequently asked questions.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>TensorFlow</span>
-                            <span>NLP</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                        </div>
+                        <h3>DIY Go-To Dobsonian Telescope Conversion</h3>
+                        <p>Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing OnStep tracking, turning a manual telescope into a go-to system for automated star tracking and positioning.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Project Modals -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-info">
+                    <h2 id="modalTitle">Project Title</h2>
+                    <div class="modal-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <div class="modal-description">
+                        <p id="modalDescription">Project description will go here.</p>
+                    </div>
+                    <div class="modal-details">
+                        <h3>Key Features</h3>
+                        <ul id="modalFeatures">
+                            <li>Feature 1</li>
+                            <li>Feature 2</li>
+                            <li>Feature 3</li>
+                        </ul>
+                        <h3>Technical Details</h3>
+                        <p id="modalTechnical">Technical details will go here.</p>
+                        <h3>Challenges & Solutions</h3>
+                        <p id="modalChallenges">Challenges and solutions will go here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -282,54 +348,27 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to collaborate or just want to say hello!</p>
+                    <p>I'm always happy to connect, whether it's exploring a cool project, swapping thoughts on coding, or talking telescopes. Feel free to drop me a message anytime.</p>
                     <div class="contact-items">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email</h4>
-                                <p>jared.reichle@example.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+1 (555) 123-4567</p>
+                                <p>reichle.jared@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
                                 <h4>Location</h4>
-                                <p>San Francisco, CA</p>
+                                <p>Salt Lake City, UT</p>
                             </div>
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/jared-reichle/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/jaredreichle/" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -339,12 +378,11 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 Jared Reichle. All rights reserved.</p>
-                <p>Built with ❤️ and lots of ☕</p>
+                <p>&copy; 2025 Jared Reichle. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html> 
