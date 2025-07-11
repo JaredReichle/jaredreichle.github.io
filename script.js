@@ -56,26 +56,28 @@ const projectCards = document.querySelectorAll('.project-card');
 
 // Project data
 const projectData = {
-    homelab: {
+    homelabServers: {
         title: "Home Lab Servers & Proxmox Cluster",
-        description: "Built a comprehensive home lab environment using surplus hardware to create a Proxmox virtualization cluster. This setup enables experimentation with various operating systems, networking configurations, and virtualization technologies.",
+        summary: "Built a home lab environment using surplus hardware to create a Proxmox virtualization cluster. This setup enables experimentation with various operating systems (RHEL, Ubunut, Kali), networking configurations (NFS, vmbr), and virtualization technologies (Containers, VMs, ISOs).",
+        layman: "Think of this like having a mini data center in my house. I took old computers and turned them into a system that can run multiple virtual machines (kinda like digital computers) and experiment with different technologies, just like big companies do but on a smaller scale.",
+        technical: "The home lab consists of cheap computers from the neighboring university surplus running Proxmox VE for virtualization management. The cluster provides availability and resource pooling across multiple nodes. I had quite a few issues in configuring the network interface settings on those machines, but once I got them up I was able to enjoy the lab. I've used them to explore kernel features, dabble with cyber tools, and am currently looking to set up a home NAS.",
         tech: ["Proxmox", "Linux", "Virtualization", "Networking", "Hardware"],
-        features: [
+        highlights: [
             "Proxmox virtualization cluster setup",
             "Multiple VM environments for testing",
-            "Network isolation and segmentation",
-            "Hardware resource optimization",
-            "Backup and recovery systems",
+            "Network configuration debugging",
+            "Containerized application deployments",
+            "Security hardening and access controls",
             "Monitoring, management and cyber tools"
         ],
-        technical: "The home lab consists of multiple physical servers running Proxmox VE for virtualization management. The cluster provides high availability and resource pooling across multiple nodes. Network segmentation is achieved through VLANs and virtual switches.",
-        challenges: "Key challenges included optimizing resource allocation across limited hardware, ensuring network security and isolation, and maintaining system reliability with surplus equipment. Solutions involved careful capacity planning, network design best practices, and implementing robust monitoring systems.",
     },
-    taskapp: {
+    fpgaLaserControl: {
         title: "FPGA Data Acquisition & Control System for Laser Interferometry",
-        description: "Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser interferometer, simulating and verifying the architecture on a Zynq 7010 SoC.",
+        summary: "Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser interferometer, simulating and verifying the architecture on a Zynq 7010 SoC.",
+        layman: "Imagine you have a very precise laser that needs to stay perfectly stable for scientific measurements. I built a system that constantly monitors the laser and makes tiny adjustments to keep it running perfectly, like a smart thermostat but for a laser's wavelength instead of temperature.",
+        technical: "The system utilizes a Xilinx Zynq 7010 SoC with custom VHDL modules for data acquisition and control logic. Python interfaces handle data processing and analysis, while the FPGA manages real-time control loops and signal conditioning for the laser interferometer. The architecture implements a Pound-Drever-Hall control loop with PID feedback mechanisms (driving current) for precise frequency stabilization.",
         tech: ["FPGA", "VHDL", "Python", "Control Systems", "Signal Processing"],
-        features: [
+        highlights: [
             "Modular FPGA architecture design",
             "Real-time data acquisition system",
             "Closed-loop control implementation",
@@ -83,14 +85,14 @@ const projectData = {
             "Zynq 7010 SoC verification",
             "Signal processing and analysis"
         ],
-        technical: "The system utilizes a Xilinx Zynq 7010 SoC with custom VHDL modules for data acquisition and control logic. Python interfaces handle data processing and analysis, while the FPGA manages real-time control loops and signal conditioning for the laser interferometer.",
-        challenges: "Primary challenges included designing a modular architecture that could handle real-time data acquisition while maintaining precise control loops, optimizing FPGA resource utilization, and ensuring reliable communication between the FPGA and processing units. Solutions involved careful timing analysis, efficient resource allocation, and robust error handling mechanisms.",
     },
-    analytics: {
+    circuitSynthesis: {
         title: "Circuit Synthesis from Frequency Response Data",
-        description: "Built a Python tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.",
+        summary: "Built a Python tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.",
+        layman: "Imagine you have a mysterious electronic device in a black box and you want to figure out what's inside without opening it. I created a program that listens to how the device responds (output nodes) to different signals (input nodes) and then figures out what electronic components are likely inside, like solving a puzzle using math.",
+        technical: "The tool uses signal processing techniques to analyze frequency response data and employs rational approximation algorithms to create equivalent RLC circuit models. Python libraries handle complex mathematical operations, while custom algorithms perform circuit parameter extraction and model validation. The system implements frequency domain analysis with impedance matching algorithms to reconstruct circuit topology.",
         tech: ["Python", "Signal Processing", "Circuit Analysis", "Optimization", "Numerical Methods"],
-        features: [
+        highlights: [
             "Frequency response data analysis",
             "RLC circuit synthesis algorithms",
             "Black-box circuit modeling",
@@ -98,14 +100,14 @@ const projectData = {
             "Circuit parameter extraction",
             "Model validation and verification"
         ],
-        technical: "The tool uses advanced signal processing techniques to analyze frequency response data and employs numerical optimization algorithms to synthesize equivalent RLC circuit models. Python libraries handle complex mathematical operations, while custom algorithms perform circuit parameter extraction and model validation.",
-        challenges: "Key challenges were developing robust algorithms for circuit synthesis from limited frequency response data, ensuring the synthesized models accurately represent the original circuit behavior, and handling cases with multiple valid solutions. Solutions involved implementing sophisticated optimization algorithms, developing validation metrics, and creating robust error handling for edge cases.",
     },
-    telescope: {
+    telescopeConversion: {
         title: "DIY Go-To Dobsonian Telescope Conversion",
-        description: "Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing OnStep tracking, turning a manual telescope into a go-to system for automated star tracking and positioning.",
+        summary: "Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing OnStep tracking, turning a manual telescope into a go-to system for automated star tracking and positioning.",
+        layman: "I'm taking a manual telescope that you normally have to point by hand and adding motors and a computer control to it. This will let me tell the telescope to find specific stars or galaxies automatically, and it will track them as they move across the sky, like having a robot assistant for stargazing.",
+        technical: "The conversion involves integrating stepper motors to both the azimuth and altitude axes of the Dobsonian mount. An Arduino-based control system manages the motors and implements the OnStep tracking algorithm for accurate celestial object positioning. The system includes manual override capabilities and real-time position feedback with precision encoders for position verification.",
         tech: ["Arduino", "Stepper Motors", "Astronomy", "Mechanical Design", "C++", "OnStep"],
-        features: [
+        highlights: [
             "Stepper motor integration for azimuth and altitude control",
             "OnStep tracking system implementation",
             "Automated star positioning and tracking",
@@ -113,8 +115,6 @@ const projectData = {
             "Precision mechanical modifications",
             "Real-time position feedback and control"
         ],
-        technical: "The conversion involves integrating stepper motors to both the azimuth and altitude axes of the Dobsonian mount. An Arduino-based control system manages the motors and implements the OnStep tracking algorithm for accurate celestial object positioning. The system includes manual override capabilities and real-time position feedback.",
-        challenges: "Primary challenges include maintaining the telescope's balance after adding motor weight, ensuring precise motor control for accurate positioning, and implementing reliable tracking algorithms. Solutions involve careful weight distribution planning, high-precision stepper motor selection, and robust control system design with fail-safe mechanisms.",
     }
 };
 
@@ -127,17 +127,30 @@ projectCards.forEach(card => {
         if (project) {
             // Populate modal with project data
             document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalSummary').textContent = project.summary;
+            document.getElementById('modalLayman').textContent = project.layman;
             document.getElementById('modalTechnical').textContent = project.technical;
-            document.getElementById('modalChallenges').textContent = project.challenges;
             
             // Update tech tags
             const techContainer = document.querySelector('.modal-tech');
             techContainer.innerHTML = project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
             
-            // Update features list
-            const featuresList = document.getElementById('modalFeatures');
-            featuresList.innerHTML = project.features.map(feature => `<li>${feature}</li>`).join('');
+            // Update highlights list
+            const highlightsList = document.getElementById('modalHighlights');
+            highlightsList.innerHTML = project.highlights.map(highlight => `<li>${highlight}</li>`).join('');
+            
+            // Add external links if they exist
+            const linksContainer = document.getElementById('modalLinks');
+            if (projectId === 'fpgaLaserControl') {
+                linksContainer.innerHTML = `
+                    <a href="https://mindworks.shoutwiki.com/wiki/FPGA_Data_Acquisition_and_Control" class="modal-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Documentation
+                    </a>
+                `;
+            } else {
+                linksContainer.innerHTML = '';
+            }
             
             // Show modal
             modal.style.display = 'block';

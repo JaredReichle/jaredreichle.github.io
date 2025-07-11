@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jared Reichle's Portfolio">
     <title>Jared Reichle</title>
-    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -49,7 +50,7 @@
                 <h1 class="hero-title">Hi, I'm Jared Reichle</h1>
                 <p class="hero-subtitle">Software Engineer & Astronomy Enthusiast</p>
                 <p class="hero-description">
-                    Backend builder, data wrangler, automation fan. I craft tested, dependable
+                    Backend builder, data wrangler, automation junkie. I craft tested & dependable
                     systems that quietly power big results. And yeah... I like telescopes.
                 </p>
                 <div class="hero-buttons">
@@ -149,7 +150,7 @@
                             <div class="skill-bubble" data-skill="Docker">
                                 <span class="skill-name">CI/CD</span>
                                 <div class="skill-tooltip">
-                                    <h4>Pipelines & Testing</h4>
+                                    <h4>Integrations & Testing</h4>
                                     <p>Architected pipelines from scratch, including test automation, builds and deployments. Wrote and maintained thorough tests for multi-system and hardware-in-the-loop scenarios.</p>
                                 </div>
                             </div>
@@ -173,7 +174,7 @@
                         <p>Workflows Automated / Integrations Delivered</p>
                     </div>
                     <div class="stat-item">
-                        <h3>16+</h3>
+                        <h3>40+</h3>
                         <p>Messier Objects Observed</p>
                     </div>
                 </div>
@@ -259,7 +260,7 @@
                 </div>
             </div>
             <div class="resume-actions">
-                <a href="assets/2025_resume.pdf" class="btn btn-primary" download="Jared_Reichle_Resume.pdf">Download PDF</a>
+                <a href="assets/2025_Resume.pdf" class="btn btn-primary" download="Jared_Reichle_Resume.pdf">Download PDF</a>
             </div>
         </div>
     </section>
@@ -269,7 +270,7 @@
         <div class="container">
             <h2 class="section-title">Projects & Work</h2>
             <div class="projects-grid">
-                <div class="project-card" data-project="homelab">
+                <div class="project-card" data-project="homelabServers">
                     <div class="project-image">
                         <img src="images/homelab-proxmox.png" alt="Home Lab Proxmox Cluster" class="project-img">
                     </div>
@@ -278,7 +279,7 @@
                         <p>Built a home lab on surplus hardware with a Proxmox cluster to experiment with virtualization, networking, and different operating systems</p>
                     </div>
                 </div>
-                <div class="project-card" data-project="taskapp">
+                <div class="project-card" data-project="fpgaLaserControl">
                     <div class="project-image">
                         <img src="images/laser_interferometer.jpg" alt="Laser Interferometer System" class="project-img">
                     </div>
@@ -287,23 +288,23 @@
                         <p>Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser interferometer, simulating and verifying the architecture on a Zynq 7010 SoC.</p>
                     </div>
                 </div>
-                <div class="project-card" data-project="analytics">
+                <div class="project-card" data-project="circuitSynthesis">
                     <div class="project-image">
                         <img src="images/circuits.jpg" alt="Circuit Analysis" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3>Circuit Synthesis from Frequency Response Data</h3>
-                        <p>Built a Python tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.</p>
+                        <p>Built a tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.</p>
                     </div>
                 </div>
-                <div class="project-card" data-project="telescope">
+                <div class="project-card" data-project="telescopeConversion">
                     <div class="project-image">
                         <img src="images/orion.jpg" alt="Orion Nebula" class="project-img">
                         <div class="progress-badge">In Progress</div>
                     </div>
                     <div class="project-content">
                         <h3>DIY Go-To Dobsonian Telescope Conversion</h3>
-                        <p>Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing OnStep tracking, turning a manual telescope into a go-to system for automated star tracking and positioning.</p>
+                        <p>Upgrading a 12-inch Apertura dobsonian telescope by adding stepper motors and implementing OnStep tracking, turning a manual telescope into a go-to system for automated star tracking and positioning.</p>
                     </div>
                 </div>
             </div>
@@ -322,20 +323,33 @@
                         <span class="tech-tag">Node.js</span>
                         <span class="tech-tag">MongoDB</span>
                     </div>
-                    <div class="modal-description">
-                        <p id="modalDescription">Project description will go here.</p>
+                    
+                    <div class="modal-summary">
+                        <h3>Summary</h3>
+                        <p id="modalSummary">Brief project summary will go here.</p>
                     </div>
-                    <div class="modal-details">
-                        <h3>Key Features</h3>
-                        <ul id="modalFeatures">
-                            <li>Feature 1</li>
-                            <li>Feature 2</li>
-                            <li>Feature 3</li>
+                    
+                    <div class="modal-layman">
+                        <h3>In Simple Terms</h3>
+                        <p id="modalLayman">A simple explanation that anyone can understand will go here.</p>
+                    </div>
+                    
+                    <div class="modal-technical">
+                        <h3>Technical Deep Dive</h3>
+                        <p id="modalTechnical">Detailed technical explanation will go here.</p>
+                    </div>
+                    
+                    <div class="modal-highlights">
+                        <h3>Key Highlights</h3>
+                        <ul id="modalHighlights">
+                            <li>Highlight 1</li>
+                            <li>Highlight 2</li>
+                            <li>Highlight 3</li>
                         </ul>
-                        <h3>Technical Details</h3>
-                        <p id="modalTechnical">Technical details will go here.</p>
-                        <h3>Challenges & Solutions</h3>
-                        <p id="modalChallenges">Challenges and solutions will go here.</p>
+                    </div>
+                    
+                    <div class="modal-links" id="modalLinks">
+                        <!-- External links will be added here dynamically -->
                     </div>
                 </div>
             </div>

@@ -447,6 +447,15 @@ section {
     }
 }
 
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    50% {
+        box-shadow: 0 6px 12px rgba(255, 107, 53, 0.1);
+    }
+}
+
 .about-stats {
     display: flex;
     flex-direction: column;
@@ -637,11 +646,43 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
+    border: 2px solid transparent;
+    animation: subtlePulse 3s ease-in-out infinite;
 }
 
-.project-card:hover {
+
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #ff6b35 0%, #4ecdc4 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.project-card:hover,
+.project-card:focus {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 107, 53, 0.2);
+    animation: none;
+}
+
+
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .project-image {
@@ -676,14 +717,14 @@ section {
     transform: scale(1.05);
 }
 
-.project-placeholder {
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.7);
-}
+
 
 .project-content {
     padding: 1.5rem;
+    position: relative;
 }
+
+
 
 .project-content h3 {
     font-size: 1.3rem;
@@ -694,9 +735,11 @@ section {
 
 .project-content p {
     color: #6b7280;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     line-height: 1.6;
 }
+
+
 
 /* Modal Styles */
 .modal {
@@ -770,24 +813,26 @@ section {
     width: 100%;
 }
 
-.modal-image {
-    background: linear-gradient(135deg, #ff6b35 0%, #4ecdc4 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 300px;
-}
 
-.modal-placeholder {
-    font-size: 4rem;
-    color: rgba(255, 255, 255, 0.7);
-}
 
 .modal-info h2 {
     font-size: 1.8rem;
     font-weight: 700;
     color: #1f2937;
     margin-bottom: 1rem;
+}
+
+.modal-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 2rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.modal-info h3:first-of-type {
+    margin-top: 1.5rem;
 }
 
 .modal-tech {
@@ -806,49 +851,36 @@ section {
     font-weight: 500;
 }
 
-.modal-description {
-    margin-bottom: 2rem;
-}
-
-.modal-description p {
-    color: #6b7280;
-    line-height: 1.6;
+.modal-summary p,
+.modal-layman p,
+.modal-technical p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 0;
     font-size: 1rem;
 }
 
-.modal-details h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
-}
 
-.modal-details ul {
+
+.modal-highlights ul {
     list-style: none;
     padding-left: 0;
     margin-bottom: 1.5rem;
 }
 
-.modal-details li {
+.modal-highlights li {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
     color: #4b5563;
 }
 
-.modal-details li::before {
+.modal-highlights li::before {
     content: '▸';
     position: absolute;
     left: 0;
     color: #2563eb;
     font-weight: bold;
-}
-
-.modal-details p {
-    color: #6b7280;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
 }
 
 .modal-links {
@@ -882,9 +914,7 @@ section {
         grid-template-columns: 1fr;
     }
     
-    .modal-image {
-        min-height: 200px;
-    }
+
     
     .modal-content {
         margin: 5% auto;
@@ -985,38 +1015,7 @@ section {
     transform: translateY(-3px);
 }
 
-.contact-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
 
 /* Footer */
 .footer {
@@ -1095,9 +1094,7 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .project-filters {
-        justify-content: center;
-    }
+
 
     .section-title {
         font-size: 2rem;
@@ -1149,5 +1146,23 @@ section {
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
+    }
+}
+
+/* Mobile-specific clickability improvements */
+@media (max-width: 768px) {
+    .project-card {
+        /* Remove pulse animation on mobile for better performance */
+        animation: none;
+        /* Add a subtle border to make cards more defined */
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-card:active {
+        /* Add active state for touch feedback */
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 } 
