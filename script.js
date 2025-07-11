@@ -148,6 +148,13 @@ projectCards.forEach(card => {
                         View Documentation
                     </a>
                 `;
+            } else if (projectId === 'circuitSynthesis') {
+                linksContainer.innerHTML = `
+                    <a href="https://github.com/JaredReichle/CrctSynth" class="modal-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                `;
             } else {
                 linksContainer.innerHTML = '';
             }
