@@ -159,25 +159,26 @@ projectCards.forEach(card => {
     });
 });
 
-// Close modal when X is clicked
-closeBtn.addEventListener('click', () => {
+// Modal close utility function
+function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto'; // Restore scrolling
-});
+}
+
+// Close modal when X is clicked
+closeBtn.addEventListener('click', closeModal);
 
 // Close modal when clicking outside of it
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        closeModal();
     }
 });
 
 // Close modal with Escape key
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && modal.style.display === 'block') {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        closeModal();
     }
 });
 
@@ -202,7 +203,72 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
+    
+    // Initialize skill tooltip positioning
+    initializeSkillTooltips();
+    
+    // Handle window resize for tooltip positioning
+    window.addEventListener('resize', () => {
+        // Remove all positioning classes on resize
+        document.querySelectorAll('.skill-tooltip').forEach(tooltip => {
+            tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
+        });
+    });
 });
+
+// Skill tooltip positioning logic
+function initializeSkillTooltips() {
+    const skillBubbles = document.querySelectorAll('.skill-bubble');
+    
+    skillBubbles.forEach(bubble => {
+        bubble.addEventListener('mouseenter', positionTooltip);
+        bubble.addEventListener('mouseleave', resetTooltip);
+    });
+}
+
+function positionTooltip(event) {
+    const bubble = event.currentTarget;
+    const tooltip = bubble.querySelector('.skill-tooltip');
+    
+    if (!tooltip) return;
+    
+    // Reset any previous positioning classes
+    tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
+    
+    // Get bubble position
+    const bubbleRect = bubble.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Tooltip dimensions (from CSS)
+    const tooltipWidth = 280;
+    const tooltipHeight = 120;
+    const margin = 20;
+    
+    // Calculate where the tooltip would appear (centered above the bubble)
+    const tooltipLeft = bubbleRect.left + (bubbleRect.width / 2) - (tooltipWidth / 2);
+    const tooltipTop = bubbleRect.top - tooltipHeight - margin;
+    
+    // Check for overflow and apply positioning classes
+    if (tooltipLeft < margin) {
+        tooltip.classList.add('tooltip-left');
+    } else if (tooltipLeft + tooltipWidth > viewportWidth - margin) {
+        tooltip.classList.add('tooltip-right');
+    }
+    
+    if (tooltipTop < margin) {
+        tooltip.classList.add('tooltip-top');
+    }
+}
+
+function resetTooltip(event) {
+    const bubble = event.currentTarget;
+    const tooltip = bubble.querySelector('.skill-tooltip');
+    
+    if (tooltip) {
+        tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
+    }
+}
 
 // Contact form handling
 const contactForm = document.getElementById('contactForm');

@@ -1,4 +1,18 @@
 /* Reset and Base Styles */
+:root {
+    --transition-default: all 0.3s ease;
+    --container-max-width: 1200px;
+    --container-padding: 0 20px;
+    --primary-color: #2563eb;
+    --secondary-color: #ff6b35;
+    --accent-color: #4ecdc4;
+    --text-color: #333;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-default: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +31,9 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: var(--container-padding);
 }
 
 /* Navigation */
@@ -30,14 +44,14 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: var(--transition-default);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: var(--container-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,9 +61,9 @@ body {
 .nav-logo a {
     font-size: 24px;
     font-weight: 700;
-    color: #2563eb;
+    color: var(--primary-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: var(--transition-default);
 }
 
 .nav-logo a:hover {
@@ -63,15 +77,15 @@ body {
 }
 
 .nav-link {
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: var(--transition-default);
     position: relative;
 }
 
 .nav-link:hover {
-    color: #2563eb;
+    color: var(--primary-color);
 }
 
 .nav-link::after {
@@ -81,7 +95,7 @@ body {
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: #2563eb;
+    background-color: var(--primary-color);
     transition: width 0.3s ease;
 }
 
@@ -108,7 +122,7 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #ff6b35 0%, #4ecdc4 100%);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -126,9 +140,9 @@ body {
 }
 
 .hero-container {
-    max-width: 1200px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: var(--container-padding);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -173,7 +187,7 @@ body {
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition-default);
     display: inline-block;
     border: none;
     cursor: pointer;
@@ -332,7 +346,7 @@ section {
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-default);
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
     border: none;
     display: inline-block;
@@ -341,46 +355,22 @@ section {
     animation: bubbleFloat 3s ease-in-out infinite;
 }
 
-.skill-bubble:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.skill-bubble:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-.skill-bubble:nth-child(4) {
-    animation-delay: 0.6s;
-}
-
-.skill-bubble:nth-child(5) {
-    animation-delay: 0.8s;
-}
-
-.skill-bubble:nth-child(6) {
-    animation-delay: 1s;
-}
-
-.skill-bubble:nth-child(7) {
-    animation-delay: 1.2s;
-}
-
-.skill-bubble:nth-child(8) {
-    animation-delay: 1.4s;
-}
-
-.skill-bubble:nth-child(9) {
-    animation-delay: 1.6s;
-}
-
-.skill-bubble:nth-child(10) {
-    animation-delay: 1.8s;
-}
+/* Animation delays for skill bubbles - using CSS custom properties for cleaner code */
+.skill-bubble:nth-child(1) { animation-delay: 0s; }
+.skill-bubble:nth-child(2) { animation-delay: 0.2s; }
+.skill-bubble:nth-child(3) { animation-delay: 0.4s; }
+.skill-bubble:nth-child(4) { animation-delay: 0.6s; }
+.skill-bubble:nth-child(5) { animation-delay: 0.8s; }
+.skill-bubble:nth-child(6) { animation-delay: 1s; }
+.skill-bubble:nth-child(7) { animation-delay: 1.2s; }
+.skill-bubble:nth-child(8) { animation-delay: 1.4s; }
+.skill-bubble:nth-child(9) { animation-delay: 1.6s; }
+.skill-bubble:nth-child(10) { animation-delay: 1.8s; }
 
 .skill-bubble:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-    background: linear-gradient(135deg, #ff6b35, #4ecdc4);
+    box-shadow: var(--shadow-hover);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
     animation-play-state: paused;
 }
 
@@ -395,16 +385,45 @@ section {
     left: 50%;
     transform: translateX(-50%);
     background: white;
-    color: #333;
+    color: var(--text-color);
     padding: 1rem;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 280px;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: var(--transition-default);
     z-index: 1000;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
+    pointer-events: none;
+}
+
+/* Alternative positioning classes for edge cases */
+.skill-tooltip.tooltip-left {
+    left: 0;
+    transform: translateX(0);
+}
+
+.skill-tooltip.tooltip-right {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+}
+
+.skill-tooltip.tooltip-top {
+    bottom: auto;
+    top: 120%;
+}
+
+.skill-tooltip.tooltip-top.tooltip-left {
+    left: 0;
+    transform: translateX(0);
+}
+
+.skill-tooltip.tooltip-top.tooltip-right {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
 }
 
 .skill-tooltip::after {
@@ -417,14 +436,53 @@ section {
     border-top-color: white;
 }
 
+/* Arrow positioning for different tooltip positions */
+.skill-tooltip.tooltip-left::after {
+    left: 20px;
+    transform: translateX(0);
+}
+
+.skill-tooltip.tooltip-right::after {
+    left: auto;
+    right: 20px;
+    transform: translateX(0);
+}
+
+.skill-tooltip.tooltip-top::after {
+    top: auto;
+    bottom: 100%;
+    border-top-color: transparent;
+    border-bottom-color: white;
+}
+
 .skill-bubble:hover .skill-tooltip {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(-5px);
 }
 
+.skill-bubble:hover .skill-tooltip.tooltip-left {
+    transform: translateX(0) translateY(-5px);
+}
+
+.skill-bubble:hover .skill-tooltip.tooltip-right {
+    transform: translateX(0) translateY(-5px);
+}
+
+.skill-bubble:hover .skill-tooltip.tooltip-top {
+    transform: translateX(-50%) translateY(5px);
+}
+
+.skill-bubble:hover .skill-tooltip.tooltip-top.tooltip-left {
+    transform: translateX(0) translateY(5px);
+}
+
+.skill-bubble:hover .skill-tooltip.tooltip-top.tooltip-right {
+    transform: translateX(0) translateY(5px);
+}
+
 .skill-tooltip h4 {
-    color: #2563eb;
+    color: var(--primary-color);
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -433,7 +491,7 @@ section {
 .skill-tooltip p {
     font-size: 0.9rem;
     line-height: 1.5;
-    color: #6b7280;
+    color: var(--text-light);
     margin: 0;
 }
 
@@ -467,7 +525,7 @@ section {
     padding: 2rem;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-default);
     transition: transform 0.3s ease;
 }
 
@@ -478,12 +536,12 @@ section {
 .stat-item h3 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #2563eb;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
 }
 
 .stat-item p {
-    color: #6b7280;
+    color: var(--text-light);
     font-weight: 500;
 }
 
