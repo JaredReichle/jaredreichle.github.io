@@ -370,3 +370,33 @@ function showNotification(message, type = 'info') {
         }
     }, 5000);
 }
+
+// AI Disclaimer functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const aiDisclaimerLink = document.getElementById('aiDisclaimerLink');
+    const aiDisclaimerText = document.getElementById('aiDisclaimerText');
+    
+    if (aiDisclaimerLink && aiDisclaimerText) {
+        aiDisclaimerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            aiDisclaimerText.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+        
+        // Close disclaimer when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!aiDisclaimerLink.contains(e.target) && !aiDisclaimerText.contains(e.target)) {
+                aiDisclaimerText.classList.remove('show');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+        
+        // Close disclaimer with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && aiDisclaimerText.classList.contains('show')) {
+                aiDisclaimerText.classList.remove('show');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+    }
+});

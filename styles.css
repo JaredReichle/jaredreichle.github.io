@@ -1202,4 +1202,79 @@ section {
         transform: scale(0.98);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
+}
+
+/* AI Disclaimer */
+.ai-disclaimer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #1f2937;
+    color: white;
+}
+
+.ai-disclaimer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.ai-disclaimer-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.ai-disclaimer-link i {
+    font-size: 0.9rem;
+}
+
+.ai-disclaimer-text {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.6;
+    max-width: 500px;
+    width: 90%;
+    z-index: 10000;
+    border: none;
+}
+
+.ai-disclaimer-text.show {
+    display: block;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Mobile responsive adjustments for AI disclaimer */
+@media (max-width: 768px) {
+    .ai-disclaimer {
+        padding: 0.75rem 0;
+    }
+    
+    .ai-disclaimer-link {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .ai-disclaimer-text {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+        width: 95%;
+    }
 } 
