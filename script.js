@@ -103,13 +103,13 @@ const projectData = {
     },
     telescopeConversion: {
         title: "DIY Go-To Dobsonian Telescope Conversion",
-        summary: "Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing OnStep tracking, turning a manual telescope into a go-to system for automated star tracking and positioning.",
+        summary: "Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing Stellarium slew commands, turning a manual telescope into a go-to system for automated star tracking and positioning.",
         layman: "I'm taking a manual telescope that you normally have to point by hand and adding motors and a computer control to it. This will let me tell the telescope to find specific stars or galaxies automatically, and it will track them as they move across the sky, like having a robot assistant for stargazing.",
-        technical: "The conversion involves integrating stepper motors to both the azimuth and altitude axes of the Dobsonian mount. An Arduino-based control system manages the motors and implements the OnStep tracking algorithm for accurate celestial object positioning. The system includes manual override capabilities and real-time position feedback with precision encoders for position verification.",
-        tech: ["Arduino", "Stepper Motors", "Astronomy", "Mechanical Design", "C++", "OnStep"],
+        technical: "The conversion involves integrating stepper motors to both the azimuth and altitude axes of the Dobsonian mount. An Arduino-based control system manages the motors and receives Stellarium slew commands for accurate celestial object positioning. The system includes manual override capabilities and real-time position feedback with precision encoders for position verification.",
+        tech: ["Arduino", "Stepper Motors", "Astronomy", "Mechanical Design", "C++", "Stellarium"],
         highlights: [
             "Stepper motor integration for azimuth and altitude control",
-            "OnStep tracking system implementation",
+            "Stellarium slew command system implementation",
             "Automated star positioning and tracking",
             "Manual override capabilities",
             "Precision mechanical modifications",
@@ -157,6 +157,16 @@ projectCards.forEach(card => {
                 `;
             } else {
                 linksContainer.innerHTML = '';
+            }
+            
+            // Show/hide Dobsonian update section
+            const dobsonianUpdate = document.querySelector('.dobsonian-update');
+            if (dobsonianUpdate) {
+                if (projectId === 'telescopeConversion') {
+                    dobsonianUpdate.style.display = 'block';
+                } else {
+                    dobsonianUpdate.style.display = 'none';
+                }
             }
             
             // Show modal

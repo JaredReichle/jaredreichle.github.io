@@ -776,6 +776,32 @@ section {
     line-height: 1.6;
 }
 
+.project-update {
+    margin-top: 1.5rem;
+    background: #f3f4f6;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    text-align: center;
+}
+
+.project-update-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.project-update-blurb {
+    font-size: 0.98rem;
+    color: #374151;
+    background: #fff;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.25rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    text-align: left;
+}
 
 
 /* Modal Styles */
