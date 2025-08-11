@@ -3,48 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jared Reichle's Portfolio">
-    <title>Jared Reichle</title>
+    <meta name="description" content="Jared Reichle's Portfolio - Software Engineer & Astronomy Enthusiast">
+    <meta name="keywords" content="software engineer, backend developer, astronomy, portfolio">
+    <meta name="author" content="Jared Reichle">
+    <title>Jared Reichle - Software Engineer & Astronomy Enthusiast</title>
+    
+    <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Main Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">JR</a>
+                <a href="#home" aria-label="Go to home section">JR</a>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="#home" class="nav-link" role="menuitem">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
+                <li class="nav-item" role="none">
+                    <a href="#about" class="nav-link" role="menuitem">About</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#resume" class="nav-link">Resume</a>
+                <li class="nav-item" role="none">
+                    <a href="#resume" class="nav-link" role="menuitem">Resume</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
+                <li class="nav-item" role="none">
+                    <a href="#projects" class="nav-link" role="menuitem">Projects</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                <li class="nav-item" role="none">
+                    <a href="astro.html" class="nav-link" role="menuitem">Astronomy</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="banner">
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">Hi, I'm Jared Reichle</h1>
@@ -65,8 +74,8 @@
             </div>
         </div>
         <div class="scroll-indicator">
-            <a href="#about">
-                <i class="fas fa-chevron-down"></i>
+            <a href="#about" aria-label="Scroll to about section">
+                <i class="fas fa-chevron-down" aria-hidden="true"></i>
             </a>
         </div>
     </section>
@@ -78,83 +87,83 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I’m a software engineer who enjoys rolling up my sleeves and tackling backend challenges. I love trying to
+                        I'm a software engineer who enjoys rolling up my sleeves and tackling backend challenges. I love trying to
                         make systems faster, more reliable, and easier to maintain. I like writing clean code and building features
-                        that actually provide business value and don't just look pretty. I’m always curious about how things work
+                        that actually provide business value and don't just look pretty. I'm always curious about how things work
                         under the hood and love figuring out smart solutions to complex problems.
                     </p>
                     <p>
-                        When I’m not coding, you’ll usually find me stargazing and exploring the night sky through my telescope,
+                        When I'm not coding, you'll usually find me stargazing and exploring the night sky through my telescope,
                         spending quality time with my family, or getting my hands dirty working on cars. These hobbies keep me
                         grounded and constantly learning in different ways.
                     </p>
                     <div class="skills">
                         <h3>Skills & Technologies</h3>
-                        <div class="skill-tags">
-                            <div class="skill-bubble" data-skill="JavaScript">
+                        <div class="skill-tags" role="list">
+                            <div class="skill-bubble" data-skill="Python" role="listitem">
                                 <span class="skill-name">Python</span>
                                 <div class="skill-tooltip">
                                     <h4>Python</h4>
                                     <p>Primary language. Use daily for building data pipelines, backend systems, automations and robust integration tests.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="React">
+                            <div class="skill-bubble" data-skill="SQL" role="listitem">
                                 <span class="skill-name">SQL</span>
                                 <div class="skill-tooltip">
                                     <h4>SQL (PostgreSQL, SQLite)</h4>
                                     <p>Design and optimize schemas, write complex queries, and handle data transformations in production environments; daily tool for data-driven applications.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="Node.js">
+                            <div class="skill-bubble" data-skill="C++" role="listitem">
                                 <span class="skill-name">C++</span>
                                 <div class="skill-tooltip">
                                     <h4>C++</h4>
                                     <p>Past production experience on mission-critical systems; although not used recently, still able to ramp quickly due to strong fundamentals.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="Python">
+                            <div class="skill-bubble" data-skill="JavaScript" role="listitem">
                                 <span class="skill-name">JavaScript</span>
                                 <div class="skill-tooltip">
                                     <h4>JavaScript (HTML/CSS/JS)</h4>
                                     <p>Developed and maintained web-facing features. Comfortable working in full web stacks when needed.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="HTML/CSS">
+                            <div class="skill-bubble" data-skill="API" role="listitem">
                                 <span class="skill-name">API Development</span>
                                 <div class="skill-tooltip">
                                     <h4>API Development</h4>
                                     <p>Built and consumed REST APIs extensively, handling everything from endpoint design to data contracts and client integrations.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="Git">
+                            <div class="skill-bubble" data-skill="Async" role="listitem">
                                 <span class="skill-name">Async/Threads</span>
                                 <div class="skill-tooltip">
                                     <h4>Asynchronous & Threading Applications</h4>
                                     <p>Developed concurrent systems to handle heavy data workflows and integrations, improving throughput and reliability.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="AWS">
+                            <div class="skill-bubble" data-skill="Automation" role="listitem">
                                 <span class="skill-name">Automations</span>
                                 <div class="skill-tooltip">
                                     <h4>Pipelines & Automations</h4>
                                     <p>Bread and butter work. Building high-impact automations that move and transform data between systems, often integrating with real hardware.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="Docker">
+                            <div class="skill-bubble" data-skill="Docker" role="listitem">
                                 <span class="skill-name">Docker</span>
                                 <div class="skill-tooltip">
                                     <h4>Docker & Podman</h4>
                                     <p>Set up and maintained containerized environments across divisions, enabling consistent development and deployment workflows on even constrained networks.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="CI/CD">
+                            <div class="skill-bubble" data-skill="CI/CD" role="listitem">
                                 <span class="skill-name">CI/CD</span>
                                 <div class="skill-tooltip">
                                     <h4>Integrations & Testing</h4>
                                     <p>Architected pipelines from scratch, including test automation, builds and deployments. Wrote and maintained thorough tests for multi-system and hardware-in-the-loop scenarios.</p>
                                 </div>
                             </div>
-                            <div class="skill-bubble" data-skill="React">
+                            <div class="skill-bubble" data-skill="React" role="listitem">
                                 <span class="skill-name">React</span>
                                 <div class="skill-tooltip">
                                     <h4>Frontend Development</h4>
@@ -257,11 +266,11 @@
                     <h3>Certifications and Statuses</h3>
                     <div class="certifications">
                         <div class="cert-item">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
                             <span>Active Top Secret Clearance</span>
                         </div>
                         <div class="cert-item">
-                            <i class="fas fa-certificate"></i>
+                            <i class="fas fa-certificate" aria-hidden="true"></i>
                             <span>CompTIA Security+</span>
                         </div>
                     </div>
@@ -278,7 +287,7 @@
         <div class="container">
             <h2 class="section-title">Projects & Work</h2>
             <div class="projects-grid">
-                <div class="project-card" data-project="homelabServers">
+                <div class="project-card" data-project="homelabServers" tabindex="0" role="button" aria-label="View Home Lab Servers project details">
                     <div class="project-image">
                         <img src="images/homelab-proxmox.png" alt="Home Lab Proxmox Cluster" class="project-img">
                     </div>
@@ -287,7 +296,7 @@
                         <p>Built a home lab on surplus hardware with a Proxmox cluster to experiment with virtualization, networking, and different operating systems</p>
                     </div>
                 </div>
-                <div class="project-card" data-project="fpgaLaserControl">
+                <div class="project-card" data-project="fpgaLaserControl" tabindex="0" role="button" aria-label="View FPGA Laser Control project details">
                     <div class="project-image">
                         <img src="images/laser_interferometer.jpg" alt="Laser Interferometer System" class="project-img">
                     </div>
@@ -296,7 +305,7 @@
                         <p>Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser interferometer, simulating and verifying the architecture on a Zynq 7010 SoC.</p>
                     </div>
                 </div>
-                <div class="project-card" data-project="circuitSynthesis">
+                <div class="project-card" data-project="circuitSynthesis" tabindex="0" role="button" aria-label="View Circuit Synthesis project details">
                     <div class="project-image">
                         <img src="images/circuits.jpg" alt="Circuit Analysis" class="project-img">
                     </div>
@@ -305,7 +314,7 @@
                         <p>Built a tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.</p>
                     </div>
                 </div>
-                <div class="project-card" data-project="telescopeConversion">
+                <div class="project-card" data-project="telescopeConversion" tabindex="0" role="button" aria-label="View Telescope Conversion project details">
                     <div class="project-image">
                         <img src="images/orion.jpg" alt="Orion Nebula" class="project-img">
                         <div class="progress-badge">In Progress</div>
@@ -319,10 +328,10 @@
         </div>
     </section>
 
-    <!-- Project Modals -->
-    <div id="projectModal" class="modal">
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <button class="close" aria-label="Close modal">&times;</button>
             <div class="modal-body">
                 <div class="modal-info">
                     <h2 id="modalTitle">Project Title</h2>
@@ -359,6 +368,7 @@
                     <div class="modal-links" id="modalLinks">
                         <!-- External links will be added here dynamically -->
                     </div>
+                    
                     <!-- Dobsonian update section, only for this project -->
                     <div class="project-update dobsonian-update" style="display:none;">
                         <img src="images/DobConversionUpdate.jpg" alt="Dobsonian Conversion Update" class="project-update-img">
@@ -371,6 +381,35 @@
         </div>
     </div>
 
+    <!-- Astronomy Section -->
+    <section id="astronomy" class="astronomy">
+        <div class="container">
+            <h2 class="section-title">Astronomy</h2>
+            <div class="astronomy-content">
+                <div class="astronomy-text">
+                    <p>
+                        I've catalogued over 40 Messier objects and love capturing deep-sky images of nebulae, star clusters, and galaxies.
+                        Each observation brings new discoveries and a fresh perspective on our place in the universe. Take a look at my gallery to see some of my favorite images.
+                    </p>
+                    <div class="astronomy-images">
+                        <div class="astro-image-container">
+                            <img src="images/astro/indexintro/DobsonianSetup.jpg" alt="Dobsonian Telescope Setup" class="astro-img">
+                            <p class="astro-caption">Apertura AD12 Dobsonian Telescope</p>
+                        </div>
+                        <div class="astro-image-container">
+                            <img src="images/astro/indexintro/SeestarSetup.jpg" alt="Seestar Telescope Setup" class="astro-img">
+                            <p class="astro-caption">ZWO Seestar S50 Smart Telescope</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="astronomy-actions" style="text-align: center;">
+                    <a href="astro.html" class="btn btn-primary">View Astronomy Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -380,14 +419,14 @@
                     <p>I'm always happy to connect, whether it's exploring a cool project, swapping thoughts on coding, or talking telescopes. Feel free to drop me a message anytime.</p>
                     <div class="contact-items">
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <div>
                                 <h4>Email</h4>
                                 <p>reichle.jared@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div>
                                 <h4>Location</h4>
                                 <p>Salt Lake City, UT</p>
@@ -395,8 +434,12 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/jared-reichle/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/jaredreichle/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/jared-reichle/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/jaredreichle/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -404,7 +447,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <p>&copy; 2025 Jared Reichle. All rights reserved.</p>
@@ -414,15 +457,16 @@
 
     <!-- AI Disclaimer -->
     <div class="ai-disclaimer">
-        <a href="#" class="ai-disclaimer-link" id="aiDisclaimerLink">
-            <i class="fas fa-robot"></i>
+        <button class="ai-disclaimer-link" id="aiDisclaimerLink" aria-label="View AI disclaimer">
+            <i class="fas fa-robot" aria-hidden="true"></i>
             <span>AI Disclaimer</span>
-        </a>
-        <div class="ai-disclaimer-text" id="aiDisclaimerText">
+        </button>
+        <div class="ai-disclaimer-text" id="aiDisclaimerText" role="dialog" aria-labelledby="aiDisclaimerLink" aria-hidden="true">
             This website was created with AI assistance. All information has been verified for accuracy and correctness.
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html> 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jared Reichle's Astronomy Gallery - Deep sky objects, planetary images, and celestial events">
+    <meta name="keywords" content="astronomy, telescope, deep sky, nebula, galaxy, star cluster, Jared Reichle">
+    <meta name="author" content="Jared Reichle">
+    <title>Astronomy Gallery - Jared Reichle</title>
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" aria-label="Go to home page">JR</a>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html#home" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#about" class="nav-link" role="menuitem">About</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#resume" class="nav-link" role="menuitem">Resume</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#projects" class="nav-link" role="menuitem">Projects</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="astro.html" class="nav-link active" role="menuitem" aria-current="page">Astronomy</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#contact" class="nav-link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero astro-hero" role="banner">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Astronomy</h1>
+                <p class="hero-subtitle">Exploring the <strong>real</strong> last frontier</p>
+                <p class="hero-description">
+                    A collection of deep sky objects, planetary images, and celestial events captured through my telescopes. 
+                    Each image represents hours of planning, capturing, and processing to reveal the beauty hidden in the night sky.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="astro-gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid" id="astroGallery" role="grid" aria-label="Astronomy image gallery">
+                <!-- Images will be loaded dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
+        <div class="modal-content image-modal-content">
+            <button class="close" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="" class="gallery-modal-image">
+                <div class="image-info">
+                    <h3 id="imageTitle">Image Title</h3>
+                    <p id="imageDescription">Image description and details will appear here.</p>
+                    <div class="image-meta">
+                        <span id="imageDate">Date: Unknown</span>
+                        <span id="imageEquipment">Equipment: Unknown</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Jared Reichle. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Disclaimer -->
+    <div class="ai-disclaimer">
+        <button class="ai-disclaimer-link" id="aiDisclaimerLink" aria-label="View AI disclaimer">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+            <span>AI Disclaimer</span>
+        </button>
+        <div class="ai-disclaimer-text" id="aiDisclaimerText" role="dialog" aria-labelledby="aiDisclaimerLink" aria-hidden="true">
+            This website was created with AI assistance. All information has been verified for accuracy and correctness.
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="astro.js"></script>
+</body>
+</html>

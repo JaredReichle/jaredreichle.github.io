@@ -1,64 +1,110 @@
-// Mobile Navigation Toggle
+/**
+ * Jared Reichle Portfolio Website - Main JavaScript
+ * Handles navigation, modals, animations, and interactive features
+ */
+
+// ============================================================================
+// DOM ELEMENTS
+// ============================================================================
+
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const modal = document.getElementById('projectModal');
+const closeBtn = document.querySelector('.close');
+const projectCards = document.querySelectorAll('.project-card');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+// ============================================================================
+// MOBILE NAVIGATION
+// ============================================================================
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
+/**
+ * Initialize mobile navigation functionality
+ */
+function initializeMobileNavigation() {
+    if (!hamburger || !navMenu) return;
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.contains('active');
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', !isActive);
     });
-});
 
-// Active navigation highlighting
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
+    // Close mobile menu when clicking on navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
 
-window.addEventListener('scroll', () => {
-    let current = '';
+// ============================================================================
+// SMOOTH SCROLLING
+// ============================================================================
+
+/**
+ * Initialize smooth scrolling for anchor links
+ */
+function initializeSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// ============================================================================
+// ACTIVE NAVIGATION HIGHLIGHTING
+// ============================================================================
+
+/**
+ * Update active navigation link based on current scroll position
+ */
+function updateActiveNavigation() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
+        
+        if (window.scrollY >= (sectionTop - 200)) {
+            currentSection = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        if (link.getAttribute('href') === `#${currentSection}`) {
             link.classList.add('active');
         }
     });
-});
+}
 
-// Project Modal System
-const modal = document.getElementById('projectModal');
-const closeBtn = document.querySelector('.close');
-const projectCards = document.querySelectorAll('.project-card');
+// ============================================================================
+// PROJECT MODAL SYSTEM
+// ============================================================================
 
-// Project data
+/**
+ * Project data configuration
+ */
 const projectData = {
     homelabServers: {
         title: "Home Lab Servers & Proxmox Cluster",
-        summary: "Built a home lab environment using surplus hardware to create a Proxmox virtualization cluster. This setup enables experimentation with various operating systems (RHEL, Ubunut, Kali), networking configurations (NFS, vmbr), and virtualization technologies (Containers, VMs, ISOs).",
+        summary: "Built a home lab environment using surplus hardware to create a Proxmox virtualization cluster. This setup enables experimentation with various operating systems (RHEL, Ubuntu, Kali), networking configurations (NFS, vmbr), and virtualization technologies (Containers, VMs, ISOs).",
         layman: "Think of this like having a mini data center in my house. I took old computers and turned them into a system that can run multiple virtual machines (kinda like digital computers) and experiment with different technologies, just like big companies do but on a smaller scale.",
         technical: "The home lab consists of cheap computers from the neighboring university surplus running Proxmox VE for virtualization management. The cluster provides availability and resource pooling across multiple nodes. I had quite a few issues in configuring the network interface settings on those machines, but once I got them up I was able to enjoy the lab. I've used them to explore kernel features, dabble with cyber tools, and am currently looking to set up a home NAS.",
         tech: ["Proxmox", "Linux", "Virtualization", "Networking", "Hardware"],
@@ -118,122 +164,185 @@ const projectData = {
     }
 };
 
-// Open modal when project card is clicked
-projectCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const projectId = card.getAttribute('data-project');
-        const project = projectData[projectId];
-        
-        if (project) {
-            // Populate modal with project data
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalSummary').textContent = project.summary;
-            document.getElementById('modalLayman').textContent = project.layman;
-            document.getElementById('modalTechnical').textContent = project.technical;
-            
-            // Update tech tags
-            const techContainer = document.querySelector('.modal-tech');
-            techContainer.innerHTML = project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
-            
-            // Update highlights list
-            const highlightsList = document.getElementById('modalHighlights');
-            highlightsList.innerHTML = project.highlights.map(highlight => `<li>${highlight}</li>`).join('');
-            
-            // Add external links if they exist
-            const linksContainer = document.getElementById('modalLinks');
-            if (projectId === 'fpgaLaserControl') {
-                linksContainer.innerHTML = `
-                    <a href="https://mindworks.shoutwiki.com/wiki/FPGA_Data_Acquisition_and_Control" class="modal-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-external-link-alt"></i>
-                        View Documentation
-                    </a>
-                `;
-            } else if (projectId === 'circuitSynthesis') {
-                linksContainer.innerHTML = `
-                    <a href="https://github.com/JaredReichle/CrctSynth" class="modal-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                `;
-            } else {
-                linksContainer.innerHTML = '';
+/**
+ * Initialize project modal functionality
+ */
+function initializeProjectModal() {
+    if (!modal || !closeBtn) return;
+
+    // Add click handlers to project cards
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => openProjectModal(card));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openProjectModal(card);
             }
-            
-            // Show/hide Dobsonian update section
-            const dobsonianUpdate = document.querySelector('.dobsonian-update');
-            if (dobsonianUpdate) {
-                if (projectId === 'telescopeConversion') {
-                    dobsonianUpdate.style.display = 'block';
-                } else {
-                    dobsonianUpdate.style.display = 'none';
-                }
-            }
-            
-            // Show modal
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    });
+
+    // Close modal handlers
+    closeBtn.addEventListener('click', closeModal);
+    
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
         }
     });
-});
-
-// Modal close utility function
-function closeModal() {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
 }
 
-// Close modal when X is clicked
-closeBtn.addEventListener('click', closeModal);
-
-// Close modal when clicking outside of it
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
+/**
+ * Open project modal with project data
+ * @param {HTMLElement} card - The project card element
+ */
+function openProjectModal(card) {
+    const projectId = card.getAttribute('data-project');
+    const project = projectData[projectId];
+    
+    if (!project) {
+        console.warn(`Project data not found for: ${projectId}`);
+        return;
     }
-});
+    
+    // Populate modal content
+    populateModalContent(project, projectId);
+    
+    // Show modal
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management
+    closeBtn.focus();
+}
 
-// Close modal with Escape key
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal.style.display === 'block') {
-        closeModal();
-    }
-});
+/**
+ * Populate modal with project data
+ * @param {Object} project - Project data object
+ * @param {string} projectId - Project identifier
+ */
+function populateModalContent(project, projectId) {
+    // Update text content
+    document.getElementById('modalTitle').textContent = project.title;
+    document.getElementById('modalSummary').textContent = project.summary;
+    document.getElementById('modalLayman').textContent = project.layman;
+    document.getElementById('modalTechnical').textContent = project.technical;
+    
+    // Update tech tags
+    const techContainer = document.querySelector('.modal-tech');
+    techContainer.innerHTML = project.tech.map(tech => 
+        `<span class="tech-tag">${tech}</span>`
+    ).join('');
+    
+    // Update highlights list
+    const highlightsList = document.getElementById('modalHighlights');
+    highlightsList.innerHTML = project.highlights.map(highlight => 
+        `<li>${highlight}</li>`
+    ).join('');
+    
+    // Add external links
+    updateModalLinks(projectId);
+    
+    // Show/hide Dobsonian update section
+    toggleDobsonianUpdate(projectId);
+}
 
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+/**
+ * Update modal external links based on project
+ * @param {string} projectId - Project identifier
+ */
+function updateModalLinks(projectId) {
+    const linksContainer = document.getElementById('modalLinks');
+    
+    const linkConfigs = {
+        fpgaLaserControl: {
+            url: 'https://mindworks.shoutwiki.com/wiki/FPGA_Data_Acquisition_and_Control',
+            text: 'View Documentation',
+            icon: 'fas fa-external-link-alt'
+        },
+        circuitSynthesis: {
+            url: 'https://github.com/JaredReichle/CrctSynth',
+            text: 'View on GitHub',
+            icon: 'fab fa-github'
         }
-    });
-}, observerOptions);
+    };
+    
+    const linkConfig = linkConfigs[projectId];
+    
+    if (linkConfig) {
+        linksContainer.innerHTML = `
+            <a href="${linkConfig.url}" class="modal-link" target="_blank" rel="noopener noreferrer">
+                <i class="${linkConfig.icon}"></i>
+                ${linkConfig.text}
+            </a>
+        `;
+    } else {
+        linksContainer.innerHTML = '';
+    }
+}
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Toggle Dobsonian update section visibility
+ * @param {string} projectId - Project identifier
+ */
+function toggleDobsonianUpdate(projectId) {
+    const dobsonianUpdate = document.querySelector('.dobsonian-update');
+    if (dobsonianUpdate) {
+        dobsonianUpdate.style.display = projectId === 'telescopeConversion' ? 'block' : 'none';
+    }
+}
+
+/**
+ * Close project modal
+ */
+function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+}
+
+// ============================================================================
+// SCROLL ANIMATIONS
+// ============================================================================
+
+/**
+ * Initialize scroll animations using Intersection Observer
+ */
+function initializeScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
     const animateElements = document.querySelectorAll('.about-content, .resume-content, .projects-grid, .contact-content');
     animateElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
-    
-    // Initialize skill tooltip positioning
-    initializeSkillTooltips();
-    
-    // Handle window resize for tooltip positioning
-    window.addEventListener('resize', () => {
-        // Remove all positioning classes on resize
-        document.querySelectorAll('.skill-tooltip').forEach(tooltip => {
-            tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
-        });
-    });
-});
+}
 
-// Skill tooltip positioning logic
+// ============================================================================
+// SKILL TOOLTIPS
+// ============================================================================
+
+/**
+ * Initialize skill tooltip positioning
+ */
 function initializeSkillTooltips() {
     const skillBubbles = document.querySelectorAll('.skill-bubble');
     
@@ -243,16 +352,20 @@ function initializeSkillTooltips() {
     });
 }
 
+/**
+ * Position tooltip to avoid viewport overflow
+ * @param {Event} event - Mouse enter event
+ */
 function positionTooltip(event) {
     const bubble = event.currentTarget;
     const tooltip = bubble.querySelector('.skill-tooltip');
     
     if (!tooltip) return;
     
-    // Reset any previous positioning classes
+    // Reset previous positioning classes
     tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
     
-    // Get bubble position
+    // Get positioning data
     const bubbleRect = bubble.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -262,11 +375,11 @@ function positionTooltip(event) {
     const tooltipHeight = 120;
     const margin = 20;
     
-    // Calculate where the tooltip would appear (centered above the bubble)
+    // Calculate tooltip position
     const tooltipLeft = bubbleRect.left + (bubbleRect.width / 2) - (tooltipWidth / 2);
     const tooltipTop = bubbleRect.top - tooltipHeight - margin;
     
-    // Check for overflow and apply positioning classes
+    // Apply positioning classes for overflow
     if (tooltipLeft < margin) {
         tooltip.classList.add('tooltip-left');
     } else if (tooltipLeft + tooltipWidth > viewportWidth - margin) {
@@ -278,6 +391,10 @@ function positionTooltip(event) {
     }
 }
 
+/**
+ * Reset tooltip positioning classes
+ * @param {Event} event - Mouse leave event
+ */
 function resetTooltip(event) {
     const bubble = event.currentTarget;
     const tooltip = bubble.querySelector('.skill-tooltip');
@@ -287,43 +404,72 @@ function resetTooltip(event) {
     }
 }
 
-// Contact form handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+// ============================================================================
+// AI DISCLAIMER
+// ============================================================================
+
+/**
+ * Initialize AI disclaimer functionality
+ */
+function initializeAiDisclaimer() {
+    const aiDisclaimerLink = document.getElementById('aiDisclaimerLink');
+    const aiDisclaimerText = document.getElementById('aiDisclaimerText');
+    
+    if (!aiDisclaimerLink || !aiDisclaimerText) return;
+    
+    aiDisclaimerLink.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
-        
-        // Simple validation
-        if (!name || !email || !subject || !message) {
-            showNotification('Please fill in all fields', 'error');
-            return;
+        aiDisclaimerText.classList.add('show');
+        aiDisclaimerText.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Close disclaimer when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!aiDisclaimerLink.contains(e.target) && !aiDisclaimerText.contains(e.target)) {
+            closeAiDisclaimer();
         }
-        
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address', 'error');
-            return;
+    });
+    
+    // Close disclaimer with Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && aiDisclaimerText.classList.contains('show')) {
+            closeAiDisclaimer();
         }
-        
-        // Simulate form submission
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        this.reset();
     });
 }
 
-// Email validation
+/**
+ * Close AI disclaimer
+ */
+function closeAiDisclaimer() {
+    const aiDisclaimerText = document.getElementById('aiDisclaimerText');
+    if (aiDisclaimerText) {
+        aiDisclaimerText.classList.remove('show');
+        aiDisclaimerText.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+/**
+ * Validate email format
+ * @param {string} email - Email address to validate
+ * @returns {boolean} - True if valid email format
+ */
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-// Notification system
+/**
+ * Show notification message
+ * @param {string} message - Notification message
+ * @param {string} type - Notification type (success, error, info)
+ */
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
@@ -334,10 +480,18 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    notification.setAttribute('role', 'alert');
+    
+    const colors = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6'
+    };
+    
     notification.innerHTML = `
         <div class="notification-content">
             <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
+            <button class="notification-close" aria-label="Close notification">&times;</button>
         </div>
     `;
     
@@ -346,7 +500,7 @@ function showNotification(message, type = 'info') {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        background: ${colors[type] || colors.info};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 8px;
@@ -381,32 +535,35 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// AI Disclaimer functionality
+// ============================================================================
+// EVENT LISTENERS
+// ============================================================================
+
+// Scroll event for active navigation
+window.addEventListener('scroll', updateActiveNavigation);
+
+// Window resize handler for tooltip positioning
+window.addEventListener('resize', () => {
+    // Remove all positioning classes on resize
+    document.querySelectorAll('.skill-tooltip').forEach(tooltip => {
+        tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
+    });
+});
+
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+
+/**
+ * Initialize all functionality when DOM is loaded
+ */
 document.addEventListener('DOMContentLoaded', () => {
-    const aiDisclaimerLink = document.getElementById('aiDisclaimerLink');
-    const aiDisclaimerText = document.getElementById('aiDisclaimerText');
+    initializeMobileNavigation();
+    initializeSmoothScrolling();
+    initializeProjectModal();
+    initializeScrollAnimations();
+    initializeSkillTooltips();
+    initializeAiDisclaimer();
     
-    if (aiDisclaimerLink && aiDisclaimerText) {
-        aiDisclaimerLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            aiDisclaimerText.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
-        
-        // Close disclaimer when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!aiDisclaimerLink.contains(e.target) && !aiDisclaimerText.contains(e.target)) {
-                aiDisclaimerText.classList.remove('show');
-                document.body.style.overflow = 'auto'; // Restore scrolling
-            }
-        });
-        
-        // Close disclaimer with Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && aiDisclaimerText.classList.contains('show')) {
-                aiDisclaimerText.classList.remove('show');
-                document.body.style.overflow = 'auto'; // Restore scrolling
-            }
-        });
-    }
+    console.log('Portfolio website initialized successfully');
 });
