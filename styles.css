@@ -134,7 +134,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
 }
 
 .nav-link::after {
@@ -150,7 +150,7 @@ body {
 
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: 100%;
+    width: 100% !important;
 }
 
 /* Mobile hamburger menu */
@@ -708,6 +708,19 @@ section {
 
 .projects {
     background: var(--background-light);
+}
+
+/* ============================================================================
+   ASTRONOMY SECTION
+   ============================================================================ */
+
+.astronomy {
+    background: var(--background-light);
+}
+
+.astronomy-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .projects-grid {

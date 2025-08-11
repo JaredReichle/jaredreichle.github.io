@@ -84,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMobileNavigation();
     setupAiDisclaimer();
     
+    // Set astronomy navigation as active with a small delay to ensure DOM is ready
+    setTimeout(() => {
+        setAstronomyActive();
+    }, 100);
+    
     console.log('Astronomy gallery initialized successfully');
 });
 
@@ -225,6 +230,40 @@ function closeImageModal() {
         elements.modal.style.display = 'none';
         elements.modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'auto';
+    }
+}
+
+// ============================================================================
+// NAVIGATION ACTIVE STATE
+// ============================================================================
+
+/**
+ * Set astronomy navigation link as active
+ */
+function setAstronomyActive() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    console.log('Astronomy page - setting active navigation');
+    console.log('Found nav links:', navLinks.length);
+    
+    // Force remove all active classes first
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+    });
+    
+    // Find and activate the astronomy link
+    const astronomyLink = document.querySelector('a[href="astro.html"]');
+    if (astronomyLink) {
+        astronomyLink.classList.add('active');
+        astronomyLink.setAttribute('aria-current', 'page');
+        console.log('Successfully set astronomy link as active');
+        
+        // Force the styles to apply
+        astronomyLink.style.color = 'var(--primary-color)';
+        astronomyLink.style.setProperty('color', 'var(--primary-color)', 'important');
+    } else {
+        console.error('Astronomy link not found!');
     }
 }
 

@@ -77,6 +77,35 @@ function updateActiveNavigation() {
     
     let currentSection = '';
     
+    // Get current page path
+    const currentPath = window.location.pathname;
+    const isAstronomyPage = currentPath.includes('astro.html');
+    const isMainPage = currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '';
+    
+    console.log('Navigation Debug:', {
+        currentPath,
+        isAstronomyPage,
+        isMainPage,
+        sectionsFound: sections.length,
+        navLinksFound: navLinks.length
+    });
+    
+    // If we're on the astronomy page, set astronomy as active immediately
+    if (isAstronomyPage) {
+        console.log('On astronomy page - setting astronomy link as active');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            console.log('Checking link:', href);
+            if (href === 'astro.html') {
+                link.classList.add('active');
+                console.log('Set astronomy link as active');
+            }
+        });
+        return; // Exit early for astronomy page
+    }
+    
+    // For main page, determine current section based on scroll
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -86,10 +115,16 @@ function updateActiveNavigation() {
         }
     });
 
+    console.log('Current section:', currentSection, 'Scroll Y:', window.scrollY);
+
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
+        const href = link.getAttribute('href');
+        
+        // Check if this is the current page section
+        if (href === `#${currentSection}`) {
             link.classList.add('active');
+            console.log('Set active link:', href);
         }
     });
 }
@@ -564,6 +599,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeScrollAnimations();
     initializeSkillTooltips();
     initializeAiDisclaimer();
+    
+    // Initialize active navigation highlighting
+    updateActiveNavigation();
     
     console.log('Portfolio website initialized successfully');
 });
