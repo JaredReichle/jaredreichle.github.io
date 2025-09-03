@@ -14,6 +14,13 @@
  */
 const astroImages = [
     {
+        filename: 'M31AndromedaGalaxy.jpg',
+        title: 'Andromeda Galaxy (M31)',
+        description: 'The closest spiral galaxy to our Milky Way, located approximately 2.5 million light-years away. This is the most distant object visible to the naked eye from Earth.',
+        date: 'August 2025',
+        equipment: 'Seestar S50'
+    },
+    {
         filename: 'C33VeilNebula.jpg',
         title: 'Veil Nebula (C33)',
         description: 'A supernova remnant located in the constellation Cygnus, approximately 2,100 light-years away. This is the visible portion of the Cygnus Loop.',
