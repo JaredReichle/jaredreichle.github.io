@@ -126,6 +126,65 @@ function updateActiveNavigation() {
             link.classList.add('active');
             console.log('Set active link:', href);
         }
+        // Special case for Astronomy link - highlight when in astronomy section
+        else if (href === 'astro.html' && currentSection === 'astronomy') {
+            link.classList.add('active');
+            console.log('Set astronomy link as active (in astronomy section)');
+        }
+    });
+}
+
+// ============================================================================
+// PROJECT TABS SYSTEM
+// ============================================================================
+
+/**
+ * Initialize project tabs functionality
+ */
+function initializeProjectTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    if (!tabButtons.length || !tabPanels.length) {
+        console.warn('Project tab elements not found');
+        return;
+    }
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            switchToTab(targetTab, tabButtons, tabPanels);
+        });
+        
+        // Keyboard navigation
+        button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const targetTab = button.getAttribute('data-tab');
+                switchToTab(targetTab, tabButtons, tabPanels);
+            }
+        });
+    });
+}
+
+/**
+ * Switch to a specific tab
+ * @param {string} targetTab - The tab to switch to
+ * @param {NodeList} tabButtons - All tab buttons
+ * @param {NodeList} tabPanels - All tab panels
+ */
+function switchToTab(targetTab, tabButtons, tabPanels) {
+    // Update tab buttons
+    tabButtons.forEach(button => {
+        const isActive = button.getAttribute('data-tab') === targetTab;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', isActive);
+    });
+    
+    // Update tab panels
+    tabPanels.forEach(panel => {
+        const isActive = panel.id === `${targetTab}-panel`;
+        panel.classList.toggle('active', isActive);
     });
 }
 
@@ -137,31 +196,76 @@ function updateActiveNavigation() {
  * Project data configuration
  */
 const projectData = {
+    beaker: {
+        title: "BEAKER (Benchmarking Equipment Automation for Knowledge, Evaluation & Regression)",
+        summary: "I'm building an automated testing framework that takes the pain out of hardware benchmarking. Instead of manually running tests and collecting data, BEAKER handles everything automatically and gives you clear pass/fail results.",
+        layman: "Testing hardware is usually a tedious process where someone has to manually run tests, record data, and figure out if everything's working right. I'm building a system that does all that automatically. You just tell it what to test and it handles the rest, then tells you if your equipment passed or failed.",
+        technical: "Currently developing in Python with plans for automated test execution and data logging. The goal is to integrate with various hardware interfaces and generate reports automatically. I'm focusing on making it flexible enough to work with different types of test equipment while keeping the interface simple.",
+        tech: ["Python", "Hardware Integration", "Test Automation", "Data Analysis", "Reporting"],
+        highlights: [
+            "Automated test execution (in development)",
+            "Hardware interface integration",
+            "Real-time monitoring capabilities",
+            "Automated reporting system",
+            "Flexible test configuration",
+            "Error handling and recovery"
+        ],
+    },
     homelabServers: {
         title: "Home Lab Servers & Proxmox Cluster",
-        summary: "Built a home lab environment using surplus hardware to create a Proxmox virtualization cluster. This setup enables experimentation with various operating systems (RHEL, Ubuntu, Kali), networking configurations (NFS, vmbr), and virtualization technologies (Containers, VMs, ISOs).",
-        layman: "Think of this like having a mini data center in my house. I took old computers and turned them into a system that can run multiple virtual machines (kinda like digital computers) and experiment with different technologies, just like big companies do but on a smaller scale.",
-        technical: "The home lab consists of cheap computers from the neighboring university surplus running Proxmox VE for virtualization management. The cluster provides availability and resource pooling across multiple nodes. I had quite a few issues in configuring the network interface settings on those machines, but once I got them up I was able to enjoy the lab. I've used them to explore kernel features, dabble with cyber tools, and am currently looking to set up a home NAS.",
+        summary: "I built a home lab using cheap surplus hardware from the local university. It's basically a mini data center in my basement where I can experiment with different operating systems and technologies without breaking anything important.",
+        layman: "I took some old computers that the university was throwing away and turned them into a system that can run multiple virtual machines. It's like having a bunch of computers in one box, and I can test different operating systems and software without worrying about messing up my main computer.",
+        technical: "The setup uses Proxmox VE running on surplus hardware - basically old servers that were being decommissioned. I had to figure out the networking configuration, which was trickier than expected, but now I can spin up VMs running RHEL, Ubuntu, Kali, or whatever I need. I've used it to explore kernel features, test security tools, and I'm working on setting up a home NAS.",
         tech: ["Proxmox", "Linux", "Virtualization", "Networking", "Hardware"],
         highlights: [
-            "Proxmox virtualization cluster setup",
+            "Proxmox cluster on surplus hardware",
             "Multiple VM environments for testing",
-            "Network configuration debugging",
-            "Containerized application deployments",
-            "Security hardening and access controls",
-            "Monitoring, management and cyber tools"
+            "Network configuration troubleshooting",
+            "Container deployments",
+            "Security tool experimentation",
+            "Home NAS setup (in progress)"
+        ],
+    },
+    astronomyTools: {
+        title: "Telescope Control Scripts & Stellarium Integration",
+        summary: "I built Python scripts that let me control my Orion XX14G telescope directly from Stellarium astronomy software. The system intercepts slew commands and translates them to work with my telescope's RS-232 interface.",
+        layman: "I figured out how to make my telescope work with Stellarium, which is this cool astronomy software that shows you what's in the sky. Normally you'd have to manually point your telescope, but now I can just click on objects in Stellarium and my telescope automatically moves to point at them.",
+        technical: "Built a TCP listener in Python that captures slew commands from Stellarium, then decodes and translates them into the proper RS-232 protocol for the Orion XX14G. The system acts as a bridge between Stellarium's network commands and the telescope's serial interface, handling coordinate conversion and command formatting. It's basically reverse-engineering the communication protocol to make incompatible systems work together.",
+        tech: ["Python", "TCP Networking", "RS-232 Serial", "Protocol Translation", "Telescope Control"],
+        highlights: [
+            "TCP command interception from Stellarium",
+            "RS-232 protocol translation",
+            "Orion XX14G telescope integration",
+            "Coordinate system conversion",
+            "Real-time telescope control",
+            "Protocol reverse engineering"
+        ],
+    },
+    hnefatafl: {
+        title: "Hnefatafl Board Game Emulator",
+        summary: "I recreated an ancient Viking board game called Hnefatafl using Python. It's a two-player strategy game that's perfect for playing with friends on the same computer.",
+        layman: "I built a digital version of an old Viking board game. It's kind of like chess but with different rules - the king tries to escape to the corners while the attackers try to capture him. You and a friend can play together on the same computer, taking turns.",
+        technical: "Used Python with Pygame for the graphics and game logic. I implemented the traditional Hnefatafl rules with piece movement and move validation. It's designed for two people to play locally, with turn-based mechanics and visual feedback to show which moves are legal.",
+        tech: ["Python", "Pygame", "Game Development", "Object-Oriented Programming", "Local Multiplayer"],
+        highlights: [
+            "Traditional Hnefatafl rules",
+            "Interactive graphics",
+            "Two-player local gameplay",
+            "Turn-based mechanics",
+            "Move validation",
+            "Classic Viking game recreation"
         ],
     },
     fpgaLaserControl: {
         title: "FPGA Data Acquisition & Control System for Laser Interferometry",
-        summary: "Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser interferometer, simulating and verifying the architecture on a Zynq 7010 SoC.",
+        summary: "I built a system to keep a laser perfectly stable for scientific measurements. It constantly monitors the laser and makes tiny adjustments to keep it running at the right frequency.",
         layman: "Imagine you have a very precise laser that needs to stay perfectly stable for scientific measurements. I built a system that constantly monitors the laser and makes tiny adjustments to keep it running perfectly, like a smart thermostat but for a laser's wavelength instead of temperature.",
-        technical: "The system utilizes a Xilinx Zynq 7010 SoC with custom VHDL modules for data acquisition and control logic. Python interfaces handle data processing and analysis, while the FPGA manages real-time control loops and signal conditioning for the laser interferometer. The architecture implements a Pound-Drever-Hall control loop with PID feedback mechanisms (driving current) for precise frequency stabilization.",
+        technical: "Used a Xilinx Zynq 7010 SoC with custom VHDL modules for the real-time control and data acquisition. Python handles the data processing and analysis side, while the FPGA manages the fast control loops and signal conditioning. The system implements a Pound-Drever-Hall control loop with PID feedback to keep the laser frequency locked.",
         tech: ["FPGA", "VHDL", "Python", "Control Systems", "Signal Processing"],
         highlights: [
-            "Modular FPGA architecture design",
-            "Real-time data acquisition system",
-            "Closed-loop control implementation",
+            "Modular FPGA design",
+            "Real-time data acquisition",
+            "Closed-loop control",
             "Laser interferometer integration",
             "Zynq 7010 SoC verification",
             "Signal processing and analysis"
@@ -169,34 +273,19 @@ const projectData = {
     },
     circuitSynthesis: {
         title: "Circuit Synthesis from Frequency Response Data",
-        summary: "Built a Python tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable model.",
-        layman: "Imagine you have a mysterious electronic device in a black box and you want to figure out what's inside without opening it. I created a program that listens to how the device responds (output nodes) to different signals (input nodes) and then figures out what electronic components are likely inside, like solving a puzzle using math.",
-        technical: "The tool uses signal processing techniques to analyze frequency response data and employs rational approximation algorithms to create equivalent RLC circuit models. Python libraries handle complex mathematical operations, while custom algorithms perform circuit parameter extraction and model validation. The system implements frequency domain analysis with impedance matching algorithms to reconstruct circuit topology.",
+        summary: "I built a Python tool that can figure out what's inside a circuit just by looking at how it responds to different frequencies. It's like reverse-engineering a black box to understand what components are inside.",
+        layman: "Imagine you have a mysterious electronic device in a black box and you want to figure out what's inside without opening it. I created a program that listens to how the device responds to different signals and then figures out what electronic components are likely inside, like solving a puzzle using math.",
+        technical: "The tool uses signal processing to analyze frequency response data and rational approximation algorithms to create equivalent RLC circuit models. Python libraries handle the complex math, while custom algorithms extract circuit parameters and validate the models. It uses frequency domain analysis with impedance matching to reconstruct the circuit topology.",
         tech: ["Python", "Signal Processing", "Circuit Analysis", "Optimization", "Numerical Methods"],
         highlights: [
-            "Frequency response data analysis",
-            "RLC circuit synthesis algorithms",
+            "Frequency response analysis",
+            "RLC circuit synthesis",
             "Black-box circuit modeling",
-            "Numerical optimization techniques",
+            "Numerical optimization",
             "Circuit parameter extraction",
-            "Model validation and verification"
+            "Model validation"
         ],
     },
-    telescopeConversion: {
-        title: "DIY Go-To Dobsonian Telescope Conversion",
-        summary: "Upgrading a 12-inch Apertura Dobsonian by adding stepper motors and implementing Stellarium slew commands, turning a manual telescope into a go-to system for automated star tracking and positioning.",
-        layman: "I'm taking a manual telescope that you normally have to point by hand and adding motors and a computer control to it. This will let me tell the telescope to find specific stars or galaxies automatically, and it will track them as they move across the sky, like having a robot assistant for stargazing.",
-        technical: "The conversion involves integrating stepper motors to both the azimuth and altitude axes of the Dobsonian mount. An Arduino-based control system manages the motors and receives Stellarium slew commands for accurate celestial object positioning. The system includes manual override capabilities and real-time position feedback with precision encoders for position verification.",
-        tech: ["Arduino", "Stepper Motors", "Astronomy", "Mechanical Design", "C++", "Stellarium"],
-        highlights: [
-            "Stepper motor integration for azimuth and altitude control",
-            "Stellarium slew command system implementation",
-            "Automated star positioning and tracking",
-            "Manual override capabilities",
-            "Precision mechanical modifications",
-            "Real-time position feedback and control"
-        ],
-    }
 };
 
 /**
@@ -283,9 +372,6 @@ function populateModalContent(project, projectId) {
     
     // Add external links
     updateModalLinks(projectId);
-    
-    // Show/hide Dobsonian update section
-    toggleDobsonianUpdate(projectId);
 }
 
 /**
@@ -322,16 +408,6 @@ function updateModalLinks(projectId) {
     }
 }
 
-/**
- * Toggle Dobsonian update section visibility
- * @param {string} projectId - Project identifier
- */
-function toggleDobsonianUpdate(projectId) {
-    const dobsonianUpdate = document.querySelector('.dobsonian-update');
-    if (dobsonianUpdate) {
-        dobsonianUpdate.style.display = projectId === 'telescopeConversion' ? 'block' : 'none';
-    }
-}
 
 /**
  * Close project modal
@@ -595,6 +671,7 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', () => {
     initializeMobileNavigation();
     initializeSmoothScrolling();
+    initializeProjectTabs();
     initializeProjectModal();
     initializeScrollAnimations();
     initializeSkillTooltips();

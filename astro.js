@@ -11,8 +11,20 @@
 /**
  * Astronomy image data configuration
  * Contains metadata for each astronomy image in the gallery
+ * 
+ * IMPORTANT: Images are ordered by date with MOST RECENT FIRST.
+ * When adding new images, place them at the top of this array to maintain chronological order.
  */
 const astroImages = [
+    // September 2025
+    {
+        filename: 'IC5146CocoonNebula.jpg',
+        title: 'Cocoon Nebula (IC 5146)',
+        description: 'A reflection/emission nebula in the constellation Cygnus, approximately 4,000 light-years away. This beautiful nebula contains both dark dust lanes and bright emission regions where new stars are forming.',
+        date: 'September 2025',
+        equipment: 'Seestar S50'
+    },
+    // August 2025
     {
         filename: 'M31AndromedaGalaxy.jpg',
         title: 'Andromeda Galaxy (M31)',
@@ -48,6 +60,7 @@ const astroImages = [
         date: 'August 2025',
         equipment: 'Seestar S50'
     },
+    // July 2025
     {
         filename: 'NGC7000NorthAmericaNebula.jpg',
         title: 'North America Nebula (NGC 7000)',

@@ -38,6 +38,9 @@
                     <a href="#projects" class="nav-link" role="menuitem">Projects</a>
                 </li>
                 <li class="nav-item" role="none">
+                    <a href="astro.html" class="nav-link" role="menuitem">Astronomy</a>
+                </li>
+                <li class="nav-item" role="none">
                     <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
@@ -56,8 +59,9 @@
                 <h1 class="hero-title">Hi, I'm Jared Reichle</h1>
                 <p class="hero-subtitle">Software Engineer & Astronomy Enthusiast</p>
                 <p class="hero-description">
-                    Backend builder, data wrangler, automation junkie. I craft tested & dependable
-                    systems that quietly power big results. And yeah... I like telescopes.
+                    Backend systems architect specializing in automation, data pipelines, and hardware integration. 
+                    I build scalable solutions that process millions of data points and integrate with real-world hardware. 
+                    When I'm not solving problems, I explore deep-sky objects through visual astronomy.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -84,15 +88,19 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a software engineer who enjoys rolling up my sleeves and tackling backend challenges. I love trying to
-                        make systems faster, more reliable, and easier to maintain. I like writing clean code and building features
-                        that actually provide business value and don't just look pretty. I'm always curious about how things work
-                        under the hood and love figuring out smart solutions to complex problems.
+                        I'm a software engineer with 5+ years of experience building mission-critical backend systems and automation frameworks. 
+                        I specialize in high-performance data pipelines and API integrations. My hardware control systems process 
+                        millions of data points daily. My work has significantly improved system reliability and efficiency 
+                        through robust testing and automation.
                     </p>
                     <p>
-                        When I'm not coding, you'll usually find me stargazing and exploring the night sky through my telescope,
-                        spending quality time with my family, or getting my hands dirty working on cars. These hobbies keep me
-                        grounded and constantly learning in different ways.
+                        I'm passionate about solving complex technical challenges and have a proven track record of delivering production-ready 
+                        solutions that bridge the gap between software and hardware environments. My background in electrical engineering 
+                        gives me a unique perspective on system design and hardware integration.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me stargazing through my telescope or working on cars. These hobbies keep me
+                        grounded and constantly learning.
                     </p>
                     <div class="skills">
                         <h3>Skills & Technologies</h3>
@@ -115,14 +123,14 @@
                                 <span class="skill-name">C++</span>
                                 <div class="skill-tooltip">
                                     <h4>C++</h4>
-                                    <p>Past production experience on mission-critical systems; although not used recently, still able to ramp quickly due to strong fundamentals.</p>
+                                    <p>Built mission-critical systems in C++. Strong fundamentals mean I can jump back into performance-critical work whenever needed.</p>
                                 </div>
                             </div>
                             <div class="skill-bubble" data-skill="JavaScript" role="listitem">
                                 <span class="skill-name">JavaScript</span>
                                 <div class="skill-tooltip">
                                     <h4>JavaScript (HTML/CSS/JS)</h4>
-                                    <p>Developed and maintained web-facing features. Comfortable working in full web stacks when needed.</p>
+                                    <p>Built web apps with React and vanilla JavaScript. I like making interfaces that actually work well and don't break when users click around.</p>
                                 </div>
                             </div>
                             <div class="skill-bubble" data-skill="API" role="listitem">
@@ -143,7 +151,7 @@
                                 <span class="skill-name">Automations</span>
                                 <div class="skill-tooltip">
                                     <h4>Pipelines & Automations</h4>
-                                    <p>Bread and butter work. Building high-impact automations that move and transform data between systems, often integrating with real hardware.</p>
+                                    <p>This is my bread and butter. I build automations that actually save people time - moving data between systems and making hardware do what we need it to do.</p>
                                 </div>
                             </div>
                             <div class="skill-bubble" data-skill="Docker" role="listitem">
@@ -164,7 +172,7 @@
                                 <span class="skill-name">React</span>
                                 <div class="skill-tooltip">
                                     <h4>Frontend Development</h4>
-                                    <p>Collaborated on features in React applications, and independently built UI elements in vanilla JS, HTML and CSS when needed.</p>
+                                    <p>Worked on React apps and built custom UI stuff with vanilla JavaScript. I care about making components that make sense and don't cause headaches later.</p>
                                 </div>
                             </div>
                         </div>
@@ -176,8 +184,8 @@
                         <p>Years Experience</p>
                     </div>
                     <div class="stat-item">
-                        <h3>30+</h3>
-                        <p>Workflows Automated / Integrations Delivered</p>
+                        <h3>2.5 weeks → 45 minutes</h3>
+                        <p>Test Cycle Reduction</p>
                     </div>
                     <div class="stat-item">
                         <h3>40+</h3>
@@ -283,42 +291,89 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects & Work</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-project="homelabServers" tabindex="0" role="button" aria-label="View Home Lab Servers project details">
-                    <div class="project-image">
-                        <img src="images/homelab-proxmox.png" alt="Home Lab Proxmox Cluster" class="project-img">
+            
+            <!-- Project Category Tabs -->
+            <div class="project-tabs">
+                <button class="tab-button active" data-tab="professional" role="tab" aria-selected="true" aria-controls="professional-panel">
+                    Professional
+                </button>
+                <button class="tab-button" data-tab="personal" role="tab" aria-selected="false" aria-controls="personal-panel">
+                    Personal
+                </button>
+                <button class="tab-button" data-tab="practicum" role="tab" aria-selected="false" aria-controls="practicum-panel">
+                    Practicum
+                </button>
+            </div>
+
+            <!-- Professional Projects Panel -->
+            <div id="professional-panel" class="tab-panel active" role="tabpanel" aria-labelledby="professional-tab">
+                <div class="projects-grid">
+                    <div class="project-card" data-project="beaker" tabindex="0" role="button" aria-label="View BEAKER project details">
+                        <div class="project-image">
+                            <img src="images/projects/BEAKERStockLogo.jpg" alt="BEAKER System" class="project-img">
+                            <div class="progress-badge">In Progress</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>BEAKER (Benchmarking Equipment Automation for Knowledge, Evaluation & Regression)</h3>
+                            <p>I'm building an automated testing framework that takes the pain out of hardware benchmarking. Instead of manually running tests and collecting data, BEAKER handles everything automatically...</p>
+                        </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Home Lab Servers & Proxmox Cluster</h3>
-                        <p>Built a home lab on surplus hardware with a Proxmox cluster to experiment with virtualization, networking, and different operating...</p>
+                    <div class="project-card" data-project="homelabServers" tabindex="0" role="button" aria-label="View Home Lab Servers project details">
+                        <div class="project-image">
+                            <img src="images/projects/homelab-proxmox.png" alt="Home Lab Proxmox Cluster" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Home Lab Servers & Proxmox Cluster</h3>
+                            <p>I built a home lab using cheap surplus hardware from the local university. It's basically a mini data center in my basement where I can experiment with different operating systems...</p>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card" data-project="fpgaLaserControl" tabindex="0" role="button" aria-label="View FPGA Laser Control project details">
-                    <div class="project-image">
-                        <img src="images/laser_interferometer.jpg" alt="Laser Interferometer System" class="project-img">
+            </div>
+
+            <!-- Personal Projects Panel -->
+            <div id="personal-panel" class="tab-panel" role="tabpanel" aria-labelledby="personal-tab">
+                <div class="projects-grid">
+                    <div class="project-card" data-project="astronomyTools" tabindex="0" role="button" aria-label="View Astronomy Tools project details">
+                        <div class="project-image">
+                            <img src="images/projects/orion.jpg" alt="Astronomy Tools" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Telescope Control Scripts & Stellarium Integration</h3>
+                            <p>I built Python scripts that let me control my Orion XX14G telescope directly from Stellarium astronomy software. The system intercepts slew commands and translates them to work with my telescope's RS-232 interface...</p>
+                        </div>
                     </div>
-                    <div class="project-content">
-                        <h3>FPGA Data Acquisition & Control System for Laser Interferometry</h3>
-                        <p>Designed and implemented a modular FPGA-based system to acquire data and drive closed-loop control for a laser...</p>
+                    <div class="project-card" data-project="hnefatafl" tabindex="0" role="button" aria-label="View Hnefatafl Board Game project details">
+                        <div class="project-image">
+                            <img src="images/projects/HnefataflBoard.jpg" alt="Hnefatafl Board Game" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Hnefatafl Board Game Emulator</h3>
+                            <p>I recreated an ancient Viking board game called Hnefatafl using Python. It's a two-player strategy game that's perfect for playing with friends on the same computer...</p>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card" data-project="circuitSynthesis" tabindex="0" role="button" aria-label="View Circuit Synthesis project details">
-                    <div class="project-image">
-                        <img src="images/circuits.jpg" alt="Circuit Analysis" class="project-img">
+            </div>
+
+            <!-- Practicum Projects Panel -->
+            <div id="practicum-panel" class="tab-panel" role="tabpanel" aria-labelledby="practicum-tab">
+                <div class="projects-grid">
+                    <div class="project-card" data-project="fpgaLaserControl" tabindex="0" role="button" aria-label="View FPGA Laser Control project details">
+                        <div class="project-image">
+                            <img src="images/projects/laser_interferometer.jpg" alt="Laser Interferometer System" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>FPGA Data Acquisition & Control System for Laser Interferometry</h3>
+                            <p>I built a system to keep a laser perfectly stable for scientific measurements. It constantly monitors the laser and makes tiny adjustments to keep it running at the right frequency...</p>
+                        </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Circuit Synthesis from Frequency Response Data</h3>
-                        <p>Built a tool that reverse-engineers frequency response data into equivalent RLC circuit branches, effectively turning a 'black-box' circuit into an analyzable...</p>
-                    </div>
-                </div>
-                <div class="project-card" data-project="telescopeConversion" tabindex="0" role="button" aria-label="View Telescope Conversion project details">
-                    <div class="project-image">
-                        <img src="images/orion.jpg" alt="Orion Nebula" class="project-img">
-                        <div class="progress-badge">In Progress</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>DIY Go-To Dobsonian Telescope Conversion</h3>
-                        <p>Upgrading a 12-inch Apertura dobsonian telescope by adding stepper motors and implementing Stellarium slew commands, turning a manual telescope into a go-to...</p>
+                    <div class="project-card" data-project="circuitSynthesis" tabindex="0" role="button" aria-label="View Circuit Synthesis project details">
+                        <div class="project-image">
+                            <img src="images/projects/circuits.jpg" alt="Circuit Analysis" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Circuit Synthesis from Frequency Response Data</h3>
+                            <p>I built a Python tool that can figure out what's inside a circuit just by looking at how it responds to different frequencies. It's like reverse-engineering a black box to understand what components are inside...</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -366,13 +421,6 @@
                         <!-- External links will be added here dynamically -->
                     </div>
                     
-                    <!-- Dobsonian update section, only for this project -->
-                    <div class="project-update dobsonian-update" style="display:none;">
-                        <img src="images/DobConversionUpdate.jpg" alt="Dobsonian Conversion Update" class="project-update-img">
-                        <div class="project-update-blurb">
-                            <strong>Update – July 20, 2025:</strong> Received the 28BYJ-48 ULN2003 5V stepper motors today! I was able to quickly prototype the wiring, flash the controller board with a work-in-progress firmware, and set up a Python test framework to verify movement. Everything is working smoothly so far.
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

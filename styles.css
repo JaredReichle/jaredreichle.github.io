@@ -370,7 +370,7 @@ section {
    ============================================================================ */
 
 .about {
-    background: var(--background-light);
+    background: white;
 }
 
 .about-content {
@@ -581,6 +581,10 @@ section {
    RESUME SECTION
    ============================================================================ */
 
+.resume {
+    background: var(--background-light);
+}
+
 .resume-content {
     max-width: 800px;
     margin: 0 auto;
@@ -707,7 +711,61 @@ section {
    ============================================================================ */
 
 .projects {
-    background: var(--background-light);
+    background: white;
+}
+
+/* Project Tabs */
+.project-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 2px solid var(--border-color);
+    gap: var(--spacing-sm);
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition-default);
+    position: relative;
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ============================================================================
@@ -1078,6 +1136,10 @@ section {
 /* ============================================================================
    CONTACT SECTION
    ============================================================================ */
+
+.contact {
+    background: white;
+}
 
 .contact-content {
     display: flex;
