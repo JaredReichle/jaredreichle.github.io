@@ -391,6 +391,16 @@ function updateModalLinks(projectId) {
             url: 'https://github.com/JaredReichle/CrctSynth',
             text: 'View on GitHub',
             icon: 'fab fa-github'
+        },
+        hnefatafl: {
+            url: 'https://github.com/JaredReichle/HnefataflVikingChess',
+            text: 'View on GitHub',
+            icon: 'fab fa-github'
+        },
+        astronomyTools: {
+            url: 'https://github.com/JaredReichle/DobConversion',
+            text: 'View on GitHub',
+            icon: 'fab fa-github'
         }
     };
     
