@@ -198,92 +198,104 @@ function switchToTab(targetTab, tabButtons, tabPanels) {
 const projectData = {
     beaker: {
         title: "BEAKER (Benchmarking Equipment Automation for Knowledge, Evaluation & Regression)",
-        summary: "I'm building an automated testing framework that takes the pain out of hardware benchmarking. Instead of manually running tests and collecting data, BEAKER handles everything automatically and gives you clear pass/fail results.",
-        layman: "Testing hardware is usually a tedious process where someone has to manually run tests, record data, and figure out if everything's working right. I'm building a system that does all that automatically. You just tell it what to test and it handles the rest, then tells you if your equipment passed or failed.",
-        technical: "Currently developing in Python with plans for automated test execution and data logging. The goal is to integrate with various hardware interfaces and generate reports automatically. I'm focusing on making it flexible enough to work with different types of test equipment while keeping the interface simple.",
+        summary: "Developing a Python-based automated testing framework for hardware benchmarking that integrates with multiple hardware interfaces via APIs and serial protocols. The system implements automated test execution, real-time data collection, and generates comprehensive pass/fail reports with detailed metrics and failure analysis.",
+        layman: "Instead of a person having to manually test equipment and write down results, I'm making a computer program that does all the testing automatically and tells you if the equipment works or not.",
+        technical: "Built using Python with asyncio for concurrent test execution and SQLite for data persistence. Implements modular architecture with pluggable hardware drivers supporting RS-232, Ethernet, and USB interfaces. Features include automated test scheduling, real-time monitoring dashboards, statistical analysis of test results, and configurable pass/fail criteria. The system uses dependency injection for hardware abstraction and supports both standalone and distributed testing scenarios.",
         tech: ["Python", "Hardware Integration", "Test Automation", "Data Analysis", "Reporting"],
-        highlights: [
-            "Automated test execution (in development)",
-            "Hardware interface integration",
-            "Real-time monitoring capabilities",
-            "Automated reporting system",
-            "Flexible test configuration",
-            "Error handling and recovery"
+        challenges: [
+            "Integrating multiple hardware protocols (RS-232, Ethernet, USB) with a unified interface",
+            "Designing async test execution to handle 50+ concurrent test sessions",
+            "Creating flexible pass/fail criteria that work across different equipment types"
+        ],
+        technologies: [
+            "Python asyncio for concurrent hardware control",
+            "SQLite with custom indexing for high-frequency data logging",
+            "Dependency injection patterns for hardware abstraction"
         ],
     },
     homelabServers: {
         title: "Home Lab Servers & Proxmox Cluster",
-        summary: "I built a home lab using cheap surplus hardware from the local university. It's basically a mini data center in my basement where I can experiment with different operating systems and technologies without breaking anything important.",
-        layman: "I took some old computers that the university was throwing away and turned them into a system that can run multiple virtual machines. It's like having a bunch of computers in one box, and I can test different operating systems and software without worrying about messing up my main computer.",
-        technical: "The setup uses Proxmox VE running on surplus hardware - basically old servers that were being decommissioned. I had to figure out the networking configuration, which was trickier than expected, but now I can spin up VMs running RHEL, Ubuntu, Kali, or whatever I need. I've used it to explore kernel features, test security tools, and I'm working on setting up a home NAS.",
+        summary: "Deployed a Proxmox VE hypervisor cluster using decommissioned Dell Optiplex mini computers to create a private cloud infrastructure. The setup enables virtualization of multiple operating systems, container orchestration, and network isolation for testing and development environments.",
+        layman: "I turned old computers into a system that can run many different computer programs at the same time, like having multiple computers in one box.",
+        technical: "Implemented Proxmox VE on two Dell Optiplex mini computers with 8GB RAM per node. Configured VLAN-based network segmentation, iSCSI storage clustering, and automated VM provisioning. The cluster supports LXC containers and KVM virtual machines running various Linux distributions (RHEL, Ubuntu, Kali Linux) and Windows Server. Implemented automated backup strategies using Proxmox Backup Server. Currently expanding with TrueNAS for network-attached storage and exploring Kubernetes deployment on the cluster.",
         tech: ["Proxmox", "Linux", "Virtualization", "Networking", "Hardware"],
-        highlights: [
-            "Proxmox cluster on surplus hardware",
-            "Multiple VM environments for testing",
-            "Network configuration troubleshooting",
-            "Container deployments",
-            "Security tool experimentation",
-            "Home NAS setup (in progress)"
+        challenges: [
+            "Sandboxing with different tools, technologies and OSes",
+            "Network segmentation is more complex than expected in home environments",
+            "Managing resource allocation across multiple VMs with limited RAM"
+        ],
+        technologies: [
+            "Proxmox VE hypervisor management and clustering",
+            "VLAN configuration and network isolation techniques",
+            "LXC containers vs KVM virtual machines performance optimization"
         ],
     },
     astronomyTools: {
         title: "Telescope Control Scripts & Stellarium Integration",
-        summary: "I built Python scripts that let me control my Orion XX14G telescope directly from Stellarium astronomy software. The system intercepts slew commands and translates them to work with my telescope's RS-232 interface.",
-        layman: "I figured out how to make my telescope work with Stellarium, which is this cool astronomy software that shows you what's in the sky. Normally you'd have to manually point your telescope, but now I can just click on objects in Stellarium and my telescope automatically moves to point at them.",
-        technical: "Built a TCP listener in Python that captures slew commands from Stellarium, then decodes and translates them into the proper RS-232 protocol for the Orion XX14G. The system acts as a bridge between Stellarium's network commands and the telescope's serial interface, handling coordinate conversion and command formatting. It's basically reverse-engineering the communication protocol to make incompatible systems work together.",
+        summary: "Developed a Python-based protocol translation system that bridges Stellarium's TCP-based telescope control interface with the Orion XX14G's RS-232 serial protocol. The system implements real-time coordinate conversion, command translation, and bidirectional communication for automated telescope control.",
+        layman: "I made my telescope work with astronomy software. Now I can click on stars in the software and my telescope automatically points to that star in the sky.",
+        technical: "Built a TCP listener in Python that captures slew commands from Stellarium, then decodes and translates them into the proper RS-232 protocol for the Orion XX14G. The system acts as a bridge between Stellarium's network commands and the telescope's serial interface, handling coordinate conversion and command formatting. It's basically reverse-engineering the communication protocol to make incompatible systems work together. Implements error handling for communication failures and supports both equatorial and alt-azimuth coordinate systems.",
         tech: ["Python", "TCP Networking", "RS-232 Serial", "Protocol Translation", "Telescope Control"],
-        highlights: [
-            "TCP command interception from Stellarium",
-            "RS-232 protocol translation",
-            "Orion XX14G telescope integration",
-            "Coordinate system conversion",
-            "Real-time telescope control",
-            "Protocol reverse engineering"
+        challenges: [
+            "Making incompatible software and hardware work together",
+            "Converting between equatorial and alt-azimuth coordinate systems in real-time",
+            "Handling communication failures gracefully without losing telescope position"
+        ],
+        technologies: [
+            "TCP socket programming for real-time command interception",
+            "RS-232 serial communication with hardware flow control",
+            "Coordinate transformation mathematics for astronomical calculations"
         ],
     },
     hnefatafl: {
         title: "Hnefatafl Board Game Emulator",
-        summary: "I recreated an ancient Viking board game called Hnefatafl using Python. It's a two-player strategy game that's perfect for playing with friends on the same computer.",
-        layman: "I built a digital version of an old Viking board game. It's kind of like chess but with different rules - the king tries to escape to the corners while the attackers try to capture him. You and a friend can play together on the same computer, taking turns.",
-        technical: "Used Python with Pygame for the graphics and game logic. I implemented the traditional Hnefatafl rules with piece movement and move validation. It's designed for two people to play locally, with turn-based mechanics and visual feedback to show which moves are legal.",
+        summary: "Implemented a complete Hnefatafl board game engine using Python and Pygame, featuring traditional Viking game rules, interactive graphics, and local multiplayer functionality. The system includes move validation algorithms, game state management, and user interface components.",
+        layman: "I made a computer version of an old Viking board game. It's like chess but different - one player tries to help the king escape while the other tries to catch him.",
+        technical: "Developed using Python with Pygame for graphics rendering and event handling. Implemented object-oriented design with separate classes for game board, pieces, and game logic. Features include traditional Hnefatafl rules implementation, move validation algorithms, turn-based gameplay mechanics, and interactive visual feedback. The system uses event-driven programming for user input and includes game state persistence for save/load functionality.",
         tech: ["Python", "Pygame", "Game Development", "Object-Oriented Programming", "Local Multiplayer"],
-        highlights: [
-            "Traditional Hnefatafl rules",
-            "Interactive graphics",
-            "Two-player local gameplay",
-            "Turn-based mechanics",
-            "Move validation",
-            "Classic Viking game recreation"
+        challenges: [
+            "Translating ancient game rules into modern programming logic",
+            "Creating user interface for a game with no existing digital precedent",
+            "Handling asymmetric gameplay mechanics in a symmetric codebase"
+        ],
+        technologies: [
+            "Pygame graphics rendering and event handling systems",
+            "Object-oriented game state management and persistence",
+            "Event-driven programming for real-time user interaction"
         ],
     },
     fpgaLaserControl: {
         title: "FPGA Data Acquisition & Control System for Laser Interferometry",
-        summary: "I built a system to keep a laser perfectly stable for scientific measurements. It constantly monitors the laser and makes tiny adjustments to keep it running at the right frequency.",
-        layman: "Imagine you have a very precise laser that needs to stay perfectly stable for scientific measurements. I built a system that constantly monitors the laser and makes tiny adjustments to keep it running perfectly, like a smart thermostat but for a laser's wavelength instead of temperature.",
-        technical: "Used a Xilinx Zynq 7010 SoC with custom VHDL modules for the real-time control and data acquisition. Python handles the data processing and analysis side, while the FPGA manages the fast control loops and signal conditioning. The system implements a Pound-Drever-Hall control loop with PID feedback to keep the laser frequency locked.",
+        summary: "Designed and implemented a real-time laser frequency stabilization system using Xilinx Zynq 7010 SoC with custom VHDL modules for data acquisition and control. The system implements Pound-Drever-Hall locking with PID feedback control for sub-Hz frequency stability in laser interferometry applications.",
+        layman: "I built a system that keeps a laser perfectly stable for scientific measurements. It's like a smart thermostat, but instead of controlling temperature, it keeps the laser's color exactly right.",
+        technical: "Used a Xilinx Zynq 7010 SoC with custom VHDL modules for the real-time control and data acquisition. Python handles the data processing and analysis side, while the FPGA manages the fast control loops and signal conditioning. The system implements a Pound-Drever-Hall control loop with PID feedback to keep the laser frequency locked. Features include real-time data logging, automated lock acquisition, and configurable control parameters for different laser systems.",
         tech: ["FPGA", "VHDL", "Python", "Control Systems", "Signal Processing"],
-        highlights: [
-            "Modular FPGA design",
-            "Real-time data acquisition",
-            "Closed-loop control",
-            "Laser interferometer integration",
-            "Zynq 7010 SoC verification",
-            "Signal processing and analysis"
+        challenges: [
+            "Maintaining laser stability in a noisy laboratory environment",
+            "Implementing real-time control loops with microsecond precision timing",
+            "Debugging VHDL modules without traditional simulation tools"
+        ],
+        technologies: [
+            "Xilinx Zynq 7010 SoC programming and ARM-FPGA communication",
+            "Pound-Drever-Hall locking theory and PID control implementation",
+            "High-speed ADC/DAC interfacing and signal conditioning"
         ],
     },
     circuitSynthesis: {
         title: "Circuit Synthesis from Frequency Response Data",
-        summary: "I built a Python tool that can figure out what's inside a circuit just by looking at how it responds to different frequencies. It's like reverse-engineering a black box to understand what components are inside.",
-        layman: "Imagine you have a mysterious electronic device in a black box and you want to figure out what's inside without opening it. I created a program that listens to how the device responds to different signals and then figures out what electronic components are likely inside, like solving a puzzle using math.",
-        technical: "The tool uses signal processing to analyze frequency response data and rational approximation algorithms to create equivalent RLC circuit models. Python libraries handle the complex math, while custom algorithms extract circuit parameters and validate the models. It uses frequency domain analysis with impedance matching to reconstruct the circuit topology.",
+        summary: "Developed a Python-based circuit synthesis tool that performs black-box circuit analysis using frequency response data. The system implements rational approximation algorithms, impedance matching techniques, and automated RLC parameter extraction to reconstruct circuit topology from frequency domain measurements.",
+        layman: "I made a program that can figure out what's inside an electronic device without opening it. It listens to how the device responds to different signals and then tells you what electronic parts are probably inside.",
+        technical: "Implemented Vector Fitting algorithms for rational approximation of frequency response data, using iterative pole-residue optimization to minimize fitting error. The system employs passivity enforcement techniques to ensure physical realizability of synthesized circuits. Features include automated RLC parameter extraction, SPICE netlist generation, and support for multi-port systems. The algorithm uses frequency domain analysis with impedance matching to reconstruct circuit topology, incorporating techniques from 'Vector Fitting Algorithm for Rational Approximation of Frequency Domain Responses' and 'Passivity Enforcement in Rational Approximation' publications.",
         tech: ["Python", "Signal Processing", "Circuit Analysis", "Optimization", "Numerical Methods"],
-        highlights: [
-            "Frequency response analysis",
-            "RLC circuit synthesis",
-            "Black-box circuit modeling",
-            "Numerical optimization",
-            "Circuit parameter extraction",
-            "Model validation"
+        challenges: [
+            "Converting frequency domain data into physically realizable circuit models",
+            "Preventing non-physical circuit behavior through passivity constraints",
+            "Ensuring mathematical models produce real-world circuit components"
+        ],
+        technologies: [
+            "Vector Fitting algorithm implementation and pole-residue optimization",
+            "SPICE netlist generation from mathematical models",
+            "Multi-port system analysis and impedance matching techniques"
         ],
     },
 };
@@ -364,10 +376,16 @@ function populateModalContent(project, projectId) {
         `<span class="tech-tag">${tech}</span>`
     ).join('');
     
-    // Update highlights list
-    const highlightsList = document.getElementById('modalHighlights');
-    highlightsList.innerHTML = project.highlights.map(highlight => 
-        `<li>${highlight}</li>`
+    // Update challenges list
+    const challengesList = document.getElementById('modalChallenges');
+    challengesList.innerHTML = project.challenges.map(challenge => 
+        `<li>${challenge}</li>`
+    ).join('');
+    
+    // Update technologies list
+    const technologiesList = document.getElementById('modalTechnologies');
+    technologiesList.innerHTML = project.technologies.map(technology => 
+        `<li>${technology}</li>`
     ).join('');
     
     // Add external links
