@@ -424,26 +424,28 @@ section {
 
 /* Skills section */
 .skills-section {
-    background: var(--background-light);
-    padding: var(--spacing-xxl) 0;
-    position: relative;
-    width: 100%;
+    background: #f8fafc !important;
+    padding: 4rem 0 !important;
+    position: relative !important;
+    width: 100% !important;
 }
 
 .skills-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    position: relative !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 @media (max-width: 1200px) {
@@ -465,29 +467,32 @@ section {
 }
 
 .skill-category {
-    background: white;
-    border: 2px solid var(--border-color);
-    border-radius: 16px;
-    padding: var(--spacing-md);
-    transition: var(--transition-default);
-    position: relative;
-    overflow: visible;
+    background: white !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 16px !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: visible !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .skill-category:hover {
-    z-index: 100;
-    border-color: var(--primary-color);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
-    transform: translateY(-2px);
+    z-index: 100 !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1) !important;
+    transform: translateY(-2px) !important;
 }
 
 .skill-category-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: var(--spacing-sm);
-    padding-bottom: var(--spacing-sm);
-    border-bottom: 2px solid var(--border-color);
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 2px solid #e5e7eb !important;
 }
 
 .skill-category-header i {
@@ -505,25 +510,26 @@ section {
 }
 
 .skill-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
 }
 
 .skill-item {
-    position: relative;
-    background: white;
-    color: var(--text-dark);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition-default);
-    border: 2px solid var(--border-color);
-    display: inline-block;
-    line-height: 1.4;
-    z-index: 1;
+    position: relative !important;
+    background: white !important;
+    color: #1f2937 !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid #e5e7eb !important;
+    display: inline-block !important;
+    line-height: 1.4 !important;
+    z-index: 1 !important;
 }
 
 .skill-item:hover {
@@ -531,11 +537,11 @@ section {
 }
 
 .skill-item:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    background: #2563eb !important;
+    color: white !important;
+    border-color: #2563eb !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
 }
 
 .skill-name {
