@@ -442,6 +442,8 @@ section {
     gap: var(--spacing-md);
     margin-top: var(--spacing-md);
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 1200px) {
