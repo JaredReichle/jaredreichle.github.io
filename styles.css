@@ -58,6 +58,12 @@
     box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px; /* Base font size for rem calculations */
@@ -356,6 +362,10 @@ section {
     margin-bottom: var(--spacing-xl);
     color: var(--text-dark);
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
 }
 
 .section-title::after {
@@ -465,15 +475,36 @@ section {
 }
 
 @media (max-width: 768px) {
+    #skills {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
+    .section-title {
+        font-size: 2rem !important;
+        padding: 0 1rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
     .skills-section {
         padding: 2rem 0 !important;
         overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        position: relative !important;
     }
     
     .skills-container {
         padding: 0 1rem !important;
         max-width: 100% !important;
+        width: 100% !important;
         overflow-x: hidden !important;
+        box-sizing: border-box !important;
+        position: relative !important;
     }
     
     .skills-grid {
@@ -484,6 +515,8 @@ section {
         margin-left: 0 !important;
         margin-right: 0 !important;
         padding: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
     }
     
     .skill-category {
@@ -491,16 +524,62 @@ section {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+    
+    .skill-category-header {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+    
+    .skill-category-header h4 {
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
     
     .skill-items {
         width: 100% !important;
         max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
     }
     
     .skill-item {
-        max-width: calc(100% - 0.5rem) !important;
+        max-width: 100% !important;
+        width: auto !important;
         word-break: break-word !important;
+        box-sizing: border-box !important;
+        flex-shrink: 1 !important;
+    }
+    
+    .skill-tooltip {
+        width: calc(100vw - 3rem) !important;
+        max-width: min(280px, calc(100vw - 3rem)) !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(0) !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    .skill-item:hover .skill-tooltip {
+        transform: translateX(-50%) translateY(-5px) !important;
+    }
+    
+    .skill-item:hover .skill-tooltip.tooltip-left {
+        left: 0 !important;
+        transform: translateX(0) translateY(-5px) !important;
+        max-width: calc(100vw - 2rem) !important;
+    }
+    
+    .skill-item:hover .skill-tooltip.tooltip-right {
+        left: auto !important;
+        right: 0 !important;
+        transform: translateX(0) translateY(-5px) !important;
+        max-width: calc(100vw - 2rem) !important;
     }
 }
 
@@ -665,6 +744,8 @@ section {
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     width: 280px;
+    max-width: calc(100vw - 2rem);
+    min-width: 0;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
@@ -673,6 +754,9 @@ section {
     pointer-events: none;
     white-space: normal;
     text-align: left;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Tooltip positioning classes */
