@@ -482,12 +482,14 @@ section {
     padding: var(--spacing-md);
     transition: var(--transition-default);
     position: relative;
+    z-index: 1;
 }
 
 .skill-category:hover {
     border-color: var(--primary-color);
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
     transform: translateY(-2px);
+    z-index: 100;
 }
 
 .skill-category-header {
@@ -539,6 +541,7 @@ section {
     border-color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    z-index: 10001;
 }
 
 .skill-item:hover .skill-tooltip {
@@ -562,7 +565,7 @@ section {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
-    z-index: 1000;
+    z-index: 10002;
     border: 1px solid var(--border-color);
     pointer-events: none;
     white-space: normal;
