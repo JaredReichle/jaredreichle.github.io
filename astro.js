@@ -16,6 +16,14 @@
  * When adding new images, place them at the top of this array to maintain chronological order.
  */
 const astroImages = [
+    // November 2025
+    {
+        filename: 'M42OrionsNebula.jpg',
+        title: 'Orion Nebula (M42)',
+        description: 'One of the brightest and most famous nebulae in the night sky, located in the constellation Orion approximately 1,344 light-years away. This stellar nursery is where new stars are being born, visible even to the naked eye as a fuzzy patch in Orion\'s sword.',
+        date: 'November 2025',
+        equipment: 'Seestar S50'
+    },
     // September 2025
     {
         filename: 'IC5146CocoonNebula.jpg',
