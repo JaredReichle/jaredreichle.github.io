@@ -483,11 +483,11 @@ function initializeScrollAnimations() {
  * Initialize skill tooltip positioning
  */
 function initializeSkillTooltips() {
-    const skillBubbles = document.querySelectorAll('.skill-bubble');
+    const skillItems = document.querySelectorAll('.skill-item');
     
-    skillBubbles.forEach(bubble => {
-        bubble.addEventListener('mouseenter', positionTooltip);
-        bubble.addEventListener('mouseleave', resetTooltip);
+    skillItems.forEach(item => {
+        item.addEventListener('mouseenter', positionTooltip);
+        item.addEventListener('mouseleave', resetTooltip);
     });
 }
 
@@ -496,8 +496,8 @@ function initializeSkillTooltips() {
  * @param {Event} event - Mouse enter event
  */
 function positionTooltip(event) {
-    const bubble = event.currentTarget;
-    const tooltip = bubble.querySelector('.skill-tooltip');
+    const item = event.currentTarget;
+    const tooltip = item.querySelector('.skill-tooltip');
     
     if (!tooltip) return;
     
@@ -505,7 +505,7 @@ function positionTooltip(event) {
     tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
     
     // Get positioning data
-    const bubbleRect = bubble.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     
@@ -515,8 +515,8 @@ function positionTooltip(event) {
     const margin = 20;
     
     // Calculate tooltip position
-    const tooltipLeft = bubbleRect.left + (bubbleRect.width / 2) - (tooltipWidth / 2);
-    const tooltipTop = bubbleRect.top - tooltipHeight - margin;
+    const tooltipLeft = itemRect.left + (itemRect.width / 2) - (tooltipWidth / 2);
+    const tooltipTop = itemRect.top - tooltipHeight - margin;
     
     // Apply positioning classes for overflow
     if (tooltipLeft < margin) {
@@ -535,8 +535,8 @@ function positionTooltip(event) {
  * @param {Event} event - Mouse leave event
  */
 function resetTooltip(event) {
-    const bubble = event.currentTarget;
-    const tooltip = bubble.querySelector('.skill-tooltip');
+    const item = event.currentTarget;
+    const tooltip = item.querySelector('.skill-tooltip');
     
     if (tooltip) {
         tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
