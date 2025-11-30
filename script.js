@@ -483,64 +483,7 @@ function initializeScrollAnimations() {
  * Initialize skill tooltip positioning
  */
 function initializeSkillTooltips() {
-    const skillItems = document.querySelectorAll('.skill-item');
-    
-    skillItems.forEach(item => {
-        item.addEventListener('mouseenter', positionTooltip);
-        item.addEventListener('mouseleave', resetTooltip);
-    });
-}
-
-/**
- * Position tooltip to avoid viewport overflow
- * @param {Event} event - Mouse enter event
- */
-function positionTooltip(event) {
-    const item = event.currentTarget;
-    const tooltip = item.querySelector('.skill-tooltip');
-    
-    if (!tooltip) return;
-    
-    // Reset previous positioning classes
-    tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
-    
-    // Get positioning data
-    const itemRect = item.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    
-    // Tooltip dimensions (from CSS)
-    const tooltipWidth = 280;
-    const tooltipHeight = 120;
-    const margin = 20;
-    
-    // Calculate tooltip position
-    const tooltipLeft = itemRect.left + (itemRect.width / 2) - (tooltipWidth / 2);
-    const tooltipTop = itemRect.top - tooltipHeight - margin;
-    
-    // Apply positioning classes for overflow
-    if (tooltipLeft < margin) {
-        tooltip.classList.add('tooltip-left');
-    } else if (tooltipLeft + tooltipWidth > viewportWidth - margin) {
-        tooltip.classList.add('tooltip-right');
-    }
-    
-    if (tooltipTop < margin) {
-        tooltip.classList.add('tooltip-top');
-    }
-}
-
-/**
- * Reset tooltip positioning classes
- * @param {Event} event - Mouse leave event
- */
-function resetTooltip(event) {
-    const item = event.currentTarget;
-    const tooltip = item.querySelector('.skill-tooltip');
-    
-    if (tooltip) {
-        tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
-    }
+    // Tooltips are handled by CSS hover, no JavaScript needed
 }
 
 // ============================================================================
