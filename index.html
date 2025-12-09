@@ -47,11 +47,16 @@
                     <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
-            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i id="themeIcon" class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -97,9 +102,48 @@
                     <p>
                         I'm driven by difficult technical problems and have a consistent history of shipping production-grade solutions that operate cleanly across software and hardware boundaries. My electrical engineering background gives me a practical advantage when designing systems that must interact with real devices or maintain stability under load.
                     </p>
-                    <p>
-                        Outside of work, I'm usually stargazing through a telescope or working on cars. Both give me space to think and keep me learning new things.
-                    </p>
+                    
+                    <div class="about-expandable">
+                        <button class="expandable-toggle" aria-expanded="false" aria-controls="background-content">
+                            <span>Background & Journey</span>
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div class="expandable-content" id="background-content">
+                            <p>
+                                I started as an electrical engineer, but I kept finding myself writing code to solve problems. What began as simple scripts to automate repetitive tasks turned into full systems. I realized I was more excited about building software than designing circuits, so I made the switch to software engineering.
+                            </p>
+                            <p>
+                                My electrical engineering background wasn't wasted though. It gave me a deep understanding of how hardware actually works, which is invaluable when you're building systems that need to talk to real devices. I can read datasheets, understand signal integrity issues, and debug problems that span both software and hardware layers.
+                            </p>
+                            <p>
+                                Now I'm working on my Master's in Computer Science with an AI focus, learning how to apply machine learning to make testing smarter. The goal is to use data to find patterns humans miss and build systems that get better over time. It's the perfect blend of my hardware background and my passion for automation.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-expandable">
+                        <button class="expandable-toggle" aria-expanded="false" aria-controls="hobbies-content">
+                            <span>Outside of Work</span>
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div class="expandable-content" id="hobbies-content">
+                            <p>
+                                When I'm not coding, you'll usually find me under the stars or under the hood. Both hobbies scratch the same itch: taking something complex, understanding how it works, and making it do what I want it to do.
+                            </p>
+                            <div class="hobbies-grid">
+                                <div class="hobby-item">
+                                    <i class="fas fa-moon" aria-hidden="true"></i>
+                                    <h4>Astronomy</h4>
+                                    <p>I've tracked down over 40 Messier objects and spend nights capturing deep-sky images. There's something wild about pointing a telescope at a fuzzy patch of light and realizing you're looking at a galaxy that's 2.5 million light-years away. The photons hitting your eye left that galaxy before humans even existed.</p>
+                                </div>
+                                <div class="hobby-item">
+                                    <i class="fas fa-car" aria-hidden="true"></i>
+                                    <h4>Automotive Work</h4>
+                                    <p>I fix my own cars because I hate paying someone else to do what I can figure out myself. Started with basic maintenance, now I'm doing engine work and electrical diagnostics. Every broken part is just a puzzle waiting to be solved. Plus, there's something satisfying about turning a wrench and actually seeing the problem go away.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
@@ -626,16 +670,25 @@
                         </div>
                         <div class="project-content">
                             <h3>BEAKER (Benchmarking Equipment Automation for Knowledge, Evaluation & Regression)</h3>
-                            <p>I'm building an automated testing framework that takes the pain out of hardware benchmarking. Instead of manually running tests and collecting data, BEAKER handles everything automatically...</p>
+                            <p>Cut test cycles from 3 weeks down to under an hour. This automated testing framework gets rid of all the manual hardware testing where engineers had to log into machines and run commands. Now system test engineers can run tests whenever they need them instead of waiting weeks...</p>
                         </div>
                     </div>
-                    <div class="project-card" data-project="homelabServers" tabindex="0" role="button" aria-label="View Home Lab Servers project details">
+                    <div class="project-card" data-project="atlassianApi" tabindex="0" role="button" aria-label="View Atlassian API Clients project details">
                         <div class="project-image">
-                            <img src="images/projects/homelab-proxmox.png" alt="Home Lab Proxmox Cluster" class="project-img">
+                            <img src="images/projects/AtlassianAPI.jpg" alt="Atlassian API Clients" class="project-img">
                         </div>
                         <div class="project-content">
-                            <h3>Home Lab Servers & Proxmox Cluster</h3>
-                            <p>I built a home lab using cheap surplus hardware from the local university. It's basically a mini data center in my basement where I can experiment with different operating systems...</p>
+                            <h3>Atlassian API Clients</h3>
+                            <p>Built reusable API clients for Jira and Confluence that other developers at work now use for their own projects. Multiple tools have been built on top of these clients, including Jira story exporters, equipment management systems, and inventory configuration dashboards...</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="homelabServers" tabindex="0" role="button" aria-label="View Self-Hosted Privacy Infrastructure project details">
+                        <div class="project-image">
+                            <img src="images/projects/homelab-proxmox.png" alt="Self-Hosted Privacy Infrastructure" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Self-Hosted Privacy Infrastructure</h3>
+                            <p>I've been moving away from cloud services to take back control of my data and save money. This Proxmox-based home lab runs Jellyfin for media, PiHole for network-wide ad blocking, Tailscale for VPN mesh networking, and various other self-hosted services...</p>
                         </div>
                     </div>
                 </div>
@@ -644,13 +697,31 @@
             <!-- Personal Projects Panel -->
             <div id="personal-panel" class="tab-panel" role="tabpanel" aria-labelledby="personal-tab">
                 <div class="projects-grid">
+                    <div class="project-card" data-project="budgetingApp" tabindex="0" role="button" aria-label="View Personal Budgeting Application project details">
+                        <div class="project-image">
+                            <img src="images/projects/Budgeting.jpg" alt="Personal Budgeting Application" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Personal Budgeting Application</h3>
+                            <p>I didn't want to pay for a budgeting app and the free ones were missing features I needed. Built my own with custom category management, bank statement imports with custom parsing, and a dashboard to track spending. All my financial data stays local for privacy...</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="homeMaintenance" tabindex="0" role="button" aria-label="View Home Maintenance Dashboard project details">
+                        <div class="project-image">
+                            <img src="images/projects/HomeMaint.jpg" alt="Home Maintenance Dashboard" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Home Maintenance Dashboard</h3>
+                            <p>I needed reminders for maintenance tasks I always forget about. Built a dashboard that sends alerts for tasks at custom intervals like daily, weekly, monthly, yearly, or even every decade. It reminds me to do things like water heater maintenance, cleaning out the washer, winterizing pipes...</p>
+                        </div>
+                    </div>
                     <div class="project-card" data-project="astronomyTools" tabindex="0" role="button" aria-label="View Astronomy Tools project details">
                         <div class="project-image">
                             <img src="images/projects/orion.jpg" alt="Astronomy Tools" class="project-img">
                         </div>
                         <div class="project-content">
                             <h3>Telescope Control Scripts & Stellarium Integration</h3>
-                            <p>I built Python scripts that let me control my Orion XX14G telescope directly from Stellarium astronomy software. The system intercepts slew commands and translates them to work with my telescope's RS-232 interface...</p>
+                            <p>I wanted to use Stellarium to control my telescope instead of the clunky hand controller. Built Python scripts that translate Stellarium's commands into the format my Orion XX14G telescope understands. It doesn't save much time, but the experience is way better with the nicer UI...</p>
                         </div>
                     </div>
                     <div class="project-card" data-project="hnefatafl" tabindex="0" role="button" aria-label="View Hnefatafl Board Game project details">
@@ -659,7 +730,7 @@
                         </div>
                         <div class="project-content">
                             <h3>Hnefatafl Board Game Emulator</h3>
-                            <p>I recreated an ancient Viking board game called Hnefatafl using Python. It's a two-player strategy game that's perfect for playing with friends on the same computer...</p>
+                            <p>I wanted to play a video game version of Hnefatafl with my wife without buying the board game. Couldn't find a good two-player version online, so I made my own. It was a simple and fun project that let us play together...</p>
                         </div>
                     </div>
                 </div>
@@ -668,13 +739,31 @@
             <!-- Practicum Projects Panel -->
             <div id="practicum-panel" class="tab-panel" role="tabpanel" aria-labelledby="practicum-tab">
                 <div class="projects-grid">
+                    <div class="project-card" data-project="mlTrading" tabindex="0" role="button" aria-label="View Machine Learning Trading Dashboard project details">
+                        <div class="project-image">
+                            <img src="images/projects/MLTrader.jpg" alt="Machine Learning Trading Dashboard" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>Machine Learning Trading Dashboard</h3>
+                            <p>This started as a school project to use live stock data, make statistical inferences, and make decisions based on several ML models including Q-learning, KNN, random forests, and ensemble learners. Built a dashboard to abstract the lessons learned and apply them to a website where users could log in, set up their own model preferences, and backtest them...</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="slamSimulation" tabindex="0" role="button" aria-label="View SLAM Algorithm Simulation project details">
+                        <div class="project-image">
+                            <img src="images/projects/SLAM.jpg" alt="SLAM Algorithm Simulation" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3>SLAM Algorithm Simulation</h3>
+                            <p>This was a proof of concept to understand how the SLAM (Simultaneous Localization and Mapping) algorithm works. It was a great exercise to learn about non-deterministic motion and to tune the proper hyperparameters to help robots learn how to map themselves and their environment...</p>
+                        </div>
+                    </div>
                     <div class="project-card" data-project="fpgaLaserControl" tabindex="0" role="button" aria-label="View FPGA Laser Control project details">
                         <div class="project-image">
                             <img src="images/projects/laser_interferometer.jpg" alt="Laser Interferometer System" class="project-img">
                         </div>
                         <div class="project-content">
                             <h3>FPGA Data Acquisition & Control System for Laser Interferometry</h3>
-                            <p>I built a system to keep a laser perfectly stable for scientific measurements. It constantly monitors the laser and makes tiny adjustments to keep it running at the right frequency...</p>
+                            <p>Built a system for fine current control to achieve an ultra-stable wavelength for laser interferometry to identify gas compositions. All lasers have noise that's not helpful for interferometry, so I set up an FPGA data acquisition and control feedback loop to stabilize the laser wavelength...</p>
                         </div>
                     </div>
                     <div class="project-card" data-project="circuitSynthesis" tabindex="0" role="button" aria-label="View Circuit Synthesis project details">
@@ -683,7 +772,7 @@
                         </div>
                         <div class="project-content">
                             <h3>Circuit Synthesis from Frequency Response Data</h3>
-                            <p>I built a Python tool that can figure out what's inside a circuit just by looking at how it responds to different frequencies. It's like reverse-engineering a black box to understand what components are inside...</p>
+                            <p>These numerical methods are applied to black box hardware testing when you don't know or can't know the internals of how a hardware piece is designed. These methods allow you to design a very close clone of the internals of a black box circuit. Trying to replicate the hardware in any other way has immense challenges and hurdles...</p>
                         </div>
                     </div>
                 </div>
@@ -728,15 +817,6 @@
                         </ul>
                     </div>
                     
-                    <div class="modal-technologies">
-                        <h3>Technologies Explored</h3>
-                        <ul id="modalTechnologies">
-                            <li>Technology 1</li>
-                            <li>Technology 2</li>
-                            <li>Technology 3</li>
-                        </ul>
-                    </div>
-                    
                     <div class="modal-links" id="modalLinks">
                         <!-- External links will be added here dynamically -->
                     </div>
@@ -759,10 +839,18 @@
                     <div class="astronomy-images">
                         <div class="astro-image-container">
                             <img src="images/astro/indexintro/DobsonianSetup.jpg" alt="Dobsonian Telescope Setup" class="astro-img">
+                            <div class="astro-icon-subtitle">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                <p class="astro-subtitle">Visual Astronomy</p>
+                            </div>
                             <p class="astro-caption">Orion XX14G Go-To Dobsonian Telescope</p>
                         </div>
                         <div class="astro-image-container">
                             <img src="images/astro/indexintro/SeestarSetup.jpg" alt="Seestar Telescope Setup" class="astro-img">
+                            <div class="astro-icon-subtitle">
+                                <i class="fas fa-camera" aria-hidden="true"></i>
+                                <p class="astro-subtitle">Astrophotography</p>
+                            </div>
                             <p class="astro-caption">ZWO Seestar S50 Smart Telescope</p>
                         </div>
                     </div>
@@ -783,13 +871,13 @@
                 <div class="contact-info">
                     <p>I'm always happy to connect, whether it's exploring a cool project, swapping thoughts on coding, or talking telescopes. Feel free to drop me a message anytime.</p>
                     <div class="contact-items">
-                        <div class="contact-item">
+                        <a href="mailto:reichle.jared@gmail.com" class="contact-item" aria-label="Email me">
                             <i class="fas fa-envelope" aria-hidden="true"></i>
                             <div>
                                 <h4>Email</h4>
                                 <p>reichle.jared@gmail.com</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div>
@@ -797,13 +885,12 @@
                                 <p>Salt Lake City, UT</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/jared-reichle/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                        <a href="https://www.linkedin.com/in/jared-reichle/" class="contact-item" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
                             <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://www.instagram.com/jaredreichle/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>Connect with me on LinkedIn</p>
+                            </div>
                         </a>
                     </div>
                 </div>

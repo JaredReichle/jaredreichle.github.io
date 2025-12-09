@@ -107,8 +107,19 @@ const astroImages = [
  * Initialize astronomy gallery when page loads
  */
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme toggle if function exists (from script.js)
+    if (typeof initializeThemeToggle === 'function') {
+        initializeThemeToggle();
+    }
+    
+    // Initialize expandable sections if function exists (from script.js)
+    if (typeof initializeExpandableSections === 'function') {
+        initializeExpandableSections();
+    }
+    
     loadAstroGallery();
     setupImageModal();
+    setupFilters();
     setupMobileNavigation();
     setupAiDisclaimer();
     
@@ -131,8 +142,13 @@ function loadAstroGallery() {
         return;
     }
     
+    // Initialize filtered images
+    filteredImages = [...astroImages];
+    
     astroImages.forEach((image, index) => {
         const galleryItem = createGalleryItem(image, index);
+        // Set initial filtered index
+        galleryItem.setAttribute('data-filtered-index', index);
         gallery.appendChild(galleryItem);
     });
 }
@@ -147,6 +163,8 @@ function createGalleryItem(image, index) {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
     galleryItem.setAttribute('data-image-index', index);
+    galleryItem.setAttribute('data-category', image.category || 'all');
+    galleryItem.setAttribute('data-type', image.type || 'all');
     galleryItem.setAttribute('role', 'gridcell');
     galleryItem.setAttribute('tabindex', '0');
     
@@ -166,11 +184,15 @@ function createGalleryItem(image, index) {
     `;
     
     // Add event listeners for accessibility
-    galleryItem.addEventListener('click', () => openImageModal(index));
-    galleryItem.addEventListener('keydown', (e) => {
+    galleryItem.addEventListener('click', function() {
+        const filteredIndex = parseInt(this.getAttribute('data-filtered-index')) || index;
+        openImageModal(filteredIndex);
+    });
+    galleryItem.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            openImageModal(index);
+            const filteredIndex = parseInt(this.getAttribute('data-filtered-index')) || index;
+            openImageModal(filteredIndex);
         }
     });
     
@@ -181,56 +203,197 @@ function createGalleryItem(image, index) {
 // IMAGE MODAL SYSTEM
 // ============================================================================
 
+// Global state for lightbox
+let currentImageIndex = 0;
+let filteredImages = [...astroImages];
+let activeFilter = 'all';
+
 /**
  * Setup image modal functionality
  */
 function setupImageModal() {
     const modal = document.getElementById('imageModal');
     const closeBtn = modal?.querySelector('.close');
+    const prevBtn = modal?.querySelector('.lightbox-prev');
+    const nextBtn = modal?.querySelector('.lightbox-next');
+    const zoomInBtn = modal?.querySelector('.zoom-in');
+    const zoomOutBtn = modal?.querySelector('.zoom-out');
+    const zoomResetBtn = modal?.querySelector('.zoom-reset');
+    const imageContainer = document.getElementById('lightboxImageContainer');
+    const modalImage = document.getElementById('modalImage');
     
     if (!modal || !closeBtn) {
         console.warn('Image modal elements not found');
         return;
     }
     
-    // Store modal elements for global access
     window.astroModalElements = {
         modal,
-        modalImage: document.getElementById('modalImage'),
+        modalImage,
+        imageContainer,
         imageTitle: document.getElementById('imageTitle'),
         imageDescription: document.getElementById('imageDescription'),
         imageDate: document.getElementById('imageDate'),
-        imageEquipment: document.getElementById('imageEquipment')
+        imageEquipment: document.getElementById('imageEquipment'),
+        imageCounter: document.getElementById('imageCounter')
     };
     
     // Close modal event handlers
     closeBtn.addEventListener('click', closeImageModal);
     
+    // Navigation
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => navigateImage(-1));
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => navigateImage(1));
+    }
+    
+    // Zoom controls
+    if (zoomInBtn) zoomInBtn.addEventListener('click', () => zoomImage(1.2));
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => zoomImage(0.8));
+    if (zoomResetBtn) zoomResetBtn.addEventListener('click', resetZoom);
+    
+    // Fullscreen control
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const fullscreenIcon = document.getElementById('fullscreenIcon');
+    if (fullscreenBtn && imageContainer) {
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        document.addEventListener('fullscreenchange', updateFullscreenIcon);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
+        document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
+        document.addEventListener('MSFullscreenChange', updateFullscreenIcon);
+    }
+    
+    function updateFullscreenIcon() {
+        if (fullscreenIcon) {
+            const isFullscreen = !!(document.fullscreenElement ||
+                                   document.webkitFullscreenElement ||
+                                   document.mozFullScreenElement ||
+                                   document.msFullscreenElement);
+            fullscreenIcon.className = isFullscreen ? 'fas fa-compress' : 'fas fa-expand';
+        }
+    }
+    
+    function toggleFullscreen() {
+        if (!imageContainer) return;
+
+        try {
+            if (!document.fullscreenElement &&
+                !document.webkitFullscreenElement &&
+                !document.mozFullScreenElement &&
+                !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (imageContainer.requestFullscreen) {
+                    imageContainer.requestFullscreen();
+                } else if (imageContainer.webkitRequestFullscreen) {
+                    imageContainer.webkitRequestFullscreen();
+                } else if (imageContainer.mozRequestFullScreen) {
+                    imageContainer.mozRequestFullScreen();
+                } else if (imageContainer.msRequestFullscreen) {
+                    imageContainer.msRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        } catch (error) {
+            console.warn('Fullscreen not supported:', error);
+        }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (event) => {
+        if (modal.style.display !== 'block') return;
+        
+        if (event.key === 'Escape') {
+            closeImageModal();
+        } else if (event.key === 'ArrowLeft') {
+            navigateImage(-1);
+        } else if (event.key === 'ArrowRight') {
+            navigateImage(1);
+        } else if (event.key === '+' || event.key === '=') {
+            zoomImage(1.2);
+        } else if (event.key === '-') {
+            zoomImage(0.8);
+        } else if (event.key === '0') {
+            resetZoom();
+        }
+    });
+    
+    // Click outside to close
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeImageModal();
         }
     });
     
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-            closeImageModal();
-        }
-    });
+    // Pan functionality when zoomed
+    if (modalImage && imageContainer) {
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+        
+        modalImage.addEventListener('mousedown', (e) => {
+            const currentScale = parseFloat(modalImage.style.transform.match(/scale\(([^)]+)\)/)?.[1] || 1);
+            if (currentScale > 1) {
+                isDragging = true;
+                const rect = imageContainer.getBoundingClientRect();
+                startX = e.clientX - rect.left;
+                startY = e.clientY - rect.top;
+                scrollLeft = imageContainer.scrollLeft;
+                scrollTop = imageContainer.scrollTop;
+                modalImage.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const rect = imageContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const walkX = (x - startX) * 2;
+            const walkY = (y - startY) * 2;
+            imageContainer.scrollLeft = scrollLeft - walkX;
+            imageContainer.scrollTop = scrollTop - walkY;
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            if (modalImage) {
+                const currentScale = parseFloat(modalImage.style.transform.match(/scale\(([^)]+)\)/)?.[1] || 1);
+                modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+            }
+        });
+    }
 }
 
 /**
  * Open image modal with specific image data
- * @param {number} imageIndex - Index of the image to display
+ * @param {number} imageIndex - Index of the image to display (in filtered array)
  */
 function openImageModal(imageIndex) {
-    const image = astroImages[imageIndex];
+    const image = filteredImages[imageIndex];
     const elements = window.astroModalElements;
     
     if (!image || !elements) {
         console.warn('Image data or modal elements not found');
         return;
     }
+    
+    currentImageIndex = imageIndex;
+    
+    // Reset zoom
+    resetZoom();
     
     // Update modal content
     elements.modalImage.src = `images/astro/${image.filename}`;
@@ -239,6 +402,11 @@ function openImageModal(imageIndex) {
     elements.imageDescription.textContent = image.description;
     elements.imageDate.textContent = `Date: ${image.date}`;
     elements.imageEquipment.textContent = `Equipment: ${image.equipment}`;
+    
+    // Update counter
+    if (elements.imageCounter) {
+        elements.imageCounter.textContent = `Image ${imageIndex + 1} of ${filteredImages.length}`;
+    }
     
     // Show modal
     elements.modal.style.display = 'block';
@@ -250,15 +418,184 @@ function openImageModal(imageIndex) {
 }
 
 /**
+ * Navigate to next/previous image in lightbox
+ * @param {number} direction - 1 for next, -1 for previous
+ */
+function navigateImage(direction) {
+    const newIndex = currentImageIndex + direction;
+    if (newIndex >= 0 && newIndex < filteredImages.length) {
+        openImageModal(newIndex);
+    }
+}
+
+/**
+ * Zoom image in lightbox
+ * @param {number} factor - Zoom factor (multiplier)
+ */
+function zoomImage(factor) {
+    const elements = window.astroModalElements;
+    if (!elements || !elements.modalImage || !elements.imageContainer) return;
+    
+    const currentScale = parseFloat(elements.modalImage.style.transform.match(/scale\(([^)]+)\)/)?.[1] || 1);
+    const newScale = Math.max(1, Math.min(5, currentScale * factor));
+    elements.modalImage.style.transform = `scale(${newScale})`;
+    elements.modalImage.style.cursor = newScale > 1 ? 'grab' : 'default';
+    
+    // Ensure container can scroll when zoomed
+    elements.imageContainer.style.overflow = newScale > 1 ? 'auto' : 'hidden';
+    elements.imageContainer.style.overflowX = newScale > 1 ? 'auto' : 'hidden';
+    elements.imageContainer.style.overflowY = newScale > 1 ? 'auto' : 'hidden';
+}
+
+/**
+ * Reset zoom to default
+ */
+function resetZoom() {
+    const elements = window.astroModalElements;
+    if (!elements || !elements.modalImage) return;
+    
+    elements.modalImage.style.transform = 'scale(1)';
+    elements.modalImage.style.cursor = 'default';
+    if (elements.imageContainer) {
+        elements.imageContainer.scrollLeft = 0;
+        elements.imageContainer.scrollTop = 0;
+        elements.imageContainer.style.overflow = 'hidden';
+        elements.imageContainer.style.overflowX = 'hidden';
+        elements.imageContainer.style.overflowY = 'hidden';
+    }
+}
+
+/**
+ * Toggle fullscreen mode for image container
+ */
+function toggleFullscreen() {
+    const elements = window.astroModalElements;
+    const imageContainer = elements?.imageContainer;
+    if (!imageContainer) return;
+    
+    try {
+        if (!document.fullscreenElement && 
+            !document.webkitFullscreenElement && 
+            !document.mozFullScreenElement && 
+            !document.msFullscreenElement) {
+            // Enter fullscreen
+            if (imageContainer.requestFullscreen) {
+                imageContainer.requestFullscreen();
+            } else if (imageContainer.webkitRequestFullscreen) {
+                imageContainer.webkitRequestFullscreen();
+            } else if (imageContainer.mozRequestFullScreen) {
+                imageContainer.mozRequestFullScreen();
+            } else if (imageContainer.msRequestFullscreen) {
+                imageContainer.msRequestFullscreen();
+            }
+        } else {
+            // Exit fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    } catch (error) {
+        console.warn('Fullscreen not supported:', error);
+    }
+}
+
+/**
  * Close image modal
  */
 function closeImageModal() {
     const elements = window.astroModalElements;
     if (elements) {
+        // Exit fullscreen if active
+        if (document.fullscreenElement || 
+            document.webkitFullscreenElement || 
+            document.mozFullScreenElement || 
+            document.msFullscreenElement) {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+        
         elements.modal.style.display = 'none';
         elements.modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'auto';
     }
+}
+
+// ============================================================================
+// FILTER FUNCTIONALITY
+// ============================================================================
+
+/**
+ * Setup filter functionality
+ */
+function setupFilters() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update active filter state
+            activeFilter = filter;
+            
+            // Apply filter
+            applyFilters();
+        });
+    });
+}
+
+/**
+ * Apply filter to gallery
+ */
+function applyFilters() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    // Filter images based on object type
+    if (activeFilter === 'all') {
+        filteredImages = [...astroImages];
+    } else {
+        filteredImages = astroImages.filter(img => 
+            img.category === activeFilter || img.type === activeFilter
+        );
+    }
+    
+    // Update gallery items visibility and filtered indices
+    let filteredIndexCounter = 0;
+    galleryItems.forEach((item) => {
+        const imageIndex = parseInt(item.getAttribute('data-image-index'));
+        const image = astroImages[imageIndex];
+        
+        if (!image) return;
+        
+        const shouldShow = activeFilter === 'all' || 
+                          image.category === activeFilter || 
+                          image.type === activeFilter;
+        
+        if (shouldShow) {
+            item.style.display = '';
+            // Update data-filtered-index to reflect position in filtered array
+            item.setAttribute('data-filtered-index', filteredIndexCounter);
+            filteredIndexCounter++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
 
 // ============================================================================

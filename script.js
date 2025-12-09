@@ -198,76 +198,123 @@ function switchToTab(targetTab, tabButtons, tabPanels) {
 const projectData = {
     beaker: {
         title: "BEAKER (Benchmarking Equipment Automation for Knowledge, Evaluation & Regression)",
-        summary: "Developing a Python-based automated testing framework for hardware benchmarking that integrates with multiple hardware interfaces via APIs and serial protocols. The system implements automated test execution, real-time data collection, and generates comprehensive pass/fail reports with detailed metrics and failure analysis.",
-        layman: "Instead of a person having to manually test equipment and write down results, I'm making a computer program that does all the testing automatically and tells you if the equipment works or not.",
-        technical: "Built using Python with asyncio for concurrent test execution and SQLite for data persistence. Implements modular architecture with pluggable hardware drivers supporting RS-232, Ethernet, and USB interfaces. Features include automated test scheduling, real-time monitoring dashboards, statistical analysis of test results, and configurable pass/fail criteria. The system uses dependency injection for hardware abstraction and supports both standalone and distributed testing scenarios.",
+        summary: "Cut test cycles from 3 weeks down to under an hour. This automated testing framework gets rid of all the manual hardware testing where engineers had to log into machines and run commands. BEAKER combines custom hardware plugins with a testing framework to automate everything. Now system test engineers can run tests whenever they need them instead of waiting weeks for manual execution.",
+        layman: "Instead of engineers spending weeks manually testing equipment by logging into machines and running commands, BEAKER does all of this automatically. What used to take 3 weeks now takes less than an hour. Saves the company a lot of time and money.",
+        technical: "Built using Python with asyncio for concurrent test execution and SQLite for data persistence. Implements modular architecture with pluggable hardware drivers supporting RS-232, Ethernet, and USB interfaces. The system integrates with hardware through custom plugins that interface with a test automation framework, eliminating manual login and command execution. Features include automated test scheduling, real-time monitoring dashboards, statistical analysis of test results, and configurable pass/fail criteria. The system uses dependency injection for hardware abstraction and supports both standalone and distributed testing scenarios.",
         tech: ["Python", "Hardware Integration", "Test Automation", "Data Analysis", "Reporting"],
         challenges: [
             "Integrating multiple hardware protocols (RS-232, Ethernet, USB) with a unified interface",
             "Designing async test execution to handle 50+ concurrent test sessions",
             "Creating flexible pass/fail criteria that work across different equipment types"
         ],
-        technologies: [
-            "Python asyncio for concurrent hardware control",
-            "SQLite with custom indexing for high-frequency data logging",
-            "Dependency injection patterns for hardware abstraction"
-        ],
+        metrics: [
+            { label: "3 weeks → 1 hour", type: "time" },
+            { label: "70% adoption", type: "adoption" }
+        ]
+    },
+    atlassianApi: {
+        title: "Atlassian API Clients",
+        summary: "Built reusable API clients for Jira and Confluence that other developers at work now use for their own projects. These clients handle authentication, rate limiting, and error handling so developers don't have to write that boilerplate code every time. Multiple tools have been built on top of these clients, including Jira story exporters, equipment management systems, and inventory configuration dashboards.",
+        layman: "I made tools that let other developers easily connect to Jira and Confluence without having to figure out all the complicated API stuff themselves. Now they can just use my code and focus on building their actual features.",
+        technical: "Developed Python-based API clients for Jira and Confluence using the REST APIs. Implemented OAuth2 authentication, request rate limiting, pagination handling, and comprehensive error handling. The clients abstract away the complexity of API interactions, providing simple methods for common operations like creating issues, searching, and managing assets. Used by multiple internal tools including a Jira story export tool, an equipment management system for lab environments, and an inventory configuration dashboard.",
+        tech: ["Python", "REST APIs", "OAuth2", "Jira", "Confluence"],
+        challenges: [
+            "Handling rate limits and pagination for large data sets",
+            "Creating a simple interface that hides API complexity",
+            "Supporting multiple authentication methods across different Atlassian instances"
+        ]
     },
     homelabServers: {
-        title: "Home Lab Servers & Proxmox Cluster",
-        summary: "Deployed a Proxmox VE hypervisor cluster using decommissioned Dell Optiplex mini computers to create a private cloud infrastructure. The setup enables virtualization of multiple operating systems, container orchestration, and network isolation for testing and development environments.",
-        layman: "I turned old computers into a system that can run many different computer programs at the same time, like having multiple computers in one box.",
-        technical: "Implemented Proxmox VE on two Dell Optiplex mini computers with 8GB RAM per node. Configured VLAN-based network segmentation, iSCSI storage clustering, and automated VM provisioning. The cluster supports LXC containers and KVM virtual machines running various Linux distributions (RHEL, Ubuntu, Kali Linux) and Windows Server. Implemented automated backup strategies using Proxmox Backup Server. Currently expanding with TrueNAS for network-attached storage and exploring Kubernetes deployment on the cluster.",
-        tech: ["Proxmox", "Linux", "Virtualization", "Networking", "Hardware"],
+        title: "Self-Hosted Privacy Infrastructure",
+        summary: "I've been moving away from cloud services to take back control of my data and save money. This Proxmox-based home lab runs Jellyfin for media, PiHole for network-wide ad blocking, Tailscale for VPN mesh networking, and various other self-hosted services. Instead of paying for Netflix, cloud storage, and other subscriptions, I own and control everything. It's also been great for learning networking fundamentals, especially as I work with networked hardware at my job.",
+        layman: "I set up my own servers at home to replace services I was paying for. Now I have my own Netflix, my own cloud storage, and my own ad blocker. I own everything and my data stays private.",
+        technical: "Deployed Proxmox VE hypervisor cluster on decommissioned hardware. Running Jellyfin media server with an *arr suite for content management, PiHole for DNS-based ad blocking, Tailscale for VPN mesh networking, and experimenting with Immich for photo storage and Mealie for recipe management. Also using it to experiment with different Unix-like operating systems including Kali Linux for security tools. The setup has been invaluable for understanding networking, especially VLANs, reverse proxies, and VPN configurations that directly apply to my work with networked hardware.",
+        tech: ["Proxmox", "Linux", "Docker", "Networking", "Self-Hosting"],
         challenges: [
-            "Sandboxing with different tools, technologies and OSes",
-            "Network segmentation is more complex than expected in home environments",
-            "Managing resource allocation across multiple VMs with limited RAM"
+            "Learning networking fundamentals like VLANs and reverse proxies",
+            "Managing resource allocation across multiple services with limited hardware",
+            "Setting up secure remote access without exposing services to the internet"
         ],
-        technologies: [
-            "Proxmox VE hypervisor management and clustering",
-            "VLAN configuration and network isolation techniques",
-            "LXC containers vs KVM virtual machines performance optimization"
-        ],
+        metrics: [
+            { label: "Cost savings", type: "cost" }
+        ]
     },
     astronomyTools: {
         title: "Telescope Control Scripts & Stellarium Integration",
-        summary: "Developed a Python-based protocol translation system that bridges Stellarium's TCP-based telescope control interface with the Orion XX14G's RS-232 serial protocol. The system implements real-time coordinate conversion, command translation, and bidirectional communication for automated telescope control.",
-        layman: "I made my telescope work with astronomy software. Now I can click on stars in the software and my telescope automatically points to that star in the sky.",
+        summary: "I wanted to use Stellarium to control my telescope instead of the clunky hand controller. Built Python scripts that translate Stellarium's commands into the format my Orion XX14G telescope understands. It doesn't save much time, but the experience is way better with the nicer UI. This was purely for my own enjoyment.",
+        layman: "I made my telescope work with astronomy software. Now I can click on stars in the software and my telescope automatically points to that star in the sky. The interface is much nicer than the hand controller.",
         technical: "Built a TCP listener in Python that captures slew commands from Stellarium, then decodes and translates them into the proper RS-232 protocol for the Orion XX14G. The system acts as a bridge between Stellarium's network commands and the telescope's serial interface, handling coordinate conversion and command formatting. It's basically reverse-engineering the communication protocol to make incompatible systems work together. Implements error handling for communication failures and supports both equatorial and alt-azimuth coordinate systems.",
         tech: ["Python", "TCP Networking", "RS-232 Serial", "Protocol Translation", "Telescope Control"],
         challenges: [
             "Making incompatible software and hardware work together",
             "Converting between equatorial and alt-azimuth coordinate systems in real-time",
             "Handling communication failures gracefully without losing telescope position"
-        ],
-        technologies: [
-            "TCP socket programming for real-time command interception",
-            "RS-232 serial communication with hardware flow control",
-            "Coordinate transformation mathematics for astronomical calculations"
-        ],
+        ]
+    },
+    budgetingApp: {
+        title: "Personal Budgeting Application",
+        summary: "I didn't want to pay for a budgeting app and the free ones were missing features I needed. Built my own with custom category management, bank statement imports with custom parsing, and a dashboard to track spending. All my financial data stays local for privacy, and I got to build exactly the features I wanted.",
+        layman: "I made my own budgeting app because the free ones didn't have what I needed and I didn't want to pay. Now I can track my spending exactly how I want, and all my financial data stays on my computer.",
+        technical: "Built a Python application with a web-based dashboard for budget tracking. Implements custom CSV parsing for bank statement imports, flexible category management system, and data visualization for spending patterns. Uses SQLite for local data storage to keep all financial information private. The dashboard provides insights into spending habits and helps identify areas for cost reduction.",
+        tech: ["Python", "SQLite", "Data Visualization", "CSV Parsing", "Web Dashboard"],
+        challenges: [
+            "Parsing different bank statement formats consistently",
+            "Creating a flexible category system that adapts to different spending patterns",
+            "Building an intuitive dashboard that provides useful insights"
+        ]
+    },
+    homeMaintenance: {
+        title: "Home Maintenance Dashboard",
+        summary: "I needed reminders for maintenance tasks I always forget about. Built a dashboard that sends alerts for tasks at custom intervals like daily, weekly, monthly, yearly, or even every decade. It reminds me to do things like water heater maintenance, cleaning out the washer, winterizing pipes, and other tasks I'd otherwise forget. Simple but effective. Hoping to make it smarter someday with custom tips and weather/location integration.",
+        layman: "I made a reminder system for all the home maintenance stuff I forget about. It tells me when to change filters, clean things, and do other maintenance tasks so my house doesn't fall apart.",
+        technical: "Developed a web-based dashboard for tracking home maintenance tasks with configurable reminder intervals. The system stores task definitions, last completion dates, and calculates next due dates based on custom intervals. Features include task categorization, priority levels, and notification system. Built with plans to integrate weather and location data for smarter reminders, like preparing for winter storms or seasonal maintenance.",
+        tech: ["Web Dashboard", "Task Management", "Reminder System", "Data Tracking"],
+        challenges: [
+            "Designing a flexible interval system that handles everything from daily to decadal tasks",
+            "Creating an intuitive interface for managing many different maintenance tasks",
+            "Planning for future integrations with weather and location services"
+        ]
     },
     hnefatafl: {
         title: "Hnefatafl Board Game Emulator",
-        summary: "Implemented a complete Hnefatafl board game engine using Python and Pygame, featuring traditional Viking game rules, interactive graphics, and local multiplayer functionality. The system includes move validation algorithms, game state management, and user interface components.",
-        layman: "I made a computer version of an old Viking board game. It's like chess but different - one player tries to help the king escape while the other tries to catch him.",
+        summary: "I wanted to play a video game version of Hnefatafl with my wife without buying the board game. Couldn't find a good two-player version online, so I made my own. It was a simple and fun project that let us play together.",
+        layman: "I made a computer version of an old Viking board game so my wife and I could play together. It's like chess but different - one player tries to help the king escape while the other tries to catch him.",
         technical: "Developed using Python with Pygame for graphics rendering and event handling. Implemented object-oriented design with separate classes for game board, pieces, and game logic. Features include traditional Hnefatafl rules implementation, move validation algorithms, turn-based gameplay mechanics, and interactive visual feedback. The system uses event-driven programming for user input and includes game state persistence for save/load functionality.",
         tech: ["Python", "Pygame", "Game Development", "Object-Oriented Programming", "Local Multiplayer"],
         challenges: [
             "Translating ancient game rules into modern programming logic",
             "Creating user interface for a game with no existing digital precedent",
             "Handling asymmetric gameplay mechanics in a symmetric codebase"
-        ],
-        technologies: [
-            "Pygame graphics rendering and event handling systems",
-            "Object-oriented game state management and persistence",
-            "Event-driven programming for real-time user interaction"
-        ],
+        ]
+    },
+    mlTrading: {
+        title: "Machine Learning Trading Dashboard",
+        summary: "This started as a school project to use live stock data, make statistical inferences, and make decisions based on several ML models including Q-learning, KNN, random forests, and ensemble learners. Built a dashboard to abstract the lessons learned and apply them to a website where users could log in, set up their own model preferences, and backtest them. This was a proof of concept that wasn't made public, but it was a great hands-on way to understand different ML models and their effectiveness at maximizing profits.",
+        layman: "I built a system that uses machine learning to try to predict stock prices and make trading decisions. It was a school project that helped me learn how different AI models work and which ones are better at making money.",
+        technical: "Developed a web-based trading dashboard that integrates multiple machine learning models for stock prediction and trading signal generation. Implemented Q-learning for reinforcement learning-based trading strategies, KNN for pattern recognition, random forests for ensemble predictions, and various other models. The system includes backtesting functionality, user preference configuration, and performance metrics. Built as a proof of concept to understand model effectiveness and trading strategy optimization.",
+        tech: ["Python", "Machine Learning", "scikit-learn", "Trading", "Data Analysis"],
+        challenges: [
+            "Integrating multiple ML models into a unified trading system",
+            "Creating accurate backtesting functionality",
+            "Understanding which models work best for different market conditions"
+        ]
+    },
+    slamSimulation: {
+        title: "SLAM Algorithm Simulation",
+        summary: "This was a proof of concept to understand how the SLAM (Simultaneous Localization and Mapping) algorithm works. It was a great exercise to learn about non-deterministic motion and to tune the proper hyperparameters to help robots learn how to map themselves and their environment. This project helped me understand the fundamentals of robotics navigation and mapping.",
+        layman: "I built a simulation to understand how robots can map their environment while moving around. It was a learning project to understand the algorithms that help robots know where they are and what's around them.",
+        technical: "Implemented a SLAM algorithm simulation to understand simultaneous localization and mapping concepts. The system models non-deterministic robot motion, sensor noise, and environment mapping. Features include hyperparameter tuning for optimal performance, visualization of robot path and map generation, and comparison of different SLAM approaches. This was an educational project focused on understanding the fundamentals of robotics navigation and probabilistic mapping.",
+        tech: ["Python", "SLAM", "Robotics", "Simulation", "Machine Learning"],
+        challenges: [
+            "Understanding non-deterministic motion models",
+            "Tuning hyperparameters for optimal mapping performance",
+            "Visualizing complex probabilistic data in an understandable way"
+        ]
     },
     fpgaLaserControl: {
         title: "FPGA Data Acquisition & Control System for Laser Interferometry",
-        summary: "Designed and implemented a real-time laser frequency stabilization system using Xilinx Zynq 7010 SoC with custom VHDL modules for data acquisition and control. The system implements Pound-Drever-Hall locking with PID feedback control for sub-Hz frequency stability in laser interferometry applications.",
-        layman: "I built a system that keeps a laser perfectly stable for scientific measurements. It's like a smart thermostat, but instead of controlling temperature, it keeps the laser's color exactly right.",
+        summary: "Built a system for fine current control to achieve an ultra-stable wavelength for laser interferometry to identify gas compositions. All lasers have noise that's not helpful for interferometry, so I set up an FPGA data acquisition and control feedback loop to stabilize the laser wavelength. We were able to achieve control and data acquisition through commercial FPGAs, but couldn't achieve the stability we hoped for within the allotted time. The company that sourced us as students would have had to pay a lot more for highly precise instrumentation otherwise.",
+        layman: "I built a system that keeps a laser perfectly stable for scientific measurements. It's like a smart thermostat, but instead of controlling temperature, it keeps the laser's color exactly right. This helps scientists identify what gases are in the air.",
         technical: "Used a Xilinx Zynq 7010 SoC with custom VHDL modules for the real-time control and data acquisition. Python handles the data processing and analysis side, while the FPGA manages the fast control loops and signal conditioning. The system implements a Pound-Drever-Hall control loop with PID feedback to keep the laser frequency locked. Features include real-time data logging, automated lock acquisition, and configurable control parameters for different laser systems.",
         tech: ["FPGA", "VHDL", "Python", "Control Systems", "Signal Processing"],
         challenges: [
@@ -275,28 +322,21 @@ const projectData = {
             "Implementing real-time control loops with microsecond precision timing",
             "Debugging VHDL modules without traditional simulation tools"
         ],
-        technologies: [
-            "Xilinx Zynq 7010 SoC programming and ARM-FPGA communication",
-            "Pound-Drever-Hall locking theory and PID control implementation",
-            "High-speed ADC/DAC interfacing and signal conditioning"
-        ],
+        metrics: [
+            { label: "Cost savings", type: "cost" }
+        ]
     },
     circuitSynthesis: {
         title: "Circuit Synthesis from Frequency Response Data",
-        summary: "Developed a Python-based circuit synthesis tool that performs black-box circuit analysis using frequency response data. The system implements rational approximation algorithms, impedance matching techniques, and automated RLC parameter extraction to reconstruct circuit topology from frequency domain measurements.",
-        layman: "I made a program that can figure out what's inside an electronic device without opening it. It listens to how the device responds to different signals and then tells you what electronic parts are probably inside.",
+        summary: "These numerical methods are applied to black box hardware testing when you don't know or can't know the internals of how a hardware piece is designed. These methods allow you to design a very close clone of the internals of a black box circuit. Trying to replicate the hardware in any other way has immense challenges and hurdles, but applying these numerical methods made it much simpler to make a close-in-behavior clone for the sake of analysis and testing. This was based on a class I took senior year in my undergrad and was a lot of fun.",
+        layman: "I made a program that can figure out what's inside an electronic device without opening it. It listens to how the device responds to different signals and then tells you what electronic parts are probably inside. This is useful for testing hardware when you can't see inside it.",
         technical: "Implemented Vector Fitting algorithms for rational approximation of frequency response data, using iterative pole-residue optimization to minimize fitting error. The system employs passivity enforcement techniques to ensure physical realizability of synthesized circuits. Features include automated RLC parameter extraction, SPICE netlist generation, and support for multi-port systems. The algorithm uses frequency domain analysis with impedance matching to reconstruct circuit topology, incorporating techniques from 'Vector Fitting Algorithm for Rational Approximation of Frequency Domain Responses' and 'Passivity Enforcement in Rational Approximation' publications.",
         tech: ["Python", "Signal Processing", "Circuit Analysis", "Optimization", "Numerical Methods"],
         challenges: [
             "Converting frequency domain data into physically realizable circuit models",
             "Preventing non-physical circuit behavior through passivity constraints",
             "Ensuring mathematical models produce real-world circuit components"
-        ],
-        technologies: [
-            "Vector Fitting algorithm implementation and pole-residue optimization",
-            "SPICE netlist generation from mathematical models",
-            "Multi-port system analysis and impedance matching techniques"
-        ],
+        ]
     },
 };
 
@@ -380,12 +420,6 @@ function populateModalContent(project, projectId) {
     const challengesList = document.getElementById('modalChallenges');
     challengesList.innerHTML = project.challenges.map(challenge => 
         `<li>${challenge}</li>`
-    ).join('');
-    
-    // Update technologies list
-    const technologiesList = document.getElementById('modalTechnologies');
-    technologiesList.innerHTML = project.technologies.map(technology => 
-        `<li>${technology}</li>`
     ).join('');
     
     // Add external links
@@ -633,6 +667,84 @@ window.addEventListener('resize', () => {
 });
 
 // ============================================================================
+// DARK MODE / THEME TOGGLE
+// ============================================================================
+
+/**
+ * Initialize theme toggle functionality
+ */
+function initializeThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+
+    // Apply theme based on localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
+
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
+/**
+ * Set the theme
+ * @param {string} theme - 'light' or 'dark'
+ */
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    const icon = document.getElementById('themeIcon');
+    if (icon) {
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+}
+
+/**
+ * Toggle between light and dark theme
+ */
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+}
+
+// ============================================================================
+// EXPANDABLE SECTIONS
+// ============================================================================
+
+/**
+ * Initialize expandable sections functionality
+ */
+function initializeExpandableSections() {
+    const expandableToggles = document.querySelectorAll('.expandable-toggle');
+    
+    expandableToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            const contentId = toggle.getAttribute('aria-controls');
+            const content = document.getElementById(contentId);
+            
+            if (!content) return;
+            
+            // Toggle expanded state
+            const newExpandedState = !isExpanded;
+            toggle.setAttribute('aria-expanded', newExpandedState);
+            
+            // Toggle content visibility
+            if (newExpandedState) {
+                content.classList.add('expanded');
+            } else {
+                content.classList.remove('expanded');
+            }
+        });
+    });
+}
+
+// ============================================================================
 // INITIALIZATION
 // ============================================================================
 
@@ -647,6 +759,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeScrollAnimations();
     initializeSkillTooltips();
     initializeAiDisclaimer();
+    initializeThemeToggle();
+    initializeExpandableSections();
     
     // Initialize active navigation highlighting
     updateActiveNavigation();
