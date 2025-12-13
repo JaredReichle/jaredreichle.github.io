@@ -16,6 +16,14 @@
  * When adding new images, place them at the top of this array to maintain chronological order.
  */
 const astroImages = [
+    // December 2025
+    {
+        filename: 'Pleiades.jpg',
+        title: 'Pleiades (M45)',
+        description: 'Also known as the Seven Sisters, this is one of the nearest and most beautiful open star clusters, located approximately 444 light-years away in the constellation Taurus. The cluster contains hundreds of stars, with the brightest seven visible to the naked eye.',
+        date: 'December 2025',
+        equipment: 'Seestar S50'
+    },
     // November 2025
     {
         filename: 'M42OrionsNebula.jpg',
