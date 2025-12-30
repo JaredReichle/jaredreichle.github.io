@@ -18,6 +18,34 @@
 const astroImages = [
     // December 2025
     {
+        filename: 'M1CrabNebula.jpg',
+        title: 'Crab Nebula (M1)',
+        description: 'A supernova remnant located in the constellation Taurus, approximately 6,500 light-years away. This is the remnant of a supernova that was observed and recorded by Chinese astronomers in 1054 AD. The nebula is expanding at about 1,500 km/s and contains a pulsar at its center.',
+        date: 'December 2025',
+        equipment: 'Seestar S50'
+    },
+    {
+        filename: 'IC434HorseheadNebula.jpg',
+        title: 'Horsehead Nebula (IC 434)',
+        description: 'A dark nebula located in the constellation Orion, approximately 1,500 light-years away. The distinctive horsehead shape is created by dark dust clouds silhouetted against the bright emission nebula IC 434. This is one of the most photographed objects in the night sky.',
+        date: 'December 2025',
+        equipment: 'Seestar S50'
+    },
+    {
+        filename: 'NGC2237RosetteNebula.jpg',
+        title: 'Rosette Nebula (NGC 2237)',
+        description: 'A large emission nebula located in the constellation Monoceros, approximately 5,000 light-years away. The nebula surrounds the open star cluster NGC 2244, whose stars were formed from the nebula\'s material. The rosette shape is created by stellar winds from the central stars.',
+        date: 'December 2025',
+        equipment: 'Seestar S50'
+    },
+    {
+        filename: 'Sirius.jpg',
+        title: 'Sirius',
+        description: 'The brightest star in the night sky, located in the constellation Canis Major approximately 8.6 light-years away. Also known as the Dog Star, Sirius is actually a binary star system consisting of a main-sequence star (Sirius A) and a white dwarf companion (Sirius B).',
+        date: 'December 2025',
+        equipment: 'Seestar S50'
+    },
+    {
         filename: 'Pleiades.jpg',
         title: 'Pleiades (M45)',
         description: 'Also known as the Seven Sisters, this is one of the nearest and most beautiful open star clusters, located approximately 444 light-years away in the constellation Taurus. The cluster contains hundreds of stars, with the brightest seven visible to the naked eye.',
