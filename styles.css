@@ -2297,6 +2297,146 @@ section {
     text-align: center;
 }
 
+/* Telescope Equipment Section */
+.telescope-equipment {
+    padding: var(--spacing-xxl) 0;
+    background: var(--background);
+}
+
+.telescope-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.telescope-item {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: var(--shadow-default);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-lg);
+    transition: var(--transition-default);
+}
+
+.telescope-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.telescope-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.telescope-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.telescope-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.telescope-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.telescope-title-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.telescope-title-section i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.telescope-title-section h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.telescope-type {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.telescope-specs {
+    margin-bottom: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.telescope-specs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.telescope-specs li {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.telescope-specs li strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+
+/* Photo Teaser Styles for Index Page */
+.astro-teaser {
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.astro-teaser .astro-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: var(--spacing-md) var(--spacing-sm) var(--spacing-sm);
+    opacity: 0;
+    transition: var(--transition-default);
+}
+
+.astro-teaser:hover .astro-overlay {
+    opacity: 1;
+}
+
+.astro-teaser:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 107, 53, 0.4);
+}
+
+.astro-teaser-title {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0;
+    text-align: center;
+}
+
 .astro-gallery {
     padding: var(--spacing-xxl) 0;
     background: var(--background-light);
@@ -2618,6 +2758,21 @@ section {
         width: 100%;
         height: 120px;
         aspect-ratio: 3/2;
+    }
+    
+    .telescope-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .telescope-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .telescope-image {
+        width: 150px;
+        height: 150px;
     }
     
     .ai-disclaimer {

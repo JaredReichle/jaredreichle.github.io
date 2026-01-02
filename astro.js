@@ -136,6 +136,17 @@ const astroImages = [
 ];
 
 // ============================================================================
+// TELESCOPE CARDS FUNCTIONALITY
+// ============================================================================
+
+/**
+ * Initialize telescope cards (currently no functionality needed)
+ */
+function initializeTelescopeCards() {
+    // No functionality needed - specs are always visible
+}
+
+// ============================================================================
 // GALLERY INITIALIZATION
 // ============================================================================
 
@@ -152,6 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initializeExpandableSections === 'function') {
         initializeExpandableSections();
     }
+    
+    // Initialize telescope cards
+    initializeTelescopeCards();
     
     loadAstroGallery();
     setupImageModal();

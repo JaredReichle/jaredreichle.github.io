@@ -313,28 +313,6 @@ const projectData = {
         ],
         metrics: []
     },
-    homeMaintenance: {
-        title: "Home Maintenance Dashboard",
-        image: "images/projects/HomeMaint.jpg",
-        summary: "I needed reminders for maintenance tasks I always forget about. Built a dashboard that sends alerts for tasks at custom intervals like daily, weekly, monthly, yearly, or even every decade. It reminds me to do things like water heater maintenance, cleaning out the washer, winterizing pipes, and other tasks I'd otherwise forget. Simple but effective. Hoping to make it smarter someday with custom tips and weather/location integration.",
-        layman: "I made a reminder system for all the home maintenance stuff I forget about. It tells me when to change filters, clean things, and do other maintenance tasks so my house doesn't fall apart.",
-        technical: "Developed a web-based dashboard for tracking home maintenance tasks with configurable reminder intervals. The system stores task definitions, last completion dates, and calculates next due dates based on custom intervals. Features include task categorization, priority levels, and notification system. Built with plans to integrate weather and location data for smarter reminders, like preparing for winter storms or seasonal maintenance.",
-        architecture: "The system uses a simple client-server architecture with a web-based frontend and a backend that manages task data and scheduling. Tasks are stored with metadata including interval type, last completion date, and priority. The scheduling engine calculates next due dates by adding the interval to the last completion date. The notification system checks for overdue tasks and sends alerts through the dashboard interface.",
-        implementation: "Built with a lightweight web framework for the frontend and a simple backend for data persistence. The interval system supports multiple types: fixed intervals (daily, weekly, monthly), calendar-based (yearly on specific dates), and custom intervals (e.g., every 90 days). Task completion updates the last completion date and recalculates the next due date. The dashboard displays tasks sorted by due date with visual indicators for overdue items. Future enhancements will integrate weather APIs for seasonal reminders.",
-        tech: ["Web Dashboard", "Task Management", "Reminder System", "Data Tracking"],
-        highlights: [
-            "Created flexible reminder system supporting intervals from daily to decadal",
-            "Implemented task categorization and priority levels",
-            "Automated calculation of next due dates based on custom intervals",
-            "Designed for future weather and location-based smart reminders"
-        ],
-        challenges: [
-            "Designing a flexible interval system that handles everything from daily to decadal tasks",
-            "Creating an intuitive interface for managing many different maintenance tasks",
-            "Planning for future integrations with weather and location services"
-        ],
-        metrics: []
-    },
     hnefatafl: {
         title: "Hnefatafl Board Game Emulator",
         image: "images/projects/HnefataflBoard.jpg",
