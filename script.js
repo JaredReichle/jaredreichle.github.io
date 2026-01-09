@@ -245,25 +245,26 @@ const projectData = {
             { label: "3+ tools built", type: "adoption", icon: "fa-tools" }
         ]
     },
-    homelabServers: {
-        title: "Self-Hosted Privacy Infrastructure",
+    homelab: {
+        title: "Homelab",
         image: "images/projects/homelab-proxmox.png",
-        summary: "I've been moving away from cloud services to take back control of my data and save money. This Proxmox-based home lab runs Jellyfin for media, PiHole for network-wide ad blocking, Tailscale for VPN mesh networking, and various other self-hosted services. Instead of paying for Netflix, cloud storage, and other subscriptions, I own and control everything. It's also been great for learning networking fundamentals, especially as I work with networked hardware at my job.",
-        layman: "I set up my own servers at home to replace services I was paying for. Now I have my own Netflix, my own cloud storage, and my own ad blocker. I own everything and my data stays private.",
-        technical: "Deployed Proxmox VE hypervisor cluster on decommissioned hardware. Running Jellyfin media server with an *arr suite for content management, PiHole for DNS-based ad blocking, Tailscale for VPN mesh networking, and experimenting with Immich for photo storage and Mealie for recipe management. Also using it to experiment with different Unix-like operating systems including Kali Linux for security tools. The setup has been invaluable for understanding networking, especially VLANs, reverse proxies, and VPN configurations that directly apply to my work with networked hardware.",
-        architecture: "The infrastructure is built on Proxmox VE, which provides virtualization and containerization capabilities. Services are organized into VLANs for network segmentation, with a reverse proxy (Nginx) handling SSL termination and routing. PiHole acts as the network's DNS server, blocking ads at the DNS level. Tailscale creates a mesh VPN network for secure remote access without exposing ports. Each service runs in either a VM or LXC container, with resource limits to prevent any single service from consuming all available resources.",
-        implementation: "Proxmox is installed on bare metal with ZFS for storage redundancy. Services are deployed using Docker containers where possible, managed through Portainer for easier administration. The reverse proxy uses Let's Encrypt for SSL certificates with automatic renewal. Network configuration uses VLANs to separate services (media, infrastructure, development) for security. Backup strategy includes automated snapshots of critical VMs and containers. Monitoring is handled through a combination of Proxmox's built-in monitoring and custom scripts that alert on resource usage or service failures.",
-        tech: ["Proxmox", "Linux", "Docker", "Networking", "Self-Hosting"],
+        summary: "A Proxmox-based homelab infrastructure built with an emphasis on reliability, observability, and recoverability. Replaced paid cloud services with self-hosted alternatives including Jellyfin for media, AdGuard Home for DNS and network-wide ad blocking, Immich for photos and videos, and WireGuard for remote access to all these services. The architecture, decisions, and evolution are documented in an Obsidian vault to enable long-term reasoning about the system and avoid repeating mistakes. Built primarily around Proxmox and self-hosted services rather than novelty.",
+        layman: "I set up my own servers at home to replace services I was paying for. Now I have my own Netflix, my own cloud storage, and my own ad blocker. I own everything and my data stays private. I also keep detailed notes about how everything works so I can maintain and improve it over time.",
+        technical: "Deployed Proxmox VE hypervisor cluster on decommissioned hardware with ZFS for storage redundancy. Running Jellyfin media server with an *arr suite for content management, AdGuard Home for DNS and network-wide ad blocking, Immich for photos and videos, and WireGuard for remote access to all services. Services are organized into VLANs for network segmentation with a reverse proxy (Nginx) handling SSL termination. The entire architecture is documented in an Obsidian vault covering overview, architecture, services, automation, operations, and ongoing thoughts. The setup prioritizes reliability and recoverability over cutting-edge features.",
+        architecture: "The infrastructure is built on Proxmox VE, which provides virtualization and containerization capabilities. Services are organized into VLANs for network segmentation, with a reverse proxy (Nginx) handling SSL termination and routing. AdGuard Home acts as the network's DNS server, blocking ads at the DNS level and providing network-wide ad blocking. WireGuard provides secure remote access to all services without exposing ports to the internet. Each service runs in either a VM or LXC container, with resource limits to prevent any single service from consuming all available resources. Architecture documentation is maintained in an Obsidian vault structured by overview, architecture, services, automation, operations, and thoughts.",
+        implementation: "Proxmox is installed on bare metal with ZFS for storage redundancy. Services are deployed using Docker containers where possible, managed through Portainer for easier administration. The reverse proxy uses Let's Encrypt for SSL certificates with automatic renewal. Network configuration uses VLANs to separate services (media, infrastructure, development) for security. Backup strategy includes automated snapshots of critical VMs and containers. Monitoring is handled through a combination of Proxmox's built-in monitoring and custom scripts that alert on resource usage or service failures. All architecture decisions, tradeoffs, and evolution are documented in the HomelabNotes repository as an Obsidian vault for long-term maintainability.",
+        tech: ["Proxmox", "Linux", "Docker", "Networking", "Self-Hosting", "Obsidian", "ZFS"],
         highlights: [
             "Replaced paid cloud services with self-hosted alternatives",
             "Deployed Proxmox VE hypervisor cluster on decommissioned hardware",
-            "Implemented network-wide ad blocking and VPN mesh networking",
-            "Gained practical networking experience with VLANs and reverse proxies"
+            "Implemented network-wide ad blocking with AdGuard Home and secure remote access with WireGuard",
+            "Documented architecture and decisions in Obsidian vault for long-term maintainability"
         ],
         challenges: [
             "Learning networking fundamentals like VLANs and reverse proxies",
             "Managing resource allocation across multiple services with limited hardware",
-            "Setting up secure remote access without exposing services to the internet"
+            "Setting up secure remote access without exposing services to the internet",
+            "Maintaining comprehensive documentation to enable long-term reasoning about system decisions"
         ],
         metrics: [
             { label: "Cost savings", type: "cost", icon: "fa-dollar-sign" }
@@ -599,6 +600,16 @@ function updateModalLinks(projectId) {
         },
         astronomyTools: {
             url: 'https://github.com/JaredReichle/DobConversion',
+            text: 'View on GitHub',
+            icon: 'fab fa-github'
+        },
+        beaker: {
+            url: 'https://github.com/JaredReichle/BEAKER',
+            text: 'View on GitHub',
+            icon: 'fab fa-github'
+        },
+        homelab: {
+            url: 'https://github.com/JaredReichle/HomelabNotes',
             text: 'View on GitHub',
             icon: 'fab fa-github'
         }

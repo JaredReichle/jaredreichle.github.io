@@ -503,7 +503,7 @@ section {
    ============================================================================ */
 
 .about {
-    background: var(--background);
+    background: var(--background-light);
 }
 
 .about-content {
@@ -993,7 +993,7 @@ section {
    ============================================================================ */
 
 .resume {
-    background: var(--background-light);
+    background: var(--background);
 }
 
 .resume-content {
@@ -1226,11 +1226,68 @@ section {
 }
 
 /* ============================================================================
+   FEEDBACK AND REVIEWS SECTION
+   ============================================================================ */
+
+.feedback {
+    background: var(--background-light);
+}
+
+.feedback-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feedback-content p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.7;
+    font-size: var(--font-size-base);
+}
+
+.feedback-themes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.feedback-themes li {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--card-background);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    color: var(--text-dark);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    transition: var(--transition-default);
+    position: relative;
+    padding-left: calc(var(--spacing-lg) + 1.5rem);
+}
+
+.feedback-themes li::before {
+    content: "✓";
+    position: absolute;
+    left: var(--spacing-lg);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.feedback-themes li:hover {
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-default);
+}
+
+/* ============================================================================
    ASTRONOMY SECTION
    ============================================================================ */
 
 .astronomy {
-    background: var(--background-light);
+    background: var(--background);
 }
 
 .astronomy-content {
