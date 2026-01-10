@@ -16,6 +16,14 @@
  * When adding new images, place them at the top of this array to maintain chronological order.
  */
 const astroImages = [
+    // January 2026
+    {
+        filename: 'C31FlamingStarNebula.jpg',
+        title: 'Flaming Star Nebula (C31)',
+        description: 'An emission and reflection nebula located in the constellation Auriga, approximately 1,500 light-years away. Also known as IC 405, this nebula gets its name from the bright star AE Aurigae, which illuminates the surrounding gas and dust, creating the appearance of flames.',
+        date: 'January 2026',
+        equipment: 'Seestar S50'
+    },
     // December 2025
     {
         filename: 'M1CrabNebula.jpg',
