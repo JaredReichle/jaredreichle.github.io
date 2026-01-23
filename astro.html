@@ -158,11 +158,39 @@
         </div>
     </div>
 
+    <!-- Logging Planetarium Section -->
+    <section class="logging-planetarium" id="logging-planetarium">
+        <div class="container">
+            <h2 class="section-title">Planetarium</h2>
+            <p class="planetarium-intro">
+                A seasonal snapshot of the midnight sky from Salt Lake City, UT. Check out what I was focused on during different parts of the year.
+            </p>
+            <div class="planetarium-controls" role="group" aria-label="Select season">
+                <button class="season-button active" type="button" data-season="spring">Spring</button>
+                <button class="season-button" type="button" data-season="summer">Summer</button>
+                <button class="season-button" type="button" data-season="fall">Fall</button>
+                <button class="season-button" type="button" data-season="winter">Winter</button>
+            </div>
+            <div class="planetarium-controls planetarium-controls--compact" role="group" aria-label="Select projection">
+                <button class="projection-button active" type="button" data-projection="stereo">Stereo</button>
+                <button class="projection-button" type="button" data-projection="polar">Circular</button>
+            </div>
+            <div class="planetarium-toggle-panel" role="group" aria-label="Toggle grid lines">
+                <span class="toggle-panel-label">Grid Lines</span>
+                <div class="toggle-buttons">
+                    <button class="grid-toggle-button active" type="button" data-grid="equatorial">Equatorial</button>
+                    <button class="grid-toggle-button" type="button" data-grid="zenith">Azimuthal</button>
+                </div>
+            </div>
+            <div id="starmap" class="planetarium-map" aria-label="Logging planetarium"></div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Jared Reichle. All rights reserved.</p>
+                <p>&copy; 2026 Jared Reichle. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -179,6 +207,8 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://virtualsky.lco.global/jquery-1.10.0.min.js"></script>
+    <script src="https://virtualsky.lco.global/virtualsky.min.js"></script>
     <script src="script.js"></script>
     <script src="astro.js"></script>
 </body>

@@ -1285,6 +1285,122 @@ section {
     margin: 0 auto;
 }
 
+/* ============================================================================
+   LOGGING PLANETARIUM SECTION
+   ============================================================================ */
+
+.logging-planetarium {
+    background: var(--background);
+}
+
+.planetarium-intro {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-lg);
+    text-align: center;
+    line-height: 1.7;
+}
+
+.planetarium-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.planetarium-controls--compact {
+    margin-bottom: var(--spacing-md);
+}
+
+
+.season-button {
+    border: 2px solid var(--border-color);
+    background: var(--card-background);
+    color: var(--text-dark);
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.season-button:hover,
+.season-button.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.projection-button {
+    border: 2px solid var(--border-color);
+    background: var(--card-background);
+    color: var(--text-dark);
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.projection-button:hover,
+.projection-button.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.planetarium-toggle-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 0.75rem 1rem;
+    margin: 0 auto var(--spacing-lg);
+    max-width: 420px;
+    background: var(--card-background);
+    border: 2px solid var(--border-color);
+    border-radius: 999px;
+}
+
+.toggle-panel-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.toggle-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.grid-toggle-button {
+    border: 2px solid var(--border-color);
+    background: transparent;
+    color: var(--text-dark);
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.grid-toggle-button:hover,
+.grid-toggle-button.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+
+.planetarium-map {
+    width: 100%;
+    height: 500px;
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    background: var(--card-background);
+    overflow: hidden;
+    margin-bottom: var(--spacing-xl);
+}
+
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

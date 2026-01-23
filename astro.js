@@ -144,6 +144,158 @@ const astroImages = [
 ];
 
 // ============================================================================
+// LOGGING PLANETARIUM CONFIGURATION
+// ============================================================================
+
+const planetariumSeasons = {
+    spring: {
+        label: 'Spring',
+        date: '2026-03-20T00:00:00'
+    },
+    summer: {
+        label: 'Summer',
+        date: '2026-06-21T00:00:00'
+    },
+    fall: {
+        label: 'Fall',
+        date: '2026-09-22T00:00:00'
+    },
+    winter: {
+        label: 'Winter',
+        date: '2026-12-21T00:00:00'
+    }
+};
+
+const planetariumPointers = [
+    {
+        ra: 83.8221,
+        dec: -5.3911,
+        label: 'Orion Nebula (M42)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=5.58813861333333&de=-5.3911111&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M42',
+        credit: 'Wikisky',
+        colour: 'rgb(255,220,220)'
+    },
+    {
+        ra: 56.75,
+        dec: 24.1167,
+        label: 'Pleiades (M45)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=3.78333333333333&de=24.1167&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M45',
+        credit: 'Wikisky',
+        colour: 'rgb(210,230,255)'
+    },
+    {
+        ra: 10.6847,
+        dec: 41.269,
+        label: 'Andromeda Galaxy (M31)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=0.71298&de=41.269&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M31',
+        credit: 'Wikisky',
+        colour: 'rgb(255,235,200)'
+    },
+    {
+        ra: 83.6331,
+        dec: 22.0145,
+        label: 'Crab Nebula (M1)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=5.57554&de=22.0145&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M1',
+        credit: 'Wikisky',
+        colour: 'rgb(255,200,200)'
+    },
+    {
+        ra: 85.25,
+        dec: -2.45,
+        label: 'Horsehead Nebula (IC 434)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=5.68333333333333&de=-2.45&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=IC%20434',
+        credit: 'Wikisky',
+        colour: 'rgb(200,200,255)'
+    },
+    {
+        ra: 97.5,
+        dec: 5.0,
+        label: 'Rosette Nebula (NGC 2237)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=6.5&de=5.0&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NGC%202237',
+        credit: 'Wikisky',
+        colour: 'rgb(255,210,210)'
+    },
+    {
+        ra: 101.287,
+        dec: -16.716,
+        label: 'Sirius',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=6.7525&de=-16.716&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=Sirius',
+        credit: 'Wikisky',
+        colour: 'rgb(220,220,255)'
+    },
+    {
+        ra: 327.7,
+        dec: 47.3,
+        label: 'Cocoon Nebula (IC 5146)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=21.8467&de=47.3&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=IC%205146',
+        credit: 'Wikisky',
+        colour: 'rgb(210,240,255)'
+    },
+    {
+        ra: 311.7,
+        dec: 30.7,
+        label: 'Veil Nebula (C33)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=20.78&de=30.7&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NGC%206990',
+        credit: 'Wikisky',
+        colour: 'rgb(200,230,255)'
+    },
+    {
+        ra: 250.42,
+        dec: 36.46,
+        label: 'Hercules Globular Cluster (M13)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=16.694&de=36.46&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M13',
+        credit: 'Wikisky',
+        colour: 'rgb(255,240,200)'
+    },
+    {
+        ra: 299.9,
+        dec: 22.72,
+        label: 'Dumbbell Nebula (M27)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=19.993&de=22.72&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M27',
+        credit: 'Wikisky',
+        colour: 'rgb(220,255,220)'
+    },
+    {
+        ra: 283.4,
+        dec: 33.03,
+        label: 'Ring Nebula (M57)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=18.893&de=33.03&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M57',
+        credit: 'Wikisky',
+        colour: 'rgb(240,220,255)'
+    },
+    {
+        ra: 314.0,
+        dec: 44.3,
+        label: 'North America Nebula (NGC 7000)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=20.933&de=44.3&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NGC%207000',
+        credit: 'Wikisky',
+        colour: 'rgb(210,230,255)'
+    },
+    {
+        ra: 79.9,
+        dec: 34.4,
+        label: 'Flaming Star Nebula (C31 / IC 405)',
+        img: 'http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=5.3267&de=34.4&angle=1.25&output=PNG',
+        url: 'http://simbad.u-strasbg.fr/simbad/sim-id?Ident=IC%20405',
+        credit: 'Wikisky',
+        colour: 'rgb(255,220,200)'
+    }
+];
+
+// ============================================================================
 // TELESCOPE CARDS FUNCTIONALITY
 // ============================================================================
 
@@ -152,6 +304,140 @@ const astroImages = [
  */
 function initializeTelescopeCards() {
     // No functionality needed - specs are always visible
+}
+
+// ============================================================================
+// LOGGING PLANETARIUM
+// ============================================================================
+
+function initializeLoggingPlanetarium() {
+    const planetariumContainer = document.getElementById('starmap');
+    if (!planetariumContainer) {
+        return;
+    }
+
+    const seasonButtons = document.querySelectorAll('.season-button');
+    const projectionButtons = document.querySelectorAll('.projection-button');
+    const gridButtons = document.querySelectorAll('.grid-toggle-button');
+    const defaultSeason = 'spring';
+    const defaultProjection = 'stereo';
+    const defaultGrid = {
+        equatorial: true,
+        zenith: false
+    };
+    const latitude = 40.7608;
+    const longitude = -111.8910;
+    let currentSeason = defaultSeason;
+    let currentProjection = defaultProjection;
+    let currentGrid = { ...defaultGrid };
+    let planetariumInstance = null;
+
+    const buildPlanetarium = (seasonKey) => {
+        if (!window.jQuery || typeof window.jQuery.virtualsky !== 'function') {
+            console.warn('VirtualSky library not loaded');
+            return;
+        }
+
+        const season = planetariumSeasons[seasonKey];
+        if (!season) {
+            console.warn('Unknown season key:', seasonKey);
+            return;
+        }
+
+        planetariumContainer.innerHTML = '';
+
+        planetariumInstance = window.jQuery.virtualsky({
+            id: 'starmap',
+            projection: currentProjection,
+            latitude,
+            longitude,
+            constellations: false,
+            constellationlabels: false,
+            constellationboundaries: false,
+            gridlines_eq: currentGrid.equatorial,
+            gridlines_az: currentGrid.zenith,
+            showstars: true,
+            transparent: false,
+            background: 'rgb(8, 12, 24)',
+            color: 'rgb(240, 244, 255)',
+            magnitude: 6,
+            mouse: true,
+            keyboard: true,
+            clock: new Date(season.date)
+        });
+
+        planetariumPointers.forEach((pointer) => {
+            planetariumInstance.addPointer(pointer);
+        });
+
+        if (typeof planetariumInstance.draw === 'function') {
+            planetariumInstance.draw();
+        }
+
+        if (typeof planetariumInstance.resize === 'function') {
+            setTimeout(() => planetariumInstance.resize(), 0);
+        }
+    };
+
+    const setActiveButton = (targetSeason) => {
+        seasonButtons.forEach((button) => {
+            const isActive = button.getAttribute('data-season') === targetSeason;
+            button.classList.toggle('active', isActive);
+        });
+    };
+
+    const setActiveProjection = (targetProjection) => {
+        projectionButtons.forEach((button) => {
+            const isActive = button.getAttribute('data-projection') === targetProjection;
+            button.classList.toggle('active', isActive);
+        });
+    };
+
+    const setActiveGridButtons = () => {
+        gridButtons.forEach((button) => {
+            const gridType = button.getAttribute('data-grid');
+            const isActive = gridType === 'equatorial'
+                ? currentGrid.equatorial
+                : currentGrid.zenith;
+            button.classList.toggle('active', isActive);
+        });
+    };
+
+    seasonButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const seasonKey = button.getAttribute('data-season');
+            currentSeason = seasonKey;
+            setActiveButton(seasonKey);
+            buildPlanetarium(seasonKey);
+        });
+    });
+
+    projectionButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const projection = button.getAttribute('data-projection');
+            currentProjection = projection;
+            setActiveProjection(projection);
+            buildPlanetarium(currentSeason);
+        });
+    });
+
+    gridButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const gridType = button.getAttribute('data-grid');
+            if (gridType === 'equatorial') {
+                currentGrid.equatorial = !currentGrid.equatorial;
+            } else if (gridType === 'zenith') {
+                currentGrid.zenith = !currentGrid.zenith;
+            }
+            setActiveGridButtons();
+            buildPlanetarium(currentSeason);
+        });
+    });
+
+    setActiveButton(defaultSeason);
+    setActiveProjection(defaultProjection);
+    setActiveGridButtons();
+    buildPlanetarium(defaultSeason);
 }
 
 // ============================================================================
@@ -175,6 +461,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize telescope cards
     initializeTelescopeCards();
     
+    // Initialize logging planetarium
+    initializeLoggingPlanetarium();
+
     loadAstroGallery();
     setupImageModal();
     setupFilters();
