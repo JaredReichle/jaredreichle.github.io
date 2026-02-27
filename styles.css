@@ -1073,6 +1073,10 @@ section {
     margin-bottom: var(--spacing-sm);
 }
 
+.job-summary {
+    margin-bottom: var(--spacing-sm);
+}
+
 .coursework-highlights {
     margin-top: 1rem;
     padding: 1rem;

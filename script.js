@@ -197,12 +197,12 @@ function switchToTab(targetTab, tabButtons, tabPanels) {
  */
 const projectData = {
     beaker: {
-        title: "BEAKER (Benchmarking Equipment Automation for Knowledge, Evaluation & Regression)",
+        title: "Test Automation Platform",
         image: "images/projects/BEAKERStockLogo.jpg",
-        summary: "Cut test cycles from 3 weeks down to under an hour. This automated testing framework gets rid of all the manual hardware testing where engineers had to log into machines and run commands. BEAKER combines custom hardware plugins with a testing framework to automate everything. Now system test engineers can run tests whenever they need them instead of waiting weeks for manual execution.",
-        layman: "Instead of engineers spending weeks manually testing equipment by logging into machines and running commands, BEAKER does all of this automatically. What used to take 3 weeks now takes less than an hour. Saves the company a lot of time and money.",
+        summary: "Cut test cycles from 3 weeks down to under an hour. This automated testing platform removes manual hardware testing where engineers had to log into machines and run commands. It combines custom hardware plugins with a unified test framework to automate execution end to end. System test engineers can run tests whenever they need them instead of waiting weeks for manual execution.",
+        layman: "Instead of engineers spending weeks manually testing equipment by logging into machines and running commands, the platform does it automatically. What used to take 3 weeks now takes less than an hour, saving significant time and effort.",
         technical: "Built using Python with asyncio for concurrent test execution and SQLite for data persistence. Implements modular architecture with pluggable hardware drivers supporting RS-232, Ethernet, and USB interfaces. The system integrates with hardware through custom plugins that interface with a test automation framework, eliminating manual login and command execution. Features include automated test scheduling, real-time monitoring dashboards, statistical analysis of test results, and configurable pass/fail criteria. The system uses dependency injection for hardware abstraction and supports both standalone and distributed testing scenarios.",
-        architecture: "BEAKER follows a modular plugin architecture where hardware-specific drivers are abstracted through a unified interface. The core framework manages test execution, scheduling, and data collection, while hardware plugins handle protocol-specific communication (RS-232, Ethernet, USB). The system uses dependency injection to decouple hardware dependencies from test logic, enabling easy addition of new hardware types. Data flows from hardware through plugins to the test framework, which processes results and stores them in SQLite. Real-time monitoring is achieved through async event streams that update dashboards without blocking test execution.",
+        architecture: "The system follows a modular plugin architecture where hardware-specific drivers are abstracted through a unified interface. The core framework manages test execution, scheduling, and data collection, while hardware plugins handle protocol-specific communication (RS-232, Ethernet, USB). The system uses dependency injection to decouple hardware dependencies from test logic, enabling easy addition of new hardware types. Data flows from hardware through plugins to the test framework, which processes results and stores them in SQLite. Real-time monitoring is achieved through async event streams that update dashboards without blocking test execution.",
         implementation: "The system is built on Python's asyncio for concurrent execution, allowing multiple test sessions to run simultaneously without blocking. Each hardware plugin implements a standard interface with methods for connection, command execution, and data retrieval. The test framework uses a queue-based scheduler that manages test execution order and resource allocation. Statistical analysis is performed on test results using pandas, with configurable pass/fail criteria that can evaluate multiple metrics simultaneously. The dashboard uses a web-based interface that connects to the test framework via WebSocket for real-time updates.",
         tech: ["Python", "Hardware Integration", "Test Automation", "Data Analysis", "Reporting"],
         highlights: [
@@ -222,7 +222,7 @@ const projectData = {
         ]
     },
     atlassianApi: {
-        title: "Atlassian API Clients",
+        title: "Atlassian API Toolkit",
         image: "images/projects/AtlassianAPI.jpg",
         summary: "Built reusable API clients for Jira and Confluence that other developers at work now use for their own projects. These clients handle authentication, rate limiting, and error handling so developers don't have to write that boilerplate code every time. Multiple tools have been built on top of these clients, including Jira story exporters, equipment management systems, and inventory configuration dashboards.",
         layman: "I made tools that let other developers easily connect to Jira and Confluence without having to figure out all the complicated API stuff themselves. Now they can just use my code and focus on building their actual features.",
@@ -246,7 +246,7 @@ const projectData = {
         ]
     },
     homelab: {
-        title: "Homelab",
+        title: "Homelab Infrastructure",
         image: "images/projects/homelab-proxmox.png",
         summary: "A Proxmox-based homelab infrastructure built with an emphasis on reliability, observability, and recoverability. Replaced paid cloud services with self-hosted alternatives including Jellyfin for media, AdGuard Home for DNS and network-wide ad blocking, Immich for photos and videos, and WireGuard for remote access to all these services. The architecture, decisions, and evolution are documented in an Obsidian vault to enable long-term reasoning about the system and avoid repeating mistakes. Built primarily around Proxmox and self-hosted services rather than novelty.",
         layman: "I set up my own servers at home to replace services I was paying for. Now I have my own Netflix, my own cloud storage, and my own ad blocker. I own everything and my data stays private. I also keep detailed notes about how everything works so I can maintain and improve it over time.",
@@ -271,7 +271,7 @@ const projectData = {
         ]
     },
     astronomyTools: {
-        title: "Telescope Control Scripts & Stellarium Integration",
+        title: "Telescope Control Bridge",
         image: "images/projects/orion.jpg",
         summary: "I wanted to use Stellarium to control my telescope instead of the clunky hand controller. Built Python scripts that translate Stellarium's commands into the format my Orion XX14G telescope understands. It doesn't save much time, but the experience is way better with the nicer UI. This was purely for my own enjoyment.",
         layman: "I made my telescope work with astronomy software. Now I can click on stars in the software and my telescope automatically points to that star in the sky. The interface is much nicer than the hand controller.",
@@ -292,96 +292,8 @@ const projectData = {
         ],
         metrics: []
     },
-    budgetingApp: {
-        title: "Personal Budgeting Application",
-        image: "images/projects/Budgeting.jpg",
-        summary: "I didn't want to pay for a budgeting app and the free ones were missing features I needed. Built my own with custom category management, bank statement imports with custom parsing, and a dashboard to track spending. All my financial data stays local for privacy, and I got to build exactly the features I wanted.",
-        layman: "I made my own budgeting app because the free ones didn't have what I needed and I didn't want to pay. Now I can track my spending exactly how I want, and all my financial data stays on my computer.",
-        technical: "Built a Python application with a web-based dashboard for budget tracking. Implements custom CSV parsing for bank statement imports, flexible category management system, and data visualization for spending patterns. Uses SQLite for local data storage to keep all financial information private. The dashboard provides insights into spending habits and helps identify areas for cost reduction.",
-        architecture: "The application follows a three-tier architecture: data layer (SQLite database), business logic layer (Python backend), and presentation layer (web dashboard). The database schema includes tables for transactions, categories, budgets, and import configurations. The backend handles data processing, categorization logic, and budget calculations. The frontend provides interactive visualizations and forms for data entry and management.",
-        implementation: "Built with Flask for the web framework and SQLite for data persistence. CSV parsing uses pandas for data manipulation, with custom parsers for different bank formats that handle date parsing, amount extraction, and transaction type detection. Category management uses a hierarchical system with parent and child categories. Data visualization uses Chart.js for interactive charts showing spending trends, category breakdowns, and budget comparisons. All data processing happens server-side to keep financial information secure.",
-        tech: ["Python", "SQLite", "Data Visualization", "CSV Parsing", "Web Dashboard"],
-        highlights: [
-            "Built custom budgeting solution with features not available in free apps",
-            "Implemented flexible category management and custom CSV parsing",
-            "Created data visualization dashboard for spending insights",
-            "Kept all financial data local for privacy"
-        ],
-        challenges: [
-            "Parsing different bank statement formats consistently",
-            "Creating a flexible category system that adapts to different spending patterns",
-            "Building an intuitive dashboard that provides useful insights"
-        ],
-        metrics: []
-    },
-    hnefatafl: {
-        title: "Hnefatafl Board Game Emulator",
-        image: "images/projects/HnefataflBoard.jpg",
-        summary: "I wanted to play a video game version of Hnefatafl with my wife without buying the board game. Couldn't find a good two-player version online, so I made my own. It was a simple and fun project that let us play together.",
-        layman: "I made a computer version of an old Viking board game so my wife and I could play together. It's like chess but different - one player tries to help the king escape while the other tries to catch him.",
-        technical: "Developed using Python with Pygame for graphics rendering and event handling. Implemented object-oriented design with separate classes for game board, pieces, and game logic. Features include traditional Hnefatafl rules implementation, move validation algorithms, turn-based gameplay mechanics, and interactive visual feedback. The system uses event-driven programming for user input and includes game state persistence for save/load functionality.",
-        architecture: "The game uses a Model-View-Controller (MVC) architecture. The model contains the game state (board, pieces, turn), the view handles rendering with Pygame, and the controller processes user input and updates the model. Game logic is separated into classes for the board, pieces, and rule engine. The board maintains piece positions, the rule engine validates moves according to Hnefatafl rules, and the view renders the current state.",
-        implementation: "Built with Pygame for graphics and event handling. The board is represented as a 2D array with piece objects at each position. Move validation checks for piece movement rules, capture conditions, and win conditions. The game loop handles input events, updates the game state, and redraws the screen. Save/load functionality serializes the game state to JSON files. The UI includes visual feedback for valid moves, selected pieces, and game over conditions.",
-        tech: ["Python", "Pygame", "Game Development", "Object-Oriented Programming", "Local Multiplayer"],
-        highlights: [
-            "Built complete digital implementation of ancient Viking board game",
-            "Implemented traditional Hnefatafl rules with move validation",
-            "Created user interface for game with no existing digital precedent",
-            "Added game state persistence for save/load functionality"
-        ],
-        challenges: [
-            "Translating ancient game rules into modern programming logic",
-            "Creating user interface for a game with no existing digital precedent",
-            "Handling asymmetric gameplay mechanics in a symmetric codebase"
-        ],
-        metrics: []
-    },
-    mlTrading: {
-        title: "Machine Learning Trading Dashboard",
-        image: "images/projects/MLTrader.jpg",
-        summary: "This started as a school project to use live stock data, make statistical inferences, and make decisions based on several ML models including Q-learning, KNN, random forests, and ensemble learners. Built a dashboard to abstract the lessons learned and apply them to a website where users could log in, set up their own model preferences, and backtest them. This was a proof of concept that wasn't made public, but it was a great hands-on way to understand different ML models and their effectiveness at maximizing profits.",
-        layman: "I built a system that uses machine learning to try to predict stock prices and make trading decisions. It was a school project that helped me learn how different AI models work and which ones are better at making money.",
-        technical: "Developed a web-based trading dashboard that integrates multiple machine learning models for stock prediction and trading signal generation. Implemented Q-learning for reinforcement learning-based trading strategies, KNN for pattern recognition, random forests for ensemble predictions, and various other models. The system includes backtesting functionality, user preference configuration, and performance metrics. Built as a proof of concept to understand model effectiveness and trading strategy optimization.",
-        architecture: "The system follows a modular architecture with separate components for data ingestion, feature engineering, model training, prediction, and backtesting. Data flows from stock APIs through preprocessing pipelines to feature extractors, then to model trainers. Predictions are generated by ensemble methods that combine outputs from multiple models. The backtesting engine simulates trading strategies using historical data, calculating performance metrics like Sharpe ratio, maximum drawdown, and total return.",
-        implementation: "Built with Python using scikit-learn for ML models, pandas for data manipulation, and a web framework for the dashboard. Q-learning uses a state-action-reward framework where states represent market conditions and actions are buy/sell/hold decisions. KNN identifies similar historical patterns to predict future movements. Random forests combine multiple decision trees for robust predictions. Backtesting uses walk-forward analysis to avoid look-ahead bias. The dashboard allows users to configure model parameters, select stocks, and view performance visualizations.",
-        tech: ["Python", "Machine Learning", "scikit-learn", "Trading", "Data Analysis"],
-        highlights: [
-            "Integrated multiple ML models (Q-learning, KNN, random forests) into unified system",
-            "Built backtesting functionality for strategy validation",
-            "Created user-configurable model preferences and performance metrics",
-            "Gained hands-on experience with ML model effectiveness in trading"
-        ],
-        challenges: [
-            "Integrating multiple ML models into a unified trading system",
-            "Creating accurate backtesting functionality",
-            "Understanding which models work best for different market conditions"
-        ],
-        metrics: []
-    },
-    slamSimulation: {
-        title: "SLAM Algorithm Simulation",
-        image: "images/projects/SLAM.jpg",
-        summary: "This was a proof of concept to understand how the SLAM (Simultaneous Localization and Mapping) algorithm works. It was a great exercise to learn about non-deterministic motion and to tune the proper hyperparameters to help robots learn how to map themselves and their environment. This project helped me understand the fundamentals of robotics navigation and mapping.",
-        layman: "I built a simulation to understand how robots can map their environment while moving around. It was a learning project to understand the algorithms that help robots know where they are and what's around them.",
-        technical: "Implemented a SLAM algorithm simulation to understand simultaneous localization and mapping concepts. The system models non-deterministic robot motion, sensor noise, and environment mapping. Features include hyperparameter tuning for optimal performance, visualization of robot path and map generation, and comparison of different SLAM approaches. This was an educational project focused on understanding the fundamentals of robotics navigation and probabilistic mapping.",
-        architecture: "The simulation implements a particle filter-based SLAM algorithm. The system maintains a probabilistic representation of the robot's pose and the environment map. Each particle represents a hypothesis about the robot's position and the map. The algorithm iteratively updates particles based on motion models (predict step) and sensor observations (update step). The map is represented as a grid of occupancy probabilities, and the robot's pose is tracked through odometry and sensor fusion.",
-        implementation: "Built with Python using NumPy for numerical computations and Matplotlib for visualization. The particle filter uses importance sampling to maintain a diverse set of hypotheses. Motion models incorporate noise to represent non-deterministic robot movement. Sensor models simulate LIDAR-like range sensors with Gaussian noise. The update step uses likelihood functions to weight particles based on how well their map hypotheses match sensor observations. Visualization shows the robot's estimated path, true path, and evolving map estimate over time.",
-        tech: ["Python", "SLAM", "Robotics", "Simulation", "Machine Learning"],
-        highlights: [
-            "Implemented SLAM algorithm simulation with non-deterministic motion modeling",
-            "Developed hyperparameter tuning system for optimal mapping performance",
-            "Created visualization of robot path and map generation",
-            "Gained understanding of robotics navigation and probabilistic mapping"
-        ],
-        challenges: [
-            "Understanding non-deterministic motion models",
-            "Tuning hyperparameters for optimal mapping performance",
-            "Visualizing complex probabilistic data in an understandable way"
-        ],
-        metrics: []
-    },
     fpgaLaserControl: {
-        title: "FPGA Data Acquisition & Control System for Laser Interferometry",
+        title: "FPGA Laser Interferometer Control System",
         image: "images/projects/laser_interferometer.jpg",
         summary: "Built a system for fine current control to achieve an ultra-stable wavelength for laser interferometry to identify gas compositions. All lasers have noise that's not helpful for interferometry, so I set up an FPGA data acquisition and control feedback loop to stabilize the laser wavelength. We were able to achieve control and data acquisition through commercial FPGAs, but couldn't achieve the stability we hoped for within the allotted time. The company that sourced us as students would have had to pay a lot more for highly precise instrumentation otherwise.",
         layman: "I built a system that keeps a laser perfectly stable for scientific measurements. It's like a smart thermostat, but instead of controlling temperature, it keeps the laser's color exactly right. This helps scientists identify what gases are in the air.",
@@ -403,7 +315,7 @@ const projectData = {
         metrics: []
     },
     circuitSynthesis: {
-        title: "Circuit Synthesis from Frequency Response Data",
+        title: "Frequency-Response Circuit Synthesis",
         image: "images/projects/circuits.jpg",
         summary: "These numerical methods are applied to black box hardware testing when you don't know or can't know the internals of how a hardware piece is designed. These methods allow you to design a very close clone of the internals of a black box circuit. Trying to replicate the hardware in any other way has immense challenges and hurdles, but applying these numerical methods made it much simpler to make a close-in-behavior clone for the sake of analysis and testing. This was based on a class I took senior year in my undergrad and was a lot of fun.",
         layman: "I made a program that can figure out what's inside an electronic device without opening it. It listens to how the device responds to different signals and then tells you what electronic parts are probably inside. This is useful for testing hardware when you can't see inside it.",
@@ -590,11 +502,6 @@ function updateModalLinks(projectId) {
         },
         circuitSynthesis: {
             url: 'https://github.com/JaredReichle/CrctSynth',
-            text: 'View on GitHub',
-            icon: 'fab fa-github'
-        },
-        hnefatafl: {
-            url: 'https://github.com/JaredReichle/HnefataflVikingChess',
             text: 'View on GitHub',
             icon: 'fab fa-github'
         },
