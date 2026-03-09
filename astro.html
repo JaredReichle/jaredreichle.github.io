@@ -8,17 +8,14 @@
     <meta name="author" content="Jared Reichle">
     <title>Astronomy Gallery - Jared Reichle</title>
     
-    <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
     
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Main Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
@@ -60,7 +57,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero astro-hero" role="banner">
         <div class="hero-container">
             <div class="hero-content">
@@ -73,7 +69,6 @@
         </div>
     </section>
 
-    <!-- Telescope Equipment Section -->
     <section class="telescope-equipment">
         <div class="container">
             <h2 class="section-title">Equipment</h2>
@@ -130,17 +125,14 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="astro-gallery">
         <div class="container">
             <h2 class="section-title">Gallery</h2>
             <div class="gallery-grid" id="astroGallery" role="grid" aria-label="Astronomy image gallery">
-                <!-- Images will be loaded dynamically via JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Image Modal -->
     <div id="imageModal" class="modal" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
         <div class="modal-content image-modal-content">
             <button class="close" aria-label="Close modal">&times;</button>
@@ -158,7 +150,6 @@
         </div>
     </div>
 
-    <!-- Logging Planetarium Section -->
     <section class="logging-planetarium" id="logging-planetarium">
         <div class="container">
             <h2 class="section-title">Planetarium</h2>
@@ -186,7 +177,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
@@ -195,7 +185,6 @@
         </div>
     </footer>
 
-    <!-- AI Disclaimer -->
     <div class="ai-disclaimer">
         <button class="ai-disclaimer-link" id="aiDisclaimerLink" aria-label="View AI disclaimer">
             <i class="fas fa-robot" aria-hidden="true"></i>
@@ -206,7 +195,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://virtualsky.lco.global/jquery-1.10.0.min.js"></script>
     <script src="https://virtualsky.lco.global/virtualsky.min.js"></script>
     <script src="script.js"></script>

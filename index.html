@@ -8,17 +8,14 @@
     <meta name="author" content="Jared Reichle">
     <title>Jared Reichle - Software Engineer & Astronomy Enthusiast</title>
     
-    <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
     
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Main Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
@@ -63,7 +60,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero" role="banner">
         <div class="hero-container">
             <div class="hero-content">
@@ -90,7 +86,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
@@ -166,7 +161,6 @@
         </div>
     </section>
 
-    <!-- Resume Section -->
     <section id="resume" class="resume">
         <div class="container">
             <h2 class="section-title">Resume</h2>
@@ -288,7 +282,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills-section">
         <div class="skills-container">
             <h2 class="section-title">Skills & Technologies</h2>
@@ -663,12 +656,10 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects & Work</h2>
             
-            <!-- Project Category Tabs -->
             <div class="project-tabs">
                 <button class="tab-button active" data-tab="professional" role="tab" aria-selected="true" aria-controls="professional-panel">
                     Professional
@@ -681,7 +672,6 @@
                 </button>
             </div>
 
-            <!-- Professional Projects Panel -->
             <div id="professional-panel" class="tab-panel active" role="tabpanel" aria-labelledby="professional-tab">
                 <div class="projects-grid">
                     <div class="project-card" data-project="beaker" tabindex="0" role="button" aria-label="View BEAKER project details">
@@ -716,7 +706,6 @@
                 </div>
             </div>
 
-            <!-- Personal Projects Panel -->
             <div id="personal-panel" class="tab-panel" role="tabpanel" aria-labelledby="personal-tab">
                 <div class="projects-grid">
                     <div class="project-card" data-project="homelab" tabindex="0" role="button" aria-label="View Homelab project details">
@@ -750,7 +739,6 @@
                 </div>
             </div>
 
-            <!-- Practicum Projects Panel -->
             <div id="practicum-panel" class="tab-panel" role="tabpanel" aria-labelledby="practicum-tab">
                 <div class="projects-grid">
                     <div class="project-card" data-project="fpgaLaserControl" tabindex="0" role="button" aria-label="View FPGA Laser Control project details">
@@ -786,12 +774,10 @@
         </div>
     </section>
 
-    <!-- Project Modal -->
     <div id="projectModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">
             <button class="close" aria-label="Close modal">&times;</button>
             <div class="modal-body">
-                <!-- Project Image Hero Section -->
                 <div class="modal-hero">
                     <img id="modalProjectImage" src="" alt="Project image" class="modal-project-image">
                 </div>
@@ -799,7 +785,6 @@
                 <div class="modal-info">
                     <h2 id="modalTitle">Project Title</h2>
                     
-                    <!-- Overview Section -->
                     <div class="modal-section">
                         <div class="modal-summary">
                             <h3>Summary</h3>
@@ -809,7 +794,6 @@
                         <div class="modal-highlights">
                             <h3>Key Accomplishments</h3>
                             <ul id="modalHighlights">
-                                <!-- Highlights will be populated dynamically -->
                             </ul>
                         </div>
                         
@@ -819,7 +803,6 @@
                         </div>
                     </div>
                     
-                    <!-- Architecture & Design Section -->
                     <div class="modal-section">
                         <h3>Architecture & Design</h3>
                         <div id="modalArchitecture">
@@ -827,7 +810,6 @@
                         </div>
                     </div>
                     
-                    <!-- Implementation Details Section -->
                     <div class="modal-section">
                         <h3>Implementation Details</h3>
                         <div id="modalImplementation">
@@ -835,7 +817,6 @@
                         </div>
                     </div>
                     
-                    <!-- Technical Challenges Section -->
                     <div class="modal-section">
                         <h3>Technical Challenges</h3>
                         <ul id="modalChallenges">
@@ -845,13 +826,11 @@
                         </ul>
                     </div>
                     
-                    <!-- Results & Metrics Section -->
                     <div class="modal-section">
                         <h3>Results & Metrics</h3>
                         <div class="modal-metrics-section">
                             <h4>Impact Metrics</h4>
                             <div class="modal-metrics" id="modalMetrics">
-                                <!-- Metrics will be populated dynamically -->
                             </div>
                         </div>
                         <div id="modalResults">
@@ -860,9 +839,7 @@
                         </div>
                     </div>
                     
-                    <!-- External Links -->
                     <div class="modal-links" id="modalLinks">
-                        <!-- External links will be added here dynamically -->
                     </div>
                     
                 </div>
@@ -870,7 +847,6 @@
         </div>
     </div>
 
-    <!-- Feedback and Reviews Section -->
     <section id="feedback" class="feedback">
         <div class="container">
             <h2 class="section-title">Feedback and Reviews</h2>
@@ -889,7 +865,6 @@
         </div>
     </section>
 
-    <!-- Astronomy Section -->
     <section id="astronomy" class="astronomy">
         <div class="container">
             <h2 class="section-title">Astronomy</h2>
@@ -934,7 +909,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
@@ -969,7 +943,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
@@ -978,7 +951,6 @@
         </div>
     </footer>
 
-    <!-- AI Disclaimer -->
     <div class="ai-disclaimer">
         <button class="ai-disclaimer-link" id="aiDisclaimerLink" aria-label="View AI disclaimer">
             <i class="fas fa-robot" aria-hidden="true"></i>
@@ -989,7 +961,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html> 

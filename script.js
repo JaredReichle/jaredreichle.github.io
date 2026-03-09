@@ -1,25 +1,9 @@
-/**
- * Jared Reichle Portfolio Website - Main JavaScript
- * Handles navigation, modals, animations, and interactive features
- */
-
-// ============================================================================
-// DOM ELEMENTS
-// ============================================================================
-
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const modal = document.getElementById('projectModal');
 const closeBtn = document.querySelector('.close');
 const projectCards = document.querySelectorAll('.project-card');
 
-// ============================================================================
-// MOBILE NAVIGATION
-// ============================================================================
-
-/**
- * Initialize mobile navigation functionality
- */
 function initializeMobileNavigation() {
     if (!hamburger || !navMenu) return;
 
@@ -30,7 +14,6 @@ function initializeMobileNavigation() {
         hamburger.setAttribute('aria-expanded', !isActive);
     });
 
-    // Close mobile menu when clicking on navigation links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -40,13 +23,6 @@ function initializeMobileNavigation() {
     });
 }
 
-// ============================================================================
-// SMOOTH SCROLLING
-// ============================================================================
-
-/**
- * Initialize smooth scrolling for anchor links
- */
 function initializeSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -64,20 +40,12 @@ function initializeSmoothScrolling() {
     });
 }
 
-// ============================================================================
-// ACTIVE NAVIGATION HIGHLIGHTING
-// ============================================================================
-
-/**
- * Update active navigation link based on current scroll position
- */
 function updateActiveNavigation() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
     let currentSection = '';
     
-    // Get current page path
     const currentPath = window.location.pathname;
     const isAstronomyPage = currentPath.includes('astro.html');
     const isMainPage = currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '';
@@ -90,7 +58,6 @@ function updateActiveNavigation() {
         navLinksFound: navLinks.length
     });
     
-    // If we're on the astronomy page, set astronomy as active immediately
     if (isAstronomyPage) {
         console.log('On astronomy page - setting astronomy link as active');
         navLinks.forEach(link => {
@@ -102,10 +69,9 @@ function updateActiveNavigation() {
                 console.log('Set astronomy link as active');
             }
         });
-        return; // Exit early for astronomy page
+        return;
     }
     
-    // For main page, determine current section based on scroll
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -121,12 +87,10 @@ function updateActiveNavigation() {
         link.classList.remove('active');
         const href = link.getAttribute('href');
         
-        // Check if this is the current page section
         if (href === `#${currentSection}`) {
             link.classList.add('active');
             console.log('Set active link:', href);
         }
-        // Special case for Astronomy link - highlight when in astronomy section
         else if (href === 'astro.html' && currentSection === 'astronomy') {
             link.classList.add('active');
             console.log('Set astronomy link as active (in astronomy section)');
@@ -134,13 +98,6 @@ function updateActiveNavigation() {
     });
 }
 
-// ============================================================================
-// PROJECT TABS SYSTEM
-// ============================================================================
-
-/**
- * Initialize project tabs functionality
- */
 function initializeProjectTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -156,7 +113,6 @@ function initializeProjectTabs() {
             switchToTab(targetTab, tabButtons, tabPanels);
         });
         
-        // Keyboard navigation
         button.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -167,34 +123,19 @@ function initializeProjectTabs() {
     });
 }
 
-/**
- * Switch to a specific tab
- * @param {string} targetTab - The tab to switch to
- * @param {NodeList} tabButtons - All tab buttons
- * @param {NodeList} tabPanels - All tab panels
- */
 function switchToTab(targetTab, tabButtons, tabPanels) {
-    // Update tab buttons
     tabButtons.forEach(button => {
         const isActive = button.getAttribute('data-tab') === targetTab;
         button.classList.toggle('active', isActive);
         button.setAttribute('aria-selected', isActive);
     });
     
-    // Update tab panels
     tabPanels.forEach(panel => {
         const isActive = panel.id === `${targetTab}-panel`;
         panel.classList.toggle('active', isActive);
     });
 }
 
-// ============================================================================
-// PROJECT MODAL SYSTEM
-// ============================================================================
-
-/**
- * Project data configuration
- */
 const projectData = {
     beaker: {
         title: "Test Automation Platform",
@@ -338,13 +279,9 @@ const projectData = {
     },
 };
 
-/**
- * Initialize project modal functionality
- */
 function initializeProjectModal() {
     if (!modal || !closeBtn) return;
 
-    // Add click handlers to project cards
     projectCards.forEach(card => {
         card.addEventListener('click', () => openProjectModal(card));
         card.addEventListener('keydown', (e) => {
@@ -355,7 +292,6 @@ function initializeProjectModal() {
         });
     });
 
-    // Close modal handlers
     closeBtn.addEventListener('click', closeModal);
     
     window.addEventListener('click', (event) => {
@@ -372,10 +308,6 @@ function initializeProjectModal() {
 }
 
 
-/**
- * Open project modal with project data
- * @param {HTMLElement} card - The project card element
- */
 function openProjectModal(card) {
     const projectId = card.getAttribute('data-project');
     const project = projectData[projectId];
@@ -385,35 +317,24 @@ function openProjectModal(card) {
         return;
     }
     
-    // Populate modal content
     populateModalContent(project, projectId);
     
-    // Show modal
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     
-    // Focus management
     closeBtn.focus();
 }
 
-/**
- * Populate modal with project data
- * @param {Object} project - Project data object
- * @param {string} projectId - Project identifier
- */
 function populateModalContent(project, projectId) {
-    // Update title
     document.getElementById('modalTitle').textContent = project.title;
     
-    // Update project image
     const projectImage = document.getElementById('modalProjectImage');
     if (projectImage && project.image) {
         projectImage.src = project.image;
         projectImage.alt = `${project.title} project image`;
     }
     
-    // Update metrics (in Results & Metrics section)
     const metricsSection = document.querySelector('.modal-metrics-section');
     const metricsContainer = document.getElementById('modalMetrics');
     if (metricsContainer && project.metrics && project.metrics.length > 0) {
@@ -428,7 +349,6 @@ function populateModalContent(project, projectId) {
             metricsSection.style.display = 'block';
         }
     } else {
-        // Hide entire metrics section (including header) when there are no metrics
         if (metricsSection) {
             metricsSection.style.display = 'none';
         }
@@ -437,10 +357,8 @@ function populateModalContent(project, projectId) {
         }
     }
     
-    // Update summary
     document.getElementById('modalSummary').textContent = project.summary;
     
-    // Update highlights
     const highlightsList = document.getElementById('modalHighlights');
     if (highlightsList && project.highlights) {
         highlightsList.innerHTML = project.highlights.map(highlight => 
@@ -448,10 +366,8 @@ function populateModalContent(project, projectId) {
         ).join('');
     }
     
-    // Update layman explanation
     document.getElementById('modalLayman').textContent = project.layman;
     
-    // Update architecture
     const architectureDiv = document.getElementById('modalArchitecture');
     if (architectureDiv && project.architecture) {
         architectureDiv.innerHTML = `<p>${project.architecture}</p>`;
@@ -459,7 +375,6 @@ function populateModalContent(project, projectId) {
         architectureDiv.innerHTML = '<p>Architecture details not available.</p>';
     }
     
-    // Update implementation
     const implementationDiv = document.getElementById('modalImplementation');
     if (implementationDiv && project.implementation) {
         implementationDiv.innerHTML = `<p>${project.implementation}</p>`;
@@ -467,13 +382,11 @@ function populateModalContent(project, projectId) {
         implementationDiv.innerHTML = '<p>Implementation details not available.</p>';
     }
     
-    // Update challenges list
     const challengesList = document.getElementById('modalChallenges');
     challengesList.innerHTML = project.challenges.map(challenge => 
         `<li>${challenge}</li>`
     ).join('');
     
-    // Update results/technical section
     const resultsDiv = document.getElementById('modalResults');
     if (resultsDiv) {
         const technicalP = document.getElementById('modalTechnical');
@@ -482,15 +395,10 @@ function populateModalContent(project, projectId) {
         }
     }
     
-    // Add external links
     updateModalLinks(projectId);
 }
 
 
-/**
- * Update modal external links based on project
- * @param {string} projectId - Project identifier
- */
 function updateModalLinks(projectId) {
     const linksContainer = document.getElementById('modalLinks');
     
@@ -537,22 +445,12 @@ function updateModalLinks(projectId) {
 }
 
 
-/**
- * Close project modal
- */
 function closeModal() {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'auto';
 }
 
-// ============================================================================
-// SCROLL ANIMATIONS
-// ============================================================================
-
-/**
- * Initialize scroll animations using Intersection Observer
- */
 function initializeScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -567,7 +465,6 @@ function initializeScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
     const animateElements = document.querySelectorAll('.about-content, .resume-content, .projects-grid, .contact-content');
     animateElements.forEach(el => {
         el.classList.add('fade-in');
@@ -575,24 +472,9 @@ function initializeScrollAnimations() {
     });
 }
 
-// ============================================================================
-// SKILL TOOLTIPS
-// ============================================================================
-
-/**
- * Initialize skill tooltip positioning
- */
 function initializeSkillTooltips() {
-    // Tooltips are handled by CSS hover, no JavaScript needed
 }
 
-// ============================================================================
-// AI DISCLAIMER
-// ============================================================================
-
-/**
- * Initialize AI disclaimer functionality
- */
 function initializeAiDisclaimer() {
     const aiDisclaimerLink = document.getElementById('aiDisclaimerLink');
     const aiDisclaimerText = document.getElementById('aiDisclaimerText');
@@ -606,14 +488,12 @@ function initializeAiDisclaimer() {
         document.body.style.overflow = 'hidden';
     });
     
-    // Close disclaimer when clicking outside
     document.addEventListener('click', (e) => {
         if (!aiDisclaimerLink.contains(e.target) && !aiDisclaimerText.contains(e.target)) {
             closeAiDisclaimer();
         }
     });
     
-    // Close disclaimer with Escape key
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && aiDisclaimerText.classList.contains('show')) {
             closeAiDisclaimer();
@@ -621,9 +501,6 @@ function initializeAiDisclaimer() {
     });
 }
 
-/**
- * Close AI disclaimer
- */
 function closeAiDisclaimer() {
     const aiDisclaimerText = document.getElementById('aiDisclaimerText');
     if (aiDisclaimerText) {
@@ -633,33 +510,17 @@ function closeAiDisclaimer() {
     }
 }
 
-// ============================================================================
-// UTILITY FUNCTIONS
-// ============================================================================
-
-/**
- * Validate email format
- * @param {string} email - Email address to validate
- * @returns {boolean} - True if valid email format
- */
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-/**
- * Show notification message
- * @param {string} message - Notification message
- * @param {string} type - Notification type (success, error, info)
- */
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
     
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.setAttribute('role', 'alert');
@@ -677,7 +538,6 @@ function showNotification(message, type = 'info') {
         </div>
     `;
     
-    // Add styles
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -693,22 +553,18 @@ function showNotification(message, type = 'info') {
         max-width: 400px;
     `;
     
-    // Add to page
     document.body.appendChild(notification);
     
-    // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Close button functionality
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => notification.remove(), 300);
     });
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
             notification.style.transform = 'translateX(100%)';
@@ -717,33 +573,18 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// ============================================================================
-// EVENT LISTENERS
-// ============================================================================
-
-// Scroll event for active navigation
 window.addEventListener('scroll', updateActiveNavigation);
 
-// Window resize handler for tooltip positioning
 window.addEventListener('resize', () => {
-    // Remove all positioning classes on resize
     document.querySelectorAll('.skill-tooltip').forEach(tooltip => {
         tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top');
     });
 });
 
-// ============================================================================
-// DARK MODE / THEME TOGGLE
-// ============================================================================
-
-/**
- * Initialize theme toggle functionality
- */
 function initializeThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     if (!themeToggle) return;
 
-    // Apply theme based on localStorage or system preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         setTheme(savedTheme);
@@ -756,10 +597,6 @@ function initializeThemeToggle() {
     themeToggle.addEventListener('click', toggleTheme);
 }
 
-/**
- * Set the theme
- * @param {string} theme - 'light' or 'dark'
- */
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -769,22 +606,12 @@ function setTheme(theme) {
     }
 }
 
-/**
- * Toggle between light and dark theme
- */
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
 }
 
-// ============================================================================
-// EXPANDABLE SECTIONS
-// ============================================================================
-
-/**
- * Initialize expandable sections functionality
- */
 function initializeExpandableSections() {
     const expandableToggles = document.querySelectorAll('.expandable-toggle');
     
@@ -796,11 +623,9 @@ function initializeExpandableSections() {
             
             if (!content) return;
             
-            // Toggle expanded state
             const newExpandedState = !isExpanded;
             toggle.setAttribute('aria-expanded', newExpandedState);
             
-            // Toggle content visibility
             if (newExpandedState) {
                 content.classList.add('expanded');
             } else {
@@ -810,13 +635,6 @@ function initializeExpandableSections() {
     });
 }
 
-// ============================================================================
-// INITIALIZATION
-// ============================================================================
-
-/**
- * Initialize all functionality when DOM is loaded
- */
 document.addEventListener('DOMContentLoaded', () => {
     initializeMobileNavigation();
     initializeSmoothScrolling();
@@ -828,7 +646,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeThemeToggle();
     initializeExpandableSections();
     
-    // Initialize active navigation highlighting
     updateActiveNavigation();
     
     console.log('Portfolio website initialized successfully');
