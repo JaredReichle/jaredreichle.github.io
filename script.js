@@ -4,6 +4,323 @@ const modal = document.getElementById('projectModal');
 const closeBtn = document.querySelector('.close');
 const projectCards = document.querySelectorAll('.project-card');
 
+const skillsEvidenceData = {
+    python: {
+        description: "Automation tooling, backend services, data pipelines, and scientific computing.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
+        ],
+        related: ["bash", "sqlalchemy", "pandas", "numpy", "api_dev"]
+    },
+    cpp: {
+        description: "Performance-sensitive systems and hardware interface layers.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
+        ],
+        related: ["c_lang", "real_time", "hardware_integration", "vxworks", "fault_isolation"]
+    },
+    c_lang: {
+        description: "Low-level systems programming with explicit memory management and deterministic behavior.",
+        projects: [
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" },
+            { id: "circuitSynthesis", tab: "practicum", label: "Frequency-Response Circuit Synthesis" }
+        ],
+        related: ["cpp", "real_time", "vxworks", "hardware_integration"]
+    },
+    typescript: {
+        description: "Typed frontend development for maintainable web interfaces.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["javascript", "api_dev", "service_arch"]
+    },
+    javascript: {
+        description: "Lightweight UI logic and browser-side integrations.",
+        projects: [
+            { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["typescript", "api_dev"]
+    },
+    bash: {
+        description: "Linux automation, environment provisioning, and scripting repetitive tasks.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" },
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["linux_dev", "ansible", "cicd", "python"]
+    },
+    powershell: {
+        description: "Windows automation and administrative tooling.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
+        ],
+        related: ["bash", "cicd", "git_workflows"]
+    },
+    linux_dev: {
+        description: "Application development, debugging, and performance investigation on Linux environments.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" },
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["bash", "docker", "proxmox", "ansible"]
+    },
+    vxworks: {
+        description: "Development and debugging on real-time embedded operating systems.",
+        projects: [
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
+        ],
+        related: ["real_time", "c_lang", "cpp", "hardware_integration", "fault_isolation"]
+    },
+    real_time: {
+        description: "Designing software where latency, scheduling, and timing guarantees matter.",
+        projects: [
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" },
+            { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
+        ],
+        related: ["vxworks", "cpp", "c_lang", "hardware_integration", "hil_testing"]
+    },
+    hardware_integration: {
+        description: "Building reliable interfaces between software and physical devices.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
+        ],
+        related: ["hil_testing", "real_time", "cpp", "fault_isolation"]
+    },
+    api_dev: {
+        description: "Designing REST APIs and service interfaces for internal tools and applications.",
+        projects: [
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["service_arch", "event_driven", "python", "authz", "sqlalchemy"]
+    },
+    event_driven: {
+        description: "Using message/event patterns to decouple services and handle asynchronous workflows.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["service_arch", "api_dev", "cicd"]
+    },
+    service_arch: {
+        description: "Designing backend components that can evolve without breaking dependent systems.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
+        ],
+        related: ["api_dev", "event_driven", "docker", "cicd"]
+    },
+    test_arch: {
+        description: "Designing frameworks that replace manual test procedures with repeatable automated validation.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["integration_testing", "hil_testing", "fault_isolation", "python", "cicd"]
+    },
+    integration_testing: {
+        description: "Testing interactions between services, hardware, and system components.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
+        ],
+        related: ["test_arch", "hil_testing", "fault_isolation", "api_dev"]
+    },
+    hil_testing: {
+        description: "Validating software against real hardware in automated test environments.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
+        ],
+        related: ["test_arch", "hardware_integration", "real_time", "fault_isolation"]
+    },
+    fault_isolation: {
+        description: "Tracing failures across system boundaries from hardware through application layers.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
+        ],
+        related: ["hil_testing", "integration_testing", "test_arch", "cpp", "linux_dev"]
+    },
+    cicd: {
+        description: "Automating build, test, and deployment workflows.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["docker", "ansible", "git_workflows", "azure", "bash"]
+    },
+    docker: {
+        description: "Packaging applications into reproducible runtime environments.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" },
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["cicd", "ansible", "linux_dev", "proxmox", "service_arch"]
+    },
+    ansible: {
+        description: "Infrastructure provisioning and configuration management.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["docker", "proxmox", "linux_dev", "bash", "cicd"]
+    },
+    git_workflows: {
+        description: "Version control, branching strategies, and collaborative development.",
+        projects: [
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["cicd", "service_arch", "bash"]
+    },
+    azure: {
+        description: "Compute, storage, and infrastructure services for deployed applications.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
+        ],
+        related: ["cicd", "docker", "service_arch", "authz"]
+    },
+    proxmox: {
+        description: "Operating a homelab virtualization environment for experimentation and infrastructure testing.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["docker", "ansible", "linux_dev", "netsec"]
+    },
+    pytorch: {
+        description: "Training and experimenting with neural network models.",
+        projects: [
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
+        ],
+        related: ["numpy", "sklearn", "model_eval", "python", "pandas"]
+    },
+    sklearn: {
+        description: "Classical ML models and experimentation.",
+        projects: [
+            { id: "circuitSynthesis", tab: "practicum", label: "Frequency-Response Circuit Synthesis" }
+        ],
+        related: ["pytorch", "numpy", "pandas", "model_eval", "python"]
+    },
+    numpy: {
+        description: "Numerical computing and array operations.",
+        projects: [
+            { id: "circuitSynthesis", tab: "practicum", label: "Frequency-Response Circuit Synthesis" },
+            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
+        ],
+        related: ["pandas", "sklearn", "pytorch", "python"]
+    },
+    pandas: {
+        description: "Data cleaning, transformation, and exploratory analysis.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["numpy", "sklearn", "python", "postgres", "sqlalchemy"]
+    },
+    model_eval: {
+        description: "Evaluating models using validation sets and error analysis.",
+        projects: [
+            { id: "circuitSynthesis", tab: "practicum", label: "Frequency-Response Circuit Synthesis" }
+        ],
+        related: ["sklearn", "pytorch", "numpy", "pandas"]
+    },
+    postgres: {
+        description: "Schema design, indexing, and query optimization.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["sqlite", "sqlalchemy", "api_dev", "python"]
+    },
+    sqlite: {
+        description: "Embedded databases for lightweight applications.",
+        projects: [
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["postgres", "sqlalchemy", "python"]
+    },
+    sqlalchemy: {
+        description: "ORM-based data models for Python applications.",
+        projects: [
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+        ],
+        related: ["postgres", "sqlite", "python", "api_dev"]
+    },
+    rbac: {
+        description: "Designing permission systems based on user roles.",
+        projects: [
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["authz", "encryption", "netsec", "api_dev"]
+    },
+    authz: {
+        description: "Implementing login flows and access control logic.",
+        projects: [
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["rbac", "encryption", "netsec", "api_dev"]
+    },
+    encryption: {
+        description: "Secure handling of sensitive data and secrets.",
+        projects: [
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["rbac", "authz", "netsec"]
+    },
+    netsec: {
+        description: "Secure protocols, firewall configuration, and VPN access.",
+        projects: [
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
+        ],
+        related: ["rbac", "authz", "encryption", "proxmox", "linux_dev"]
+    }
+};
+
+const skillsResumeEvidence = {
+    cpp: ["Senior Software Engineer - Northrop Grumman"],
+    c_lang: ["Electronics Engineer - United States Air Force"],
+    powershell: ["Senior Software Engineer - Northrop Grumman"],
+    linux_dev: ["Senior Software Engineer - Northrop Grumman"],
+    vxworks: ["Electronics Engineer - United States Air Force"],
+    real_time: [
+        "Senior Software Engineer - Northrop Grumman",
+        "Electronics Engineer - United States Air Force"
+    ],
+    hardware_integration: ["Senior Software Engineer - Northrop Grumman"],
+    api_dev: ["Senior Software Engineer - Northrop Grumman"],
+    event_driven: ["Senior Software Engineer - Northrop Grumman"],
+    service_arch: ["Senior Software Engineer - Northrop Grumman"],
+    test_arch: ["Senior Software Engineer - Northrop Grumman"],
+    integration_testing: ["Senior Software Engineer - Northrop Grumman"],
+    hil_testing: ["Senior Software Engineer - Northrop Grumman"],
+    fault_isolation: [
+        "Senior Software Engineer - Northrop Grumman",
+        "Electronics Engineer - United States Air Force",
+        "Customer Systems Engineering Intern - Micron Technology"
+    ],
+    cicd: ["Senior Software Engineer - Northrop Grumman"],
+    docker: ["Senior Software Engineer - Northrop Grumman"],
+    ansible: ["Senior Software Engineer - Northrop Grumman"],
+    git_workflows: ["Senior Software Engineer - Northrop Grumman"],
+    azure: ["Senior Software Engineer - Northrop Grumman"],
+    postgres: ["Senior Software Engineer - Northrop Grumman"],
+    sqlite: ["Senior Software Engineer - Northrop Grumman"],
+    sqlalchemy: ["Senior Software Engineer - Northrop Grumman"],
+    rbac: ["Senior Software Engineer - Northrop Grumman"],
+    authz: ["Senior Software Engineer - Northrop Grumman"],
+    encryption: ["Senior Software Engineer - Northrop Grumman"],
+    netsec: ["Senior Software Engineer - Northrop Grumman"]
+};
+
 function initializeMobileNavigation() {
     if (!hamburger || !navMenu) return;
 
@@ -140,47 +457,47 @@ const projectData = {
     beaker: {
         title: "Test Automation Platform",
         image: "images/projects/BEAKERStockLogo.jpg",
-        summary: "Cut test cycles from 3 weeks down to under an hour. This automated testing platform removes manual hardware testing where engineers had to log into machines and run commands. It combines custom hardware plugins with a unified test framework to automate execution end to end. System test engineers can run tests whenever they need them instead of waiting weeks for manual execution.",
-        layman: "Instead of engineers spending weeks manually testing equipment by logging into machines and running commands, the platform does it automatically. What used to take 3 weeks now takes less than an hour, saving significant time and effort.",
-        technical: "Built using Python with asyncio for concurrent test execution and SQLite for data persistence. Implements modular architecture with pluggable hardware drivers supporting RS-232, Ethernet, and USB interfaces. The system integrates with hardware through custom plugins that interface with a test automation framework, eliminating manual login and command execution. Features include automated test scheduling, real-time monitoring dashboards, statistical analysis of test results, and configurable pass/fail criteria. The system uses dependency injection for hardware abstraction and supports both standalone and distributed testing scenarios.",
-        architecture: "The system follows a modular plugin architecture where hardware-specific drivers are abstracted through a unified interface. The core framework manages test execution, scheduling, and data collection, while hardware plugins handle protocol-specific communication (RS-232, Ethernet, USB). The system uses dependency injection to decouple hardware dependencies from test logic, enabling easy addition of new hardware types. Data flows from hardware through plugins to the test framework, which processes results and stores them in SQLite. Real-time monitoring is achieved through async event streams that update dashboards without blocking test execution.",
-        implementation: "The system is built on Python's asyncio for concurrent execution, allowing multiple test sessions to run simultaneously without blocking. Each hardware plugin implements a standard interface with methods for connection, command execution, and data retrieval. The test framework uses a queue-based scheduler that manages test execution order and resource allocation. Statistical analysis is performed on test results using pandas, with configurable pass/fail criteria that can evaluate multiple metrics simultaneously. The dashboard uses a web-based interface that connects to the test framework via WebSocket for real-time updates.",
+        summary: "Full system validation used to take two and a half weeks. Manual setup, lab access windows, one-off command sequences typed by hand. I built a platform that does the same work in 45 minutes by writing functions that open remote execution tunnels to any networked hardware. PXI backplane devices, GPIB instruments, Ethernet targets. The test logic doesn't care how the hardware connects. It just runs.",
+        layman: "Before this, testing meant someone sitting in a lab, logging into machines one at a time and typing commands. Two and a half weeks of that. Now engineers kick off a run from their desk and the platform reaches out to the hardware on its own. Same test coverage, 45 minutes.",
+        technical: "Python and asyncio handle concurrent session management across 50+ devices without blocking. The real work was building a connection layer where each hardware type gets its own driver that handles the handshake, command framing, retries, and teardown for that transport specifically. PXI layer-2 devices, GPIB instruments, Ethernet targets all look the same to the test logic sitting above. SQLite stores run data and a reporting layer turns that into pass-fail results engineers can actually use.",
+        architecture: "The orchestration engine sits on top of a hardware abstraction layer. Each transport driver implements the same interface: connect, execute, collect, disconnect. Adding new hardware means writing one driver file. Nothing else changes. Test sessions flow through the abstraction layer into orchestration, then into storage and reporting. The layers don't bleed into each other.",
+        implementation: "Drivers own everything specific to their transport. Timing quirks, retry behavior, response parsing. The orchestration layer schedules runs, manages session state across concurrent connections, applies pass-fail criteria, and pushes live updates to monitoring views. When a new instrument shows up in the lab, someone writes a driver and plugs it in. The rest of the system keeps running.",
         tech: ["Python", "Hardware Integration", "Test Automation", "Data Analysis", "Reporting"],
         highlights: [
-            "Reduced test cycles from 3 weeks to under 1 hour",
-            "Built modular hardware plugin system supporting RS-232, Ethernet, and USB",
-            "Enabled 50+ concurrent test sessions with async execution",
-            "Achieved 70% team adoption rate"
+            "Cut full system validation from 2.5 weeks to 45 minutes",
+            "Transport-agnostic execution layer covers PXI, GPIB, Ethernet, and more without changing test logic",
+            "50+ concurrent device sessions managed through async execution",
+            "70% team adoption"
         ],
         challenges: [
-            "Integrating multiple hardware protocols (RS-232, Ethernet, USB) with a unified interface",
-            "Designing async test execution to handle 50+ concurrent test sessions",
-            "Creating flexible pass/fail criteria that work across different equipment types"
+            "Each transport has its own timing quirks and framing behavior. Getting them to look identical to the layer above took careful driver design.",
+            "Managing 50+ concurrent sessions meant state tracking had to be airtight. A dropped session couldn't silently corrupt a run.",
+            "Pass-fail logic needed to stay flexible across instruments that respond in completely different formats."
         ],
         metrics: [
-            { label: "3 weeks → 1 hour", type: "time", icon: "fa-clock" },
+            { label: "2.5 weeks → 45 min", type: "time", icon: "fa-clock" },
             { label: "70% adoption", type: "adoption", icon: "fa-users" }
         ]
     },
     atlassianApi: {
         title: "Atlassian API Toolkit",
         image: "images/projects/AtlassianAPI.jpg",
-        summary: "Built reusable API clients for Jira and Confluence that other developers at work now use for their own projects. These clients handle authentication, rate limiting, and error handling so developers don't have to write that boilerplate code every time. Multiple tools have been built on top of these clients, including Jira story exporters, equipment management systems, and inventory configuration dashboards.",
-        layman: "I made tools that let other developers easily connect to Jira and Confluence without having to figure out all the complicated API stuff themselves. Now they can just use my code and focus on building their actual features.",
-        technical: "Developed Python-based API clients for Jira and Confluence using the REST APIs. Implemented OAuth2 authentication, request rate limiting, pagination handling, and comprehensive error handling. The clients abstract away the complexity of API interactions, providing simple methods for common operations like creating issues, searching, and managing assets. Used by multiple internal tools including a Jira story export tool, an equipment management system for lab environments, and an inventory configuration dashboard.",
-        architecture: "The API clients use a layered architecture with a base HTTP client that handles authentication, rate limiting, and error handling. Each Atlassian product (Jira, Confluence) has its own client class that extends the base functionality with product-specific methods. The clients implement a retry mechanism with exponential backoff for rate limit handling, and automatic pagination for endpoints that return large datasets. Authentication is abstracted through a strategy pattern, supporting API tokens, OAuth2, and basic auth.",
-        implementation: "Built using the requests library with custom session management for connection pooling and cookie handling. Rate limiting is implemented using a token bucket algorithm that tracks API calls per minute. Pagination is handled automatically through iterator patterns that fetch pages on-demand. Error handling includes specific exception types for different HTTP status codes, with detailed error messages that help developers debug issues. The clients use type hints and docstrings extensively to provide a clear API for other developers.",
+        summary: "Every internal tool that needed Jira or Confluence access was solving the same problems from scratch. Auth setup, pagination, retries, error handling. I wrote a shared Python client library so teams could skip all of that and get straight to building what they actually needed.",
+        layman: "Jira and Confluence have messy APIs. Every developer who tried to use them had to figure out the same authentication dance and error handling on their own. This toolkit handles all of that once so the next tool gets built in a fraction of the time.",
+        technical: "The library wraps Atlassian REST APIs in Python clients with shared session management, automatic pagination, retry logic, and consistent error handling. Jira and Confluence each get their own client that extends a common base. Auth strategies are injected rather than hardcoded, which made it straightforward to support different deployment environments without forking the design. Three internal tools ship on top of it: a story exporter, an equipment manager, and an inventory dashboard.",
+        architecture: "A shared HTTP base layer handles session pooling, retries, and auth injection. Jira and Confluence clients sit on top of that and expose methods specific to their data models. The goal was to make everyday operations one function call rather than fifteen lines of boilerplate. Adding a new tool meant importing the client and starting from working auth, not reinventing it.",
+        implementation: "Persistent sessions reduce connection overhead across paginated requests. Retry logic backs off on rate limit responses and surfaces failures through typed exceptions rather than raw HTTP codes. Pagination is automatic so callers don't have to think about result set size. The clients ship with type hints throughout, which made them easier to use correctly without reading the source.",
         tech: ["Python", "REST APIs", "OAuth2", "Jira", "Confluence"],
         highlights: [
-            "Created reusable API clients used by multiple internal tools",
-            "Eliminated boilerplate code for authentication and rate limiting",
-            "Enabled Jira story exporters, equipment management systems, and inventory dashboards",
-            "Supported multiple authentication methods across Atlassian instances"
+            "Reusable client library powering 3 internal tools",
+            "Auth, retries, pagination, and error handling handled once at the base layer",
+            "Supports multiple authentication strategies across different Atlassian deployments",
+            "Cut per-tool integration time significantly for each downstream consumer"
         ],
         challenges: [
-            "Handling rate limits and pagination for large data sets",
-            "Creating a simple interface that hides API complexity",
-            "Supporting multiple authentication methods across different Atlassian instances"
+            "Atlassian's rate limiting behavior isn't consistent across endpoints. The retry logic had to handle several different failure modes without making the client feel brittle.",
+            "Supporting different auth strategies across deployments without forcing callers to know which one they were using took a few design iterations.",
+            "Keeping the interface simple while still covering enough of the API to be genuinely useful was a constant tradeoff."
         ],
         metrics: [
             { label: "3+ tools built", type: "adoption", icon: "fa-tools" }
@@ -189,23 +506,22 @@ const projectData = {
     homelab: {
         title: "Homelab Infrastructure",
         image: "images/projects/homelab-proxmox.png",
-        summary: "A Proxmox-based homelab infrastructure built with an emphasis on reliability, observability, and recoverability. Replaced paid cloud services with self-hosted alternatives including Jellyfin for media, AdGuard Home for DNS and network-wide ad blocking, Immich for photos and videos, and WireGuard for remote access to all these services. The architecture, decisions, and evolution are documented in an Obsidian vault to enable long-term reasoning about the system and avoid repeating mistakes. Built primarily around Proxmox and self-hosted services rather than novelty.",
-        layman: "I set up my own servers at home to replace services I was paying for. Now I have my own Netflix, my own cloud storage, and my own ad blocker. I own everything and my data stays private. I also keep detailed notes about how everything works so I can maintain and improve it over time.",
-        technical: "Deployed Proxmox VE hypervisor cluster on decommissioned hardware with ZFS for storage redundancy. Running Jellyfin media server with an *arr suite for content management, AdGuard Home for DNS and network-wide ad blocking, Immich for photos and videos, and WireGuard for remote access to all services. Services are organized into VLANs for network segmentation with a reverse proxy (Nginx) handling SSL termination. The entire architecture is documented in an Obsidian vault covering overview, architecture, services, automation, operations, and ongoing thoughts. The setup prioritizes reliability and recoverability over cutting-edge features.",
-        architecture: "The infrastructure is built on Proxmox VE, which provides virtualization and containerization capabilities. Services are organized into VLANs for network segmentation, with a reverse proxy (Nginx) handling SSL termination and routing. AdGuard Home acts as the network's DNS server, blocking ads at the DNS level and providing network-wide ad blocking. WireGuard provides secure remote access to all services without exposing ports to the internet. Each service runs in either a VM or LXC container, with resource limits to prevent any single service from consuming all available resources. Architecture documentation is maintained in an Obsidian vault structured by overview, architecture, services, automation, operations, and thoughts.",
-        implementation: "Proxmox is installed on bare metal with ZFS for storage redundancy. Services are deployed using Docker containers where possible, managed through Portainer for easier administration. The reverse proxy uses Let's Encrypt for SSL certificates with automatic renewal. Network configuration uses VLANs to separate services (media, infrastructure, development) for security. Backup strategy includes automated snapshots of critical VMs and containers. Monitoring is handled through a combination of Proxmox's built-in monitoring and custom scripts that alert on resource usage or service failures. All architecture decisions, tradeoffs, and evolution are documented in the HomelabNotes repository as an Obsidian vault for long-term maintainability.",
+        summary: "I run a self-hosted stack on repurposed hardware at home. Jellyfin for media, Immich for photos, AdGuard for DNS filtering, WireGuard for remote access. It replaced a handful of paid subscriptions and turned into a useful sandbox for practicing infrastructure work outside of a job context.",
+        layman: "Instead of paying for cloud storage, media streaming, and VPN services separately, I run my own versions on a home server. The monthly cost is effectively zero and I own the whole thing. Keeping it documented means I can still understand what I built six months later.",
+        technical: "Proxmox handles virtualization on decommissioned enterprise hardware. Services run as LXC containers or full VMs depending on isolation requirements. ZFS backs the storage layer with redundancy and snapshot support. A reverse proxy sits in front of externally accessible services and SSL certificates renew automatically. Ansible provisions new VMs so standing up a service is repeatable rather than manual every time.",
+        architecture: "Proxmox is the base layer. VMs handle workloads that need real isolation. Containers cover everything else. Network segmentation separates internal-only services from anything exposed externally. The reverse proxy terminates TLS and routes traffic by hostname. Every architectural decision lives in an Obsidian vault alongside runbooks and operational notes so the setup stays understandable over time.",
+        implementation: "Automated snapshots run on a schedule. Ansible playbooks handle provisioning so rebuilding a service doesn't mean recreating it from memory. Monitoring scripts watch resource usage and alert on problems before they become outages. The whole thing runs on hardware that cost nothing because it came from a decommission pile.",
         tech: ["Proxmox", "Linux", "Docker", "Networking", "Self-Hosting", "Obsidian", "ZFS"],
         highlights: [
-            "Replaced paid cloud services with self-hosted alternatives",
-            "Deployed Proxmox VE hypervisor cluster on decommissioned hardware",
-            "Implemented network-wide ad blocking with AdGuard Home and secure remote access with WireGuard",
-            "Documented architecture and decisions in Obsidian vault for long-term maintainability"
+            "Full self-hosted stack replacing paid cloud services at near-zero recurring cost",
+            "Ansible-driven provisioning makes service deployment repeatable",
+            "ZFS storage with automated snapshots and WireGuard remote access",
+            "Full architecture documented in Obsidian for long-term maintainability"
         ],
         challenges: [
-            "Learning networking fundamentals like VLANs and reverse proxies",
-            "Managing resource allocation across multiple services with limited hardware",
-            "Setting up secure remote access without exposing services to the internet",
-            "Maintaining comprehensive documentation to enable long-term reasoning about system decisions"
+            "Networking fundamentals took real investment. Designing segmentation and a working remote access setup required understanding subnets, routing, and firewall rules well enough to debug them when they broke.",
+            "Repurposed hardware has quirks. Squeezing several always-on services out of limited RAM and CPU meant making deliberate choices about what runs where.",
+            "Documentation discipline is harder than it sounds. The goal was making sure future-me could understand any part of the system without reverse engineering it."
         ],
         metrics: [
             { label: "Cost savings", type: "cost", icon: "fa-dollar-sign" }
@@ -214,66 +530,66 @@ const projectData = {
     astronomyTools: {
         title: "Telescope Control Bridge",
         image: "images/projects/orion.jpg",
-        summary: "I wanted to use Stellarium to control my telescope instead of the clunky hand controller. Built Python scripts that translate Stellarium's commands into the format my Orion XX14G telescope understands. It doesn't save much time, but the experience is way better with the nicer UI. This was purely for my own enjoyment.",
-        layman: "I made my telescope work with astronomy software. Now I can click on stars in the software and my telescope automatically points to that star in the sky. The interface is much nicer than the hand controller.",
-        technical: "Built a TCP listener in Python that captures slew commands from Stellarium, then decodes and translates them into the proper RS-232 protocol for the Orion XX14G. The system acts as a bridge between Stellarium's network commands and the telescope's serial interface, handling coordinate conversion and command formatting. It's basically reverse-engineering the communication protocol to make incompatible systems work together. Implements error handling for communication failures and supports both equatorial and alt-azimuth coordinate systems.",
-        architecture: "The system uses a client-server architecture where Stellarium acts as the client sending TCP commands, and the Python bridge acts as the server. The bridge receives network commands, parses them, converts coordinates from equatorial to alt-azimuth format, and translates them into the telescope's proprietary RS-232 protocol. The system maintains state for the current telescope position and handles reconnection logic if communication is lost.",
-        implementation: "Implemented using Python's socket library for TCP communication and pyserial for RS-232 communication. The coordinate conversion uses spherical trigonometry to transform between coordinate systems. Command translation involves parsing Stellarium's ASCII-based protocol and encoding it into the telescope's binary protocol. Error handling includes timeout detection, connection retry logic, and position recovery mechanisms. The system runs as a background service that can be started independently of Stellarium.",
+        summary: "Stellarium has no native support for the Orion XX14G. The hand controller it comes with works but it's clunky, especially when you want to quickly hop between objects. I wrote a Python bridge that sits between Stellarium and the telescope over TCP and RS-232 so I can just click something on screen and watch it move.",
+        layman: "Click a star in Stellarium, telescope points there. Before this I had to punch in coordinates manually on a small hand controller in the dark. Same hardware, completely different experience.",
+        technical: "The bridge opens a TCP socket for Stellarium and a serial connection to the telescope. When Stellarium issues a goto command the bridge converts the coordinates from the software's format into the encoded byte sequences the XX14G expects, then writes them over RS-232. Position feedback travels the other direction. The bridge keeps enough state to recover when a message drops or timing gets off, which happens more than you'd expect outdoors.",
+        architecture: "Stellarium sends commands over TCP as though it's talking to a supported mount. The bridge intercepts those, converts the coordinate system, and translates them into the XX14G's serial protocol. Responses from the telescope go back through the same path in reverse. State tracking handles cases where the two sides get out of sync, which is important when you're mid-session and don't want to restart the software to recover.",
+        implementation: "Python handles both sides: socket listener on the Stellarium end, pyserial on the hardware end. Coordinate conversion runs on every command since the two systems use different reference frames. Timeouts and retry logic are tuned for serial communication, which doesn't always behave cleanly. The whole thing runs on a small single-board computer connected to the mount so it's portable.",
         tech: ["Python", "TCP Networking", "RS-232 Serial", "Protocol Translation", "Telescope Control"],
         highlights: [
-            "Bridged incompatible software and hardware through protocol translation",
-            "Enabled telescope control via Stellarium's intuitive UI",
-            "Implemented real-time coordinate system conversion",
-            "Added error handling for reliable communication"
+            "Full goto control via Stellarium's sky map with no hand controller needed",
+            "Real-time coordinate conversion between Stellarium's format and the XX14G serial protocol",
+            "Runs on a small single-board computer for portable use",
+            "Handles dropped messages and serial timeouts without losing mount position"
         ],
         challenges: [
-            "Making incompatible software and hardware work together",
-            "Converting between equatorial and alt-azimuth coordinate systems in real-time",
-            "Handling communication failures gracefully without losing telescope position"
+            "The XX14G serial protocol is not documented publicly. Figuring out the exact command format required capturing and analyzing real traffic from the hand controller.",
+            "Coordinate conversion has to be accurate enough that the telescope actually points at the right thing. Small errors compound when you're pointed at dim objects.",
+            "Serial communication outdoors at night means temperature changes, cable flex, and noise. The error recovery had to be robust enough to survive real conditions."
         ],
         metrics: []
     },
     fpgaLaserControl: {
         title: "FPGA Laser Interferometer Control System",
         image: "images/projects/laser_interferometer.jpg",
-        summary: "Built a system for fine current control to achieve an ultra-stable wavelength for laser interferometry to identify gas compositions. All lasers have noise that's not helpful for interferometry, so I set up an FPGA data acquisition and control feedback loop to stabilize the laser wavelength. We were able to achieve control and data acquisition through commercial FPGAs, but couldn't achieve the stability we hoped for within the allotted time. The company that sourced us as students would have had to pay a lot more for highly precise instrumentation otherwise.",
-        layman: "I built a system that keeps a laser perfectly stable for scientific measurements. It's like a smart thermostat, but instead of controlling temperature, it keeps the laser's color exactly right. This helps scientists identify what gases are in the air.",
-        technical: "Used a Xilinx Zynq 7010 SoC with custom VHDL modules for the real-time control and data acquisition. Python handles the data processing and analysis side, while the FPGA manages the fast control loops and signal conditioning. The system implements a Pound-Drever-Hall control loop with PID feedback to keep the laser frequency locked. Features include real-time data logging, automated lock acquisition, and configurable control parameters for different laser systems.",
-        architecture: "The system uses a hybrid architecture with an FPGA handling real-time control and a host computer running Python for data processing. The FPGA implements the Pound-Drever-Hall (PDH) control loop, which uses phase-sensitive detection to generate error signals. The error signal feeds into a PID controller implemented in VHDL, which outputs control signals to a laser current driver. The FPGA also handles high-speed ADC sampling and data buffering. Communication between FPGA and host uses AXI interfaces on the Zynq SoC.",
-        implementation: "The PDH loop is implemented using VHDL modules for signal processing: a phase detector, low-pass filter, and PID controller. The phase detector uses a reference signal and feedback signal to generate an error signal proportional to frequency deviation. The PID controller processes this error with configurable gains (Kp, Ki, Kd) to generate control outputs. ADC sampling runs at high frequency (MHz range) to capture fast laser fluctuations. Python scripts on the host computer configure PID parameters, log data, and provide visualization. The system uses fixed-point arithmetic in VHDL for deterministic timing.",
+        summary: "Laser interferometry requires a stable wavelength. Ours drifted. We built a Pound-Drever-Hall feedback loop on a Xilinx Zynq 7010 to actively correct that drift in real time. We didn't hit the final stability spec within the student project timeline but we proved the control architecture worked on commercial hardware at a fraction of what purpose-built lab instruments would have cost.",
+        layman: "A laser that drifts gives you bad measurements. This project built a fast feedback loop that watches the laser and keeps nudging it back on target whenever it wanders. We showed the approach was viable on affordable hardware even if the final precision numbers needed more time to dial in.",
+        technical: "The Zynq 7010 runs VHDL modules for the real-time signal path: ADC sampling, error signal detection, PID feedback, and actuator output. Fixed-point arithmetic keeps the loop deterministic at microsecond timescales. Python runs on the host side for parameter tuning, data logging, and visualization. The two sides stay loosely coupled so the control loop doesn't depend on the host being responsive.",
+        architecture: "The FPGA owns everything time-critical. Signal detection, filtering, PID computation, and output generation all live in hardware so the loop latency stays consistent regardless of what the host is doing. The host-side Python tools connect over a simple interface to read telemetry and push configuration changes. That split made it easy to iterate on tuning parameters without touching the VHDL.",
+        implementation: "VHDL modules implement the PDH error signal chain from input to PID output. The PID coefficients are register-mapped so the Python tools can adjust them live during a run. ADC data streams to the host for logging and display. We used fixed-point throughout to avoid floating-point latency in the feedback path. Debugging relied heavily on in-system logic analyzers since iteration speed on FPGA hardware is slow.",
         tech: ["FPGA", "VHDL", "Python", "Control Systems", "Signal Processing"],
         highlights: [
-            "Built FPGA-based control system for laser wavelength stabilization",
-            "Implemented Pound-Drever-Hall control loop with PID feedback",
-            "Achieved real-time control loops with microsecond precision",
-            "Delivered cost-effective solution using commercial FPGAs"
+            "Pound-Drever-Hall control loop implemented in VHDL on a Xilinx Zynq 7010",
+            "Microsecond-scale feedback loop with fixed-point PID",
+            "Host-side Python tooling for live tuning and data capture",
+            "Demonstrated viable control architecture at commercial hardware cost"
         ],
         challenges: [
-            "Maintaining laser stability in a noisy laboratory environment",
-            "Implementing real-time control loops with microsecond precision timing",
-            "Debugging VHDL modules without traditional simulation tools"
+            "Physical noise in the lab environment made it hard to separate real drift from measurement artifacts. A lot of early tuning time went into figuring out what we were actually looking at.",
+            "FPGA iteration cycles are slow. A logic change that takes seconds in software takes minutes on hardware. Debugging required thinking carefully before committing to a change.",
+            "Hitting the final stability spec needed more time than the project window allowed. We got the loop working and stable but the last decade of precision remained out of reach."
         ],
         metrics: []
     },
     circuitSynthesis: {
         title: "Frequency-Response Circuit Synthesis",
         image: "images/projects/circuits.jpg",
-        summary: "These numerical methods are applied to black box hardware testing when you don't know or can't know the internals of how a hardware piece is designed. These methods allow you to design a very close clone of the internals of a black box circuit. Trying to replicate the hardware in any other way has immense challenges and hurdles, but applying these numerical methods made it much simpler to make a close-in-behavior clone for the sake of analysis and testing. This was based on a class I took senior year in my undergrad and was a lot of fun.",
-        layman: "I made a program that can figure out what's inside an electronic device without opening it. It listens to how the device responds to different signals and then tells you what electronic parts are probably inside. This is useful for testing hardware when you can't see inside it.",
-        technical: "Implemented Vector Fitting algorithms for rational approximation of frequency response data, using iterative pole-residue optimization to minimize fitting error. The system employs passivity enforcement techniques to ensure physical realizability of synthesized circuits. Features include automated RLC parameter extraction, SPICE netlist generation, and support for multi-port systems. The algorithm uses frequency domain analysis with impedance matching to reconstruct circuit topology, incorporating techniques from 'Vector Fitting Algorithm for Rational Approximation of Frequency Domain Responses' and 'Passivity Enforcement in Rational Approximation' publications.",
-        architecture: "The system processes frequency response data through a pipeline: data preprocessing, rational approximation via Vector Fitting, passivity enforcement, and circuit synthesis. Vector Fitting iteratively finds poles and residues that approximate the frequency response as a rational function. Passivity enforcement ensures the resulting transfer function represents a physically realizable passive circuit. The synthesis step converts the rational function into RLC component values and generates a SPICE netlist representing the equivalent circuit.",
-        implementation: "Implemented in Python using NumPy and SciPy for numerical optimization. Vector Fitting uses iterative pole relocation to minimize fitting error between the rational approximation and measured data. The algorithm alternates between solving linear least-squares problems for residues and nonlinear optimization for poles. Passivity enforcement uses eigenvalue constraints to ensure the transfer function matrix is positive real. RLC extraction identifies component values by matching the rational function's poles and zeros to circuit topologies. SPICE netlist generation creates standard circuit description files that can be simulated in circuit analysis tools.",
+        summary: "Given frequency-response measurements from an unknown circuit, this tool builds a working model of what's likely inside. Feed it S-parameter or impedance data and it comes back with RLC component values and a SPICE netlist you can drop straight into a simulator.",
+        layman: "Some hardware is sealed or too complex to trace by hand. This tool takes measurements of how a circuit responds to different frequencies and works backwards to figure out what components are probably in there. The result is a model you can simulate and test without ever opening the box.",
+        technical: "The tool uses vector fitting to approximate measured frequency-response data as a rational function, iterating on pole placement and residue computation until the fit converges. After fitting, it enforces passivity constraints to make sure the model stays physically realizable rather than just mathematically convenient. From that model it extracts R, L, and C values and writes them out as a SPICE netlist.",
+        architecture: "The pipeline has three stages. First, raw frequency data gets preprocessed and normalized. Second, the vector fitting algorithm runs iteratively until it reaches a stable rational approximation. Third, passivity enforcement reshapes the model if needed before the synthesis step extracts component values and generates the netlist. Each stage is independent so you can inspect the intermediate result before moving forward.",
+        implementation: "Python with NumPy and SciPy handles the numerical heavy lifting. Vector fitting alternates between a linear residue solve and a nonlinear pole update until convergence. The passivity check runs a semi-definite test on the fitted model and applies corrections if it fails. Component extraction maps the rational model onto RLC topology and writes the result in SPICE syntax.",
         tech: ["Python", "Signal Processing", "Circuit Analysis", "Optimization", "Numerical Methods"],
         highlights: [
-            "Implemented Vector Fitting algorithms for black box circuit analysis",
-            "Enabled circuit topology reconstruction from frequency response data",
-            "Automated RLC parameter extraction and SPICE netlist generation",
-            "Applied passivity enforcement for physically realizable circuits"
+            "Vector fitting pipeline that converges a rational model from raw frequency-response data",
+            "Passivity enforcement keeps the output physically realizable",
+            "Automated RLC extraction and SPICE netlist generation",
+            "Works on any device where you can measure frequency response"
         ],
         challenges: [
-            "Converting frequency domain data into physically realizable circuit models",
-            "Preventing non-physical circuit behavior through passivity constraints",
-            "Ensuring mathematical models produce real-world circuit components"
+            "Real measurement data is noisy. The fitting algorithm had to converge on something useful even when the input wasn't clean.",
+            "Passivity enforcement sounds simple until you realize correcting it can push the model away from the original data. Finding corrections that fix the physics without wrecking the fit took careful tuning.",
+            "Mapping a rational function onto actual RLC values is not unique. The tool had to make reasonable topology assumptions and flag when the fit suggested something physically odd."
         ],
         metrics: []
     },
@@ -418,11 +734,7 @@ function updateModalLinks(projectId) {
             text: 'View on GitHub',
             icon: 'fab fa-github'
         },
-        beaker: {
-            url: 'https://github.com/JaredReichle/BEAKER',
-            text: 'View on GitHub',
-            icon: 'fab fa-github'
-        },
+        beaker: null,
         homelab: {
             url: 'https://github.com/JaredReichle/HomelabNotes',
             text: 'View on GitHub',
@@ -473,6 +785,106 @@ function initializeScrollAnimations() {
 }
 
 function initializeSkillTooltips() {
+    const chips = document.querySelectorAll('.skill-chip');
+    const panel = document.getElementById('skillsEvidencePanel');
+    const titleEl = document.getElementById('skillsEvidenceTitle');
+    const descriptionEl = document.getElementById('skillsEvidenceDescription');
+    const projectsEl = document.getElementById('skillsEvidenceProjects');
+
+    if (!chips.length || !panel || !titleEl || !descriptionEl || !projectsEl) return;
+
+    let activeChip = null;
+
+    function renderSkill(skillKey, chip) {
+        const skillData = skillsEvidenceData[skillKey];
+        if (!skillData) return;
+
+        activeChip = chip;
+        chips.forEach(c => c.classList.toggle('active', c === chip));
+
+        titleEl.textContent = chip.textContent.trim();
+        descriptionEl.textContent = skillData.description;
+
+        const projectItems = skillData.projects.map(project => `
+            <li>
+                <a href="#projects" class="skills-proof-project-link" data-project-id="${project.id}" data-project-tab="${project.tab}">
+                    Project: ${project.label}
+                </a>
+            </li>
+        `);
+
+        const resumeItems = (skillsResumeEvidence[skillKey] || []).map(experience => `
+            <li><a href="#resume" class="skills-proof-resume-ref">Work Experience: ${experience}</a></li>
+        `);
+
+        projectsEl.innerHTML = [...projectItems, ...resumeItems].join('');
+
+        const relatedContainer = document.getElementById('skillsRelatedChips');
+        if (relatedContainer) {
+            const related = skillData.related || [];
+            if (related.length) {
+                relatedContainer.innerHTML = related.map(key => {
+                    const relChip = document.querySelector(`.skill-chip[data-skill-key="${key}"]`);
+                    const label = relChip ? relChip.textContent.trim() : key;
+                    return `<button class="skill-chip skill-chip--related" data-skill-key="${key}">${label}</button>`;
+                }).join('');
+                relatedContainer.closest('.skills-related-section').style.display = 'block';
+            } else {
+                relatedContainer.closest('.skills-related-section').style.display = 'none';
+            }
+        }
+
+        panel.style.display = 'block';
+    }
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            if (activeChip === chip && panel.style.display !== 'none') {
+                panel.style.display = 'none';
+                activeChip = null;
+                chip.classList.remove('active');
+            } else {
+                renderSkill(chip.dataset.skillKey, chip);
+            }
+        });
+    });
+
+    panel.addEventListener('click', (event) => {
+        const relChip = event.target.closest('.skill-chip--related');
+        if (!relChip) return;
+        const targetKey = relChip.dataset.skillKey;
+        const targetChip = document.querySelector(`.skill-chip:not(.skill-chip--related)[data-skill-key="${targetKey}"]`);
+        if (targetChip) {
+            renderSkill(targetKey, targetChip);
+            targetChip.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+
+    projectsEl.addEventListener('click', (event) => {
+        const link = event.target.closest('.skills-proof-project-link');
+        if (!link) return;
+
+        event.preventDefault();
+
+        const targetTab = link.getAttribute('data-project-tab');
+        const projectId = link.getAttribute('data-project-id');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        if (targetTab && tabButtons.length && tabPanels.length) {
+            switchToTab(targetTab, tabButtons, tabPanels);
+        }
+
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        const projectCard = document.querySelector(`.project-card[data-project="${projectId}"]`);
+        if (projectCard) {
+            openProjectModal(projectCard);
+        }
+    });
 }
 
 function initializeAiDisclaimer() {
@@ -508,6 +920,37 @@ function closeAiDisclaimer() {
         aiDisclaimerText.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'auto';
     }
+}
+
+function initializeAiPerspective() {
+    const toggle = document.getElementById('aiPerspectiveToggle');
+    const popup = document.getElementById('aiPerspectivePopup');
+
+    if (!toggle || !popup) return;
+
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = popup.classList.contains('show');
+        popup.classList.toggle('show', !isOpen);
+        popup.setAttribute('aria-hidden', String(isOpen));
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target) && !popup.contains(e.target)) {
+            popup.classList.remove('show');
+            popup.setAttribute('aria-hidden', 'true');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popup.classList.contains('show')) {
+            popup.classList.remove('show');
+            popup.setAttribute('aria-hidden', 'true');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
 
 function isValidEmail(email) {
@@ -643,6 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeScrollAnimations();
     initializeSkillTooltips();
     initializeAiDisclaimer();
+    initializeAiPerspective();
     initializeThemeToggle();
     initializeExpandableSections();
     
