@@ -455,28 +455,53 @@ function switchToTab(targetTab, tabButtons, tabPanels) {
 
 const projectData = {
     beaker: {
-        title: "Test Automation Platform",
-        image: "images/projects/BEAKERStockLogo.jpg",
-        summary: "Full system validation used to take two and a half weeks. Manual setup, lab access windows, one-off command sequences typed by hand. I built a platform that does the same work in 45 minutes by writing functions that open remote execution tunnels to any networked hardware. PXI backplane devices, GPIB instruments, Ethernet targets. The test logic doesn't care how the hardware connects. It just runs.",
-        layman: "Before this, testing meant someone sitting in a lab, logging into machines one at a time and typing commands. Two and a half weeks of that. Now engineers kick off a run from their desk and the platform reaches out to the hardware on its own. Same test coverage, 45 minutes.",
-        technical: "Python and asyncio handle concurrent session management across 50+ devices without blocking. The real work was building a connection layer where each hardware type gets its own driver that handles the handshake, command framing, retries, and teardown for that transport specifically. PXI layer-2 devices, GPIB instruments, Ethernet targets all look the same to the test logic sitting above. SQLite stores run data and a reporting layer turns that into pass-fail results engineers can actually use.",
-        architecture: "The orchestration engine sits on top of a hardware abstraction layer. Each transport driver implements the same interface: connect, execute, collect, disconnect. Adding new hardware means writing one driver file. Nothing else changes. Test sessions flow through the abstraction layer into orchestration, then into storage and reporting. The layers don't bleed into each other.",
-        implementation: "Drivers own everything specific to their transport. Timing quirks, retry behavior, response parsing. The orchestration layer schedules runs, manages session state across concurrent connections, applies pass-fail criteria, and pushes live updates to monitoring views. When a new instrument shows up in the lab, someone writes a driver and plugs it in. The rest of the system keeps running.",
-        tech: ["Python", "Hardware Integration", "Test Automation", "Data Analysis", "Reporting"],
+        title: "Remote Hardware Execution Platform",
+        image: "images/projects/TestAuto.png",
+        summary: "A Python server that authenticates via a privileged service account, whitelists authorized clients, then reaches out to any networked hardware to spawn a shell process, run commands, and return interpreted results. The connection methods and command sets are both plugin-based. PXI, GPIB, serial, SCPI, USB, Ethernet — if the hardware is on the network and you write a connection plugin for it, the platform handles the rest. It replaced a fully manual process where testers remoted into 200+ lab machines by hand.",
+        layman: "Before this existed, testing meant a person remoting into machines one at a time, typing commands, and writing down what came back. This server does all of that automatically. It reaches out to the hardware, runs the same commands a tester would have typed, and hands back a pass or fail. The hardware could be a power supply, a data acquisition system, a workstation — the framework handles it the same way either way.",
+        technical: "Built entirely in Python. The server authenticates with a service account and maintains a whitelist of authorized clients before accepting any requests. Connection plugins handle everything transport-specific: how to authenticate, how to spawn a remote process on that hardware, how to capture stdout and stderr, and how to close cleanly. Command plugins define what to run and how to interpret the response. Both plugin types load dynamically so adding support for new hardware or new test routines means writing one file and dropping it in.",
+        architecture: "Clients send requests specifying a target machine and a command set. The server resolves the appropriate connection plugin for that target, establishes a privileged remote shell using the service account, runs the requested command plugin, captures and interprets the output, then returns structured results to the client. Connection plugins and command plugins are independent of each other and of the core server. The server manages concurrent requests across 200+ networked lab machines.",
+        implementation: "Each connection plugin owns the full lifecycle for its transport — authentication, process spawning, output capture, error handling, and teardown. Getting reliable output capture was the hardest part since every hardware type exposes a process differently. Command plugins define the commands to run and the parsing logic for the response. The service account privilege model combined with client whitelisting keeps a broad attack surface well-scoped. Adoption has spread beyond the original lab to other teams in the organization.",
+        tech: ["Python", "Plugin Architecture", "Hardware Integration", "Remote Execution", "Authentication"],
         highlights: [
-            "Cut full system validation from 2.5 weeks to 45 minutes",
-            "Transport-agnostic execution layer covers PXI, GPIB, Ethernet, and more without changing test logic",
-            "50+ concurrent device sessions managed through async execution",
-            "70% team adoption"
+            "Plugin architecture supports any networked hardware: PXI, GPIB, serial, SCPI, USB, Ethernet",
+            "Service account authentication with per-client whitelisting",
+            "~80% cost reduction replacing fully manual hardware testing workflows",
+            "Adoption expanding to multiple labs across the organization"
         ],
         challenges: [
-            "Each transport has its own timing quirks and framing behavior. Getting them to look identical to the layer above took careful driver design.",
-            "Managing 50+ concurrent sessions meant state tracking had to be airtight. A dropped session couldn't silently corrupt a run.",
-            "Pass-fail logic needed to stay flexible across instruments that respond in completely different formats."
+            "Every hardware type spawns a process differently. The hard part wasn't running commands — it was reliably capturing output across serial devices, PXI chassis, GPIB instruments, and Ethernet hosts that each behave differently under the hood.",
+            "Building an output parser robust enough to handle timeouts, partial reads, and unexpected responses across dozens of hardware types took significant iteration. Hardware doesn't always respond the way its documentation says it will.",
+            "A service account with access to 200+ machines is a real attack surface. The privilege model and client whitelisting had to be airtight from the start, not bolted on later."
         ],
         metrics: [
-            { label: "2.5 weeks → 45 min", type: "time", icon: "fa-clock" },
-            { label: "70% adoption", type: "adoption", icon: "fa-users" }
+            { label: "~80% cost reduction", type: "time", icon: "fa-clock" },
+            { label: "200+ machines", type: "scale", icon: "fa-server" }
+        ]
+    },
+    systemIntegrationMap: {
+        title: "System Integration Lab Interactive Map",
+        image: "images/projects/interactive-map.png",
+        summary: "A Flask web application that gives engineers a live, visual snapshot of the System Integration Lab's configuration at any given time. The UI renders isometric drawings of the lab equipment styled by an automated auditing function — so what you see reflects what's actually installed. From the same interface users build machine configuration manifests, map those manifests to hardware in Hardware-in-the-Loop configs, push software deployments to the lab, and generate traceability reports for test events.",
+        layman: "A test is only trustworthy if you know exactly what software is running on every machine involved. Before this tool, auditing that across a large shared lab was slow and error-prone. Now you open the app, see the lab's current configuration rendered as an isometric view, configure what you need for the upcoming test event, push it to the hardware, and print a report. The whole configuration lifecycle lives in one place.",
+        technical: "Built on Flask with a PostgreSQL backend. Multiple background daemons run continuously to sync live data from asset management software, feeding the app with equipment metadata: serial numbers, IPs, hostnames, procurement IDs, open tickets, and more. Configuration pushes route through the Remote Hardware Execution Platform. A custom RBAC implementation gates all control-plane endpoints so read access and write access are scoped separately. The app supports multi-user concurrent sessions throughout.",
+        architecture: "Flask serves the frontend and exposes endpoints for configuration management and deployment orchestration. Background daemons pull from asset management APIs and write into PostgreSQL. The isometric lab view is driven directly by the database — each machine's visual state reflects its current audited configuration. Deployment requests route through the hardware automation server and track status back in the DB. The RBAC layer sits in front of all control endpoints and checks every request before it reaches business logic.",
+        implementation: "Isometric assets are styled representations that map one-to-one with equipment records in the database. An audit daemon polls hardware configuration state on a schedule and updates those records, which drives both the visual display and the data behind traceability reports. Machine config manifests and HIL configs are versioned and stored in PostgreSQL. The deployment pipeline sends push requests to the hardware execution platform and monitors completion. Getting concurrent writes from audit daemons and active deployments to coexist without race conditions or stale reads required careful transaction design.",
+        tech: ["Python", "Flask", "PostgreSQL", "RBAC", "Hardware Integration", "Isometric UI"],
+        highlights: [
+            "Live isometric lab visualization driven by automated hardware audit data",
+            "Full configuration lifecycle: machine manifests, HIL configs, software deployment",
+            "Custom RBAC authentication gates all control-plane access",
+            "Automated traceability reports for test event configuration control",
+            "Integrates with Remote Hardware Execution Platform for config pushes"
+        ],
+        challenges: [
+            "The scope of the system — live data feeds, multi-user access, deployment orchestration, asset metadata, and a custom RBAC — all had to fit together before any of it could be performance-tuned. Getting the architecture right early saved a lot of rework later.",
+            "Maintaining isometric assets for hundreds of pieces of equipment and keeping them synchronized with live database state was more demanding than it looked. Any asset that fell out of sync with the DB made the view unreliable.",
+            "Concurrent writes from audit daemons polling hardware and active deployments pushing configuration changes required careful transaction design. A stale read during a test event configuration push could mean a misconfigured lab."
+        ],
+        metrics: [
+            { label: "200+ machines config-controlled", type: "scale", icon: "fa-server" }
         ]
     },
     atlassianApi: {
@@ -735,6 +760,7 @@ function updateModalLinks(projectId) {
             icon: 'fab fa-github'
         },
         beaker: null,
+        systemIntegrationMap: null,
         homelab: {
             url: 'https://github.com/JaredReichle/HomelabNotes',
             text: 'View on GitHub',

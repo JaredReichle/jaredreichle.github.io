@@ -6,24 +6,24 @@
     --container-max-width: 1200px;
     --container-padding: 0 20px;
     
-    --primary-color: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary-color: #ff6b35;
-    --accent-color: #4ecdc4;
-    --text-color: #333;
-    --text-light: #6b7280;
-    --text-dark: #1f2937;
-    --border-color: #e5e7eb;
-    --background-light: #f8fafc;
+    --primary-color: #0d9488;
+    --primary-dark: #0f766e;
+    --secondary-color: #0ea5e9;
+    --accent-color: #10b981;
+    --text-color: #1f3330;
+    --text-light: #547a75;
+    --text-dark: #134e4a;
+    --border-color: #b2d8d0;
+    --background-light: #e0f0ec;
     --background-dark: #1f2937;
-    --background: #ffffff;
-    --background-alt: #f8fafc;
-    --card-background: #ffffff;
-    --navbar-background: rgba(255, 255, 255, 0.95);
-    
-    --shadow-default: 0 4px 6px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 8px 25px rgba(255, 107, 53, 0.4);
-    --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --background: #edf7f5;
+    --background-alt: #e0f0ec;
+    --card-background: #f7fdfc;
+    --navbar-background: rgba(237, 247, 245, 0.97);
+
+    --shadow-default: 0 2px 8px rgba(15, 32, 30, 0.09);
+    --shadow-hover: 0 8px 24px rgba(13, 148, 136, 0.22);
+    --shadow-modal: 0 20px 60px rgba(15, 32, 30, 0.22);
     
     --font-family: 'Inter', sans-serif;
     --font-size-base: 1rem;
