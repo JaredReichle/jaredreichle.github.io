@@ -2076,15 +2076,21 @@ section {
 
 .modal-title-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: var(--spacing-md);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-bottom: var(--spacing-sm);
 }
 
 .modal-title-row h2 {
+    flex: 1;
+    min-width: 0;
     margin-bottom: 0;
+}
+
+.modal-title-row .modal-links {
+    flex-shrink: 0;
 }
 
 .modal-links {

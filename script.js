@@ -8,7 +8,8 @@ const skillsEvidenceData = {
     python: {
         description: "Automation tooling, backend services, data pipelines, and scientific computing.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
             { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
         ],
@@ -17,7 +18,7 @@ const skillsEvidenceData = {
     cpp: {
         description: "Performance-sensitive systems and hardware interface layers.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
         ],
         related: ["c_lang", "real_time", "hardware_integration", "vxworks", "fault_isolation"]
@@ -49,14 +50,14 @@ const skillsEvidenceData = {
         description: "Linux automation, environment provisioning, and scripting repetitive tasks.",
         projects: [
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" },
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" }
         ],
         related: ["linux_dev", "ansible", "cicd", "python"]
     },
     powershell: {
         description: "Windows automation and administrative tooling.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
         ],
         related: ["bash", "cicd", "git_workflows"]
@@ -64,8 +65,9 @@ const skillsEvidenceData = {
     linux_dev: {
         description: "Application development, debugging, and performance investigation on Linux environments.",
         projects: [
-            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" },
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
+            { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
         ],
         related: ["bash", "docker", "proxmox", "ansible"]
     },
@@ -87,7 +89,8 @@ const skillsEvidenceData = {
     hardware_integration: {
         description: "Building reliable interfaces between software and physical devices.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
         ],
         related: ["hil_testing", "real_time", "cpp", "fault_isolation"]
@@ -95,15 +98,17 @@ const skillsEvidenceData = {
     api_dev: {
         description: "Designing REST APIs and service interfaces for internal tools and applications.",
         projects: [
-            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
+            { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
         ],
         related: ["service_arch", "event_driven", "python", "authz", "sqlalchemy"]
     },
     event_driven: {
         description: "Using message/event patterns to decouple services and handle asynchronous workflows.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
         ],
         related: ["service_arch", "api_dev", "cicd"]
@@ -111,7 +116,8 @@ const skillsEvidenceData = {
     service_arch: {
         description: "Designing backend components that can evolve without breaking dependent systems.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
         ],
         related: ["api_dev", "event_driven", "docker", "cicd"]
@@ -119,14 +125,14 @@ const skillsEvidenceData = {
     test_arch: {
         description: "Designing frameworks that replace manual test procedures with repeatable automated validation.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" }
         ],
         related: ["integration_testing", "hil_testing", "fault_isolation", "python", "cicd"]
     },
     integration_testing: {
         description: "Testing interactions between services, hardware, and system components.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
         ],
         related: ["test_arch", "hil_testing", "fault_isolation", "api_dev"]
@@ -134,7 +140,8 @@ const skillsEvidenceData = {
     hil_testing: {
         description: "Validating software against real hardware in automated test environments.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
         ],
         related: ["test_arch", "hardware_integration", "real_time", "fault_isolation"]
@@ -142,7 +149,7 @@ const skillsEvidenceData = {
     fault_isolation: {
         description: "Tracing failures across system boundaries from hardware through application layers.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
         ],
         related: ["hil_testing", "integration_testing", "test_arch", "cpp", "linux_dev"]
@@ -150,7 +157,7 @@ const skillsEvidenceData = {
     cicd: {
         description: "Automating build, test, and deployment workflows.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
         ],
         related: ["docker", "ansible", "git_workflows", "azure", "bash"]
@@ -159,7 +166,7 @@ const skillsEvidenceData = {
         description: "Packaging applications into reproducible runtime environments.",
         projects: [
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" },
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" }
         ],
         related: ["cicd", "ansible", "linux_dev", "proxmox", "service_arch"]
     },
@@ -181,7 +188,7 @@ const skillsEvidenceData = {
     azure: {
         description: "Compute, storage, and infrastructure services for deployed applications.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" }
         ],
         related: ["cicd", "docker", "service_arch", "authz"]
@@ -218,7 +225,7 @@ const skillsEvidenceData = {
     pandas: {
         description: "Data cleaning, transformation, and exploratory analysis.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" }
         ],
         related: ["numpy", "sklearn", "python", "postgres", "sqlalchemy"]
     },
@@ -232,7 +239,8 @@ const skillsEvidenceData = {
     postgres: {
         description: "Schema design, indexing, and query optimization.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" },
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
         ],
         related: ["sqlite", "sqlalchemy", "api_dev", "python"]
@@ -240,21 +248,23 @@ const skillsEvidenceData = {
     sqlite: {
         description: "Embedded databases for lightweight applications.",
         projects: [
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" }
         ],
         related: ["postgres", "sqlalchemy", "python"]
     },
     sqlalchemy: {
         description: "ORM-based data models for Python applications.",
         projects: [
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
-            { id: "beaker", tab: "professional", label: "Test Automation Platform" }
+            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" }
         ],
         related: ["postgres", "sqlite", "python", "api_dev"]
     },
     rbac: {
         description: "Designing permission systems based on user roles.",
         projects: [
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
         ],
@@ -263,6 +273,7 @@ const skillsEvidenceData = {
     authz: {
         description: "Implementing login flows and access control logic.",
         projects: [
+            { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "atlassianApi", tab: "professional", label: "Atlassian API Toolkit" },
             { id: "homelab", tab: "personal", label: "Homelab Infrastructure" }
         ],
