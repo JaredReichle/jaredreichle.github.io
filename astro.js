@@ -1,5 +1,14 @@
 const astroImages = [
     {
+        filename: 'MarkariansChain.jpg',
+        title: 'Markarian\'s Chain',
+        description: 'A sweeping stretch of galaxies in the Virgo Cluster, roughly 50–60 million light-years away. What looks like a quiet patch of sky turns out to be home to at least eight galaxies — M84, M86, M87, NGC 4477, NGC 4473, NGC 4461, NGC 4458, and NGC 4438 — drifting together in the largest gravitational structure in the local universe.',
+        date: 'March 2026',
+        equipment: 'Seestar S50',
+        category: 'galaxies',
+        type: 'photo'
+    },
+    {
         filename: 'M81BodesGalaxy.jpg',
         title: 'Bode\'s Galaxy (M81)',
         description: 'A grand design spiral galaxy in the constellation Ursa Major, about 12 million light-years away. M81 is one of the brightest galaxies visible from Earth and is part of the M81 Group.',

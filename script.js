@@ -15,21 +15,10 @@ const skillsEvidenceData = {
         ],
         related: ["bash", "sqlalchemy", "pandas", "numpy", "api_dev"]
     },
-    cpp: {
-        description: "Performance-sensitive systems and hardware interface layers.",
-        projects: [
-            { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
-            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
-        ],
-        related: ["c_lang", "real_time", "hardware_integration", "vxworks", "fault_isolation"]
-    },
     c_lang: {
         description: "Low-level systems programming with explicit memory management and deterministic behavior.",
-        projects: [
-            { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" },
-            { id: "circuitSynthesis", tab: "practicum", label: "Frequency-Response Circuit Synthesis" }
-        ],
-        related: ["cpp", "real_time", "vxworks", "hardware_integration"]
+        projects: [],
+        related: ["real_time", "vxworks", "hardware_integration"]
     },
     typescript: {
         description: "Typed frontend development for maintainable web interfaces.",
@@ -76,7 +65,7 @@ const skillsEvidenceData = {
         projects: [
             { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
         ],
-        related: ["real_time", "c_lang", "cpp", "hardware_integration", "fault_isolation"]
+        related: ["real_time", "c_lang", "hardware_integration", "fault_isolation"]
     },
     real_time: {
         description: "Designing software where latency, scheduling, and timing guarantees matter.",
@@ -84,7 +73,7 @@ const skillsEvidenceData = {
             { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" },
             { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
         ],
-        related: ["vxworks", "cpp", "c_lang", "hardware_integration", "hil_testing"]
+        related: ["vxworks", "c_lang", "hardware_integration", "hil_testing"]
     },
     hardware_integration: {
         description: "Building reliable interfaces between software and physical devices.",
@@ -93,7 +82,7 @@ const skillsEvidenceData = {
             { id: "systemIntegrationMap", tab: "professional", label: "System Integration Lab Interactive Map" },
             { id: "astronomyTools", tab: "personal", label: "Telescope Control Bridge" }
         ],
-        related: ["hil_testing", "real_time", "cpp", "fault_isolation"]
+        related: ["hil_testing", "real_time", "fault_isolation"]
     },
     api_dev: {
         description: "Designing REST APIs and service interfaces for internal tools and applications.",
@@ -152,7 +141,7 @@ const skillsEvidenceData = {
             { id: "beaker", tab: "professional", label: "Remote Hardware Execution Platform" },
             { id: "fpgaLaserControl", tab: "practicum", label: "FPGA Laser Interferometer Control System" }
         ],
-        related: ["hil_testing", "integration_testing", "test_arch", "cpp", "linux_dev"]
+        related: ["hil_testing", "integration_testing", "test_arch", "linux_dev"]
     },
     cicd: {
         description: "Automating build, test, and deployment workflows.",
@@ -297,7 +286,6 @@ const skillsEvidenceData = {
 };
 
 const skillsResumeEvidence = {
-    cpp: ["Senior Software Engineer - Northrop Grumman"],
     c_lang: ["Electronics Engineer - United States Air Force"],
     powershell: ["Senior Software Engineer - Northrop Grumman"],
     linux_dev: ["Senior Software Engineer - Northrop Grumman"],
