@@ -1,6 +1,13 @@
 const astroImages = [
     {
-        filename: 'MarkariansChain.jpg',
+        filename: 'M94CatsEyeGalaxy.jpg',
+        title: 'Cat\'s Eye Galaxy (M94)',
+        description: 'A spiral galaxy in the constellation Canes Venatici, roughly 16 million light-years away. M94 stands out for its bright core and tightly wound arms—often nicknamed the Cat\'s Eye Galaxy.',
+        date: 'April 2026',
+        equipment: 'Seestar S50'
+    },
+    {
+        filename: 'MarkarianChain.jpg',
         title: 'Markarian\'s Chain',
         description: 'A sweeping stretch of galaxies in the Virgo Cluster, roughly 50–60 million light-years away. What looks like a quiet patch of sky turns out to be home to at least eight galaxies — M84, M86, M87, NGC 4477, NGC 4473, NGC 4461, NGC 4458, and NGC 4438 — drifting together in the largest gravitational structure in the local universe.',
         date: 'March 2026',
